@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HireSphere</title>
     <link rel="stylesheet" href="./css/candidate_menu.css">
 </head>
 <body>
@@ -22,8 +22,7 @@
                 <ul class="flex">
                     <li><a href="login.jsp" class="hover-link">About</a></li>
                     <li><a href="login.jsp" class="hover-link">Job Search</a></li>
-                    <li><a href="login.jsp" class="hover-link">Companies</a></li>
-                    <li><a href="#Contacts" class="hover-link">Contact</a></li>
+                    <li><a href="#footer-id" class="hover-link">Contact</a></li>
                     <li><a href="login.jsp" class="hover-link primary-button">Login/SignUp</a></li>
                     <!--<li><a href="#" class="hover-link secondary-button">Sign up</a></li>-->
                 </ul>
@@ -157,7 +156,7 @@
         </div>
     <br> 
     <br>
-    <!-- footer  -->
+    <!-- footer  --><hr>
     <jsp:include page="footer.jsp"></jsp:include>
 
     <script src="https://kit.fontawesome.com/37cc2e7603.js" crossorigin="anonymous"></script>
