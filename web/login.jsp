@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Coding by CodingLab | www.codinglabweb.com-->
-    <html lang="en">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,10 +9,10 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/loginstyle.css">
-                
+
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-                        
+
     </head>
     <body>
         <section class="container forms">
@@ -20,6 +20,7 @@
                 <div class="form-content">
                     <header>Login</header>
                     <form action="Login" method="post">
+
                         <div class="field input-field">
                             <input type="email" placeholder="Email" class="input">
                         </div>
@@ -68,6 +69,10 @@
                     <header>Signup</header>
                     <form action="Signup" method="post">
                         <div class="field input-field">
+                            <input type="text" placeholder="Name" class="input">
+                        </div>
+                        <div class="field input-field">
+
                             <input type="email" placeholder="Email" class="input">
                         </div>
 

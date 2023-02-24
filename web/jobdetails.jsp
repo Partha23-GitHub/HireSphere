@@ -125,7 +125,7 @@
         <!-- job post company End -->
 
     </main>
-    
+            <hr>
         <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>
