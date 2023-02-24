@@ -1,4 +1,4 @@
-package com.exavalu.utils;
+package com.hiresphere.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

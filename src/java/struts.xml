@@ -15,10 +15,10 @@
         <action name="Logout">
             <result>landingpage.jsp</result>
         </action>
-        <action name="Signup1" class="com.exavalu.models.Employee" method="doLogin">
+<!--        <action name="Signup1" class="com.exavalu.models.Employee" method="doLogin">
             <result name="SUCCESS">employeeDetails.jsp</result>
             <result name="FAILURE">login.jsp</result>
-        </action> 
+        </action> -->
         <action name="LoadHRMenu" class="com.hiresphere.models.HR" method="loadMenuContent">
             <result name="POSTJOB">post-a-job.jsp</result>
             <result name="ALLALLAPPLICANT">viewallapplicant.jsp</result>

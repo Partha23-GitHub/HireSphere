@@ -32,56 +32,24 @@
         <br>
         <h2 class="thead-dark">Your All Application</h2>
         <hr>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Email Address</th>
-                    <th scope="col">Resume</th>
-                    <th scope="col">Action</th>
+        <div class="container">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Email Address</th>
+                        <th scope="col">Resume</th>
+                        <th scope="col">Action</th>
 
-                </tr>
-            </thead>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr>
-                    <td>${candidate.getName()}Shivam Mishra </td>
-                <td>${candidate.getPhoneNUmber()} 9051284831</td>
-                <td>${candidate.getEmail()}itsshivamm03@gmail.com</td>
-                <td> 
-                    <a href="" class="hover-link secondary-button">
-                        View Resume
-                    </a>
-                </td>
-                <td> 
-                    <a href="" class="hover-link secondary-button">
-                        Status
-                    </a>
-                </td>
-            </tr>
-            <tr>
-
-                <td>${candidate.getName()}Shivam Mishra </td>
-                <td>${candidate.getPhoneNUmber()} 9051284831</td>
-                <td>${candidate.getEmail()}itsshivamm03@gmail.com</td>
-                <td> 
-                    <a href="">
-                        View Resume
-                    </a>
-                </td>
-                <td> 
-                    <a href="">
-                        Status
-                    </a>
-                </td>
-            </tr>
-            <c:forEach var = "candidate" items = "${CandidateList}">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>${candidate.getName()}</td>
-                    <td>${candidate.getPhoneNUmber()}</td>
-                    <td>${candidate.getEmail()}</td>
+                <tbody>
+                    <tr>
+                        <td>${candidate.getName()}Shivam Mishra </td>
+                    <td>${candidate.getPhoneNUmber()} 9051284831</td>
+                    <td>${candidate.getEmail()}itsshivamm03@gmail.com</td>
                     <td> 
                         <a href="" class="hover-link secondary-button">
                             View Resume
@@ -93,10 +61,44 @@
                         </a>
                     </td>
                 </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-              <br> <br><br><br><br><br><br><br><br><br><br><br><br>  
+                <tr>
+
+                    <td>${candidate.getName()}Shivam Mishra </td>
+                    <td>${candidate.getPhoneNUmber()} 9051284831</td>
+                    <td>${candidate.getEmail()}itsshivamm03@gmail.com</td>
+                    <td> 
+                        <a href="">
+                            View Resume
+                        </a>
+                    </td>
+                    <td> 
+                        <a href="">
+                            Status
+                        </a>
+                    </td>
+                </tr>
+                <c:forEach var = "candidate" items = "${CandidateList}">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>${candidate.getName()}</td>
+                        <td>${candidate.getPhoneNUmber()}</td>
+                        <td>${candidate.getEmail()}</td>
+                        <td> 
+                            <a href="" class="hover-link secondary-button">
+                                View Resume
+                            </a>
+                        </td>
+                        <td> 
+                            <a href="" class="hover-link secondary-button">
+                                Status
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+    <br> <br><br><br><br><br><br><br><br><br><br><br><br>  
     <jsp:include page="footer.jsp"></jsp:include>
 </body>
 
