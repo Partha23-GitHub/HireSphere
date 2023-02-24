@@ -8,6 +8,11 @@ import com.hiresphere.models.JobDetails;
 import com.hiresphere.utils.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.DateFormat;  
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
+import java.util.Calendar; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -19,6 +24,19 @@ import org.apache.log4j.Logger;
  * @author user
  */
 public class JobDetailsService {
+     public static JobDetailsService jobDetailsService = null;
+
+    private JobDetailsService() {
+    }
+
+    public static JobDetailsService getInstance() {
+        if (jobDetailsService == null) {
+            return new JobDetailsService();
+        } else {
+            return jobDetailsService;
+        }
+    }
+
 
     public static ArrayList doJobSearch(JobDetails jobdetails) {
         ArrayList jobdetailsList = new ArrayList();
@@ -120,6 +138,7 @@ public class JobDetailsService {
         }
         return jobdetails;
     }
+
     public boolean postAjob(JobDetails job) {
         Date d = Calendar.getInstance().getTime();  
       DateFormat df = new SimpleDateFormat("dd-mm-yyy");  

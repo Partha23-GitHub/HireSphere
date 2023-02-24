@@ -27,6 +27,10 @@
             <result name="ALLALLAPPLICANT">viewallapplicant.jsp</result>
             <result name="ALLPOSTEDJOB">alljobpost.jsp</result>
         </action> 
+        <action name="postForm" class="com.hiresphere.models.JobDetails" method="postAJob">
+            <result name="SUCCESS">hrmenupage.jsp</result>
+            <result name="FAILURE">post-a-job.jsp</result>
+        </action>    
         <action name="VisitCandidateProfile" class="com.hiresphere.models.Candidate" method="visitCandidateProfile">
             <result name="SUCCESS">candidateprofile.jsp</result>
             <result name="FAILURE">candidatehome.jsp</result>
