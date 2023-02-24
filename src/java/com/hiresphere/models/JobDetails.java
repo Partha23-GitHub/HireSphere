@@ -258,4 +258,21 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
         }
         return result;
 }
+     public String postAJob()
+    {
+        String result="FAILURE";
+        
+        boolean success=JobDetailsService.getInstance().postAjob(this);
+        if(success)
+        {
+            System.out.println("returning Success from postAJob method");
+            result = "SUCCESS";
+        }
+        else
+        {
+             System.out.println("returning Failure from postAJob method");
+        }
+        return result;
+        
+    }
 }
