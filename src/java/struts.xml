@@ -5,9 +5,12 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" namespace="/" extends="struts-default">
-        <action name="Login">
-            <result>candidatehome.jsp</result>
-            
+        <action name="Login" class="com.hiresphere.models.user" method="doLogin">
+<!--            <result>candidatehome.jsp</result>-->
+            <result name="CANDIDATE">candidatehome.jsp</result>
+            <result name="HR">hrmenupage.jsp</result>
+            <result name="HR MANAGER">hrmenupage.jsp</result>
+            <result name="FAILURE">login.jsp</result>
         </action>   
         <action name="Signup">
             <result>candidatehome.jsp</result>
@@ -23,6 +26,8 @@
             <result name="POSTJOB">post-a-job.jsp</result>
             <result name="ALLALLAPPLICANT">viewallapplicant.jsp</result>
             <result name="ALLPOSTEDJOB">alljobpost.jsp</result>
-        </action>    
+        </action> 
+        
+              
     </package>
 </struts>
