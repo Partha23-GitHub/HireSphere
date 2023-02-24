@@ -27,7 +27,21 @@
             <result name="ALLALLAPPLICANT">viewallapplicant.jsp</result>
             <result name="ALLPOSTEDJOB">alljobpost.jsp</result>
         </action> 
-        
-              
+        <action name="VisitCandidateProfile" class="com.hiresphere.models.Candidate" method="visitCandidateProfile">
+            <result name="SUCCESS">candidateprofile.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>   
+         <action name="JobSearch" class="com.hiresphere.models.JobDetails" method="jobSearch">
+            <result name="SUCCESS">joblist.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>
+         <action name="JobSearchByKeyword" class="com.hiresphere.models.JobDetails" method="jobSearchByKeyword">
+            <result name="SUCCESS">joblist.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>
+          <action name="ViewJobDetails" class="com.hiresphere.models.JobDetails" method="viewJobDetails">
+            <result name="SUCCESS">jobdetails.jsp</result>
+            <result name="FAILURE">joblist.jsp</result>
+        </action>
     </package>
 </struts>
