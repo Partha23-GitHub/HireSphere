@@ -25,6 +25,17 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     private String name;
     private String email;
     private String password;
+    private String roleId;
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+   
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -98,4 +109,33 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 //
 //        return result;
 //    }
+
+public String doLogin() throws Exception {
+        String result = "FAILURE";
+
+        
+        boolean success = UserService.getInstance().doLogin(this);
+
+        if (success) {
+            System.out.println("Returning Success from doLogin method");
+            User user = UserService.getUser(this.getEmail());
+            if(user.getRoleId().equals("1")){
+                result = "CANDIDATE";
+            }
+            else if(user.getRoleId().equals("2")){
+                result = "HR";
+            }
+            else {
+                result ="HR MANAGER";
+            }
+//            ArrayList fnolList = FNOLService.getAllFnols();
+//            sessionMap.put("fnolList", fnolList);
+            sessionMap.put("User", user);
+//            result = "SUCCESS";
+        } else {
+            System.out.println("Returning Failure from doLogin method");
+        }
+
+        return result;
+    }
 }
