@@ -84,7 +84,7 @@
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" onclick="fetchContent('jobpost', 'hr-home-content')">
+                    <a class="nav-link collapsed" href="post-a-job.jsp">
                         <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer";
                               >&#9755; &nbsp; Post Jobs</span
                         >
