@@ -65,7 +65,7 @@
                 <li class="nav-item">
                     <a
                         class="nav-link collapsed"
-                        href="#"
+                        href="Logout"
                         data-target="#collapseUtilities"
                         aria-expanded="true"
                         aria-controls="collapseUtilities"
@@ -264,9 +264,12 @@
                     <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
+                
             </div>
             <!-- End of Content Wrapper -->
+            
         </div>
+         <jsp:include page="footer.jsp"></jsp:include>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="text/javascript">
