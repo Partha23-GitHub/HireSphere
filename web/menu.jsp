@@ -31,41 +31,30 @@
                     <div class="nav-links">
                         <ul class="flex">
                             <li><a href="candidatehome.jsp" class="hover-link">Home</a></li>
-                            <li><a href="joblist.jsp" class="hover-link">Job Search</a></li>
+                            <li><a href="JobSearch" class="hover-link">Job Search</a></li>
                             <li><a href="allappliedjobs.jsp" class="hover-link">View Applications</a></li>
                             <li><a href="#footer-id" class="hover-link">Contact</a></li>
-                            <li><a href="#" class="hover-link">Profile</a></li>
+                            <li><a href="VisitCandidateProfile" class="hover-link">Profile</a></li>
                             <li><a href="Logout" class="hover-link secondary-button">Logout</a></li>
                         </ul>
                     </div>
                 </div>
             </nav> 
-        
-        <!--    <script type="text/javascript">
-                window.addEventListener("scroll",function(){
-                    var header = document.querySelector("header");
-                    header.classList.toggle("stick",window.scrollY > 0);
-                });
-            </script>-->
-<!--        <script type="text/javascript">
-            window.onscroll = function () {
-                myFunction()
-            };
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script>
+               function visitCandidateProfile() {
+          console.log("visit candidate profle is working");
+          $.ajax({
+              url: 'VisitCandidateProfile',
 
-        // Get the navbar
-            var navbar = document.getElementById("navbar");
+              success: function (responseText) {
+// alert(responseText);
+                  $("candidateProfile.jsp").html(responseText);
 
-        // Get the offset position of the navbar
-            var sticky = navbar.offsetTop;
+              }
+          }
+          );
 
-        // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-            function myFunction() {
-                if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky");
-                } else {
-                    navbar.classList.remove("sticky");
-                }
-            }
-        </script>-->
+         </script>
     </body>
 </html>

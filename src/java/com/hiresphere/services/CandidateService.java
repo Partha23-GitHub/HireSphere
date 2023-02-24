@@ -4,10 +4,43 @@
  */
 package com.hiresphere.services;
 
+import com.hiresphere.models.Candidate;
+import com.hiresphere.utils.JDBCConnectionManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+
 /**
  *
  * @author user
  */
 public class CandidateService {
-    
+
+    public static Candidate getCandidateById(int candidateId) {
+        Candidate candidate = new Candidate();
+        String sql = "SELECT * FROM candidates where candidateId=1";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+           // ps.setInt(1, candidateId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                candidate.setCandidateId(rs.getInt("candidateId"));
+                candidate.setUserId(rs.getInt("userId"));
+                candidate.setName(rs.getString("name"));
+                candidate.setGender(rs.getString("gender"));
+                candidate.setPhoneNumber(rs.getString("phoneNumber"));
+                candidate.setCity(rs.getString("city"));
+                candidate.setState(rs.getString("state"));
+                candidate.setCountry(rs.getString("country"));
+
+            }
+        } catch (SQLException ex) {
+        //    logger.error(ex.getMessage() + LocalDateTime.now());
+        }
+        return candidate;
+    }
+
 }

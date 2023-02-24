@@ -5,9 +5,12 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" namespace="/" extends="struts-default">
-        <action name="Login">
-            <result>candidatehome.jsp</result>
-            
+        <action name="Login" class="com.hiresphere.models.user" method="doLogin">
+<!--            <result>candidatehome.jsp</result>-->
+            <result name="CANDIDATE">candidatehome.jsp</result>
+            <result name="HR">hrmenupage.jsp</result>
+            <result name="HR MANAGER">hrmenupage.jsp</result>
+            <result name="FAILURE">login.jsp</result>
         </action>   
         <action name="Signup">
             <result>candidatehome.jsp</result>
@@ -28,5 +31,21 @@
             <result name="SUCCESS">hrmenupage.jsp</result>
             <result name="FAILURE">post-a-job.jsp</result>
         </action>    
+        <action name="VisitCandidateProfile" class="com.hiresphere.models.Candidate" method="visitCandidateProfile">
+            <result name="SUCCESS">candidateprofile.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>   
+         <action name="JobSearch" class="com.hiresphere.models.JobDetails" method="jobSearch">
+            <result name="SUCCESS">joblist.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>
+         <action name="JobSearchByKeyword" class="com.hiresphere.models.JobDetails" method="jobSearchByKeyword">
+            <result name="SUCCESS">joblist.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>
+          <action name="ViewJobDetails" class="com.hiresphere.models.JobDetails" method="viewJobDetails">
+            <result name="SUCCESS">jobdetails.jsp</result>
+            <result name="FAILURE">joblist.jsp</result>
+        </action>
     </package>
 </struts>
