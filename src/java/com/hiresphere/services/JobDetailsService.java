@@ -76,7 +76,7 @@ public class JobDetailsService {
         try {
             Connection con = JDBCConnectionManager.getConnection();
 
-            String sql = "SELECT * FROM hiresphere.jobdetails where jobTitle like ? or companyName like ? or jobType like ?";
+            String sql = "SELECT * FROM hiresphere.jobdetails where hrManagerVerificationStatus=1 and (jobTitle like ? or companyName like ? or jobType like ?)";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, "%" + jobdetails.getKeyword() + "%");
             preparedStatement.setString(2, "%" + jobdetails.getKeyword() + "%");

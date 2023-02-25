@@ -55,33 +55,33 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
     public void setMap(ApplicationMap map) {
         this.map = map;
     }
-//    private String work;
-//
-//    public String getWork() {
-//        return work;
-//    }
-//
-//    public void setWork(String work) {
-//        this.work = work;
-//    }
-//
-//    public String loadMenuContent() throws Exception {
-//        String result = "FAILURE";
-//        switch (this.getWork()) {
-//            case "jobpost":
-//                result = "POSTJOB";
-//                break;
-//            case "allapplicant":
-//                result = "ALLALLAPPLICANT";
-//                break;
-//            case "allpostedjobs":
-//                result = "ALLPOSTEDJOB";
-//                break;
-//            default:
-//                break;
-//        }
-//        return result;
-//    }
+    private String work;
+
+    public String getWork() {
+        return work;
+    }
+
+    public void setWork(String work) {
+        this.work = work;
+    }
+
+    public String loadMenuContent() throws Exception {
+        String result = "FAILURE";
+        switch (this.getWork()) {
+            case "jobpost":
+                result = "POSTJOB";
+                break;
+            case "allapplicant":
+                result = "ALLALLAPPLICANT";
+                break;
+            case "allpostedjobs":
+                result = "ALLPOSTEDJOB";
+                break;
+            default:
+                break;
+        }
+        return result;
+    }
 
     /**
      * @return the hrId

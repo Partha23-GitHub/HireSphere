@@ -39,7 +39,7 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
-                    <a class="nav-link" href=".">
+                    <a class="nav-link" href="hrmenupage.jsp">
                         <span style="margin-left: 2rem">&#9751;&nbsp;Home</span></a
                     >
                 </li>
@@ -85,7 +85,7 @@
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="post-a-job.jsp">
+                    <a class="nav-link collapsed" onclick="fetchContent('jobpost','hr-home-content')">
                         <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer";
                               >&#9755; &nbsp; Post Jobs</span
                         >

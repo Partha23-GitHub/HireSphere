@@ -25,13 +25,22 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     private String name;
     private String email;
     private String password;
-    private String roleId;
+    private Integer roleId;
+    private int userId; 
 
-    public String getRoleId() {
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 
@@ -101,13 +110,13 @@ public String doLogin() throws Exception {
             System.out.println("Returning Success from doLogin method");
             User user = UserService.getUser(this.getEmail());
             switch (user.getRoleId()) {
-                case "1":
+                case 1:
                     result = "CANDIDATE";
                     break;
-                case "2":
+                case 2:
                     result = "HR";
                     break;
-                case "3":
+                case 3:
                     result ="HR MANAGER";
                     break;
                 default:

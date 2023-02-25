@@ -103,7 +103,7 @@ public class UserService {
 
             if (rs.next()) {
                 user.setEmail(rs.getString("email"));
-                user.setRoleId(rs.getString("roleId"));
+                user.setRoleId(rs.getInt("roleId"));
                 user.setName(rs.getString("name"));
                
                 // con.close();

@@ -26,7 +26,7 @@
                     <input
                         type="text"
                         placeholder="Enter your company name"
-                        name="companyName" value="${JobDetails.companyName}"
+                        name="companyName"
                         required
                         />
                 </div>
@@ -38,7 +38,6 @@
                         type="text"
                         placeholder="Enter Company Website"
                         name="companyWebsite"
-                        value="${JobDetails.companyWebsite}"
                         required
                         />
                 </div>
@@ -59,7 +58,6 @@
                         type="text"
                         placeholder="i.e: Java or Android"
                         name="jobTitle"
-                        value="${JobDetails.jobTitle}"
                         required
                         />
                 </div>
@@ -70,33 +68,32 @@
                         type="text"
                         placeholder="i.e: Fulltime or Intern"
                         name="jobType"
-                        value="${JobDetails.jobType}"
                         required
                         />
                 </div>
 
                 <div class="input-field">
                     <label>Job Descriptions</label>
-                    <textarea type="text" placeholder="Job Descriptions" name="description" value="${JobDetails.description}" required ></textarea>
+                    <textarea type="text" placeholder="Job Descriptions" name="description" required ></textarea>
                 </div>
                 <div class="input-field">
                     <label>Education Qualifications</label>
-                    <input type="text" placeholder="Enter Education Qualifications" name="educationQualification" value="${JobDetails.educationQualification}" required />
+                    <input type="text" placeholder="Enter Education Qualifications" name="educationQualification" required />
                 </div>
 
                 <div class="input-field">
                     <label>Roles & responsibilities</label>
-                    <textarea type="text" placeholder="Job Responsibilities" name="responsibilities" value="${JobDetails.responsibilities}" required ></textarea>
+                    <textarea type="text" placeholder="Job Responsibilities" name="responsibilities" required ></textarea>
                 </div>
 
                 <div class="input-field">
                     <label>Requirments</label>
-                    <textarea type="text" placeholder="Job Requirments" name="requirements" value="${JobDetails.requirements}" required ></textarea>
+                    <textarea type="text" placeholder="Job Requirments" name="requirements" required ></textarea>
                 </div>
 
                 <div class="input-field">
                     <label>Location</label>
-                    <input type="text" placeholder="Job Location" name="location" value="${JobDetails.location}" required />
+                    <input type="text" placeholder="Job Location" name="location" required />
                 </div>
 
                 <div class="input-field">
@@ -105,22 +102,21 @@
                         type="text"
                         placeholder="Work Experience"
                         name="experience"
-                        value="${JobDetails.experience}"
                         required
                         />
                 </div>
 
                 <div class="input-field">
                     <label>Closed On</label>
-                    <input type="date" placeholder="Application Last Date" name="closingDate" value="${JobDetails.closingDate}" required />
+                    <input type="date" placeholder="Application Last Date" name="closingDate" required />
                 </div>
                 <div class="input-field">
                     <label>Salary</label>
-                    <input type="text" placeholder="CTC" name="salary" value="${JobDetails.salary}" required />
+                    <input type="text" placeholder="CTC" name="salary" required />
                 </div>
                  <input
                         type="text"
-                        name="userId" value="${User.getUserId}"
+                        name="userId" value="${User.getUserId()}"
                         hidden
                         />
                 <div class="input-field">

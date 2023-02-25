@@ -35,11 +35,9 @@
             <main>
                 <div class="container" style="display: flex;justify-content: center;align-items: center;">
                     <form class="d-flex"action="JobSearchByKeyword" method="Post">
-                        <input class="form-control me-2 " style="width: 400px; text-align: center; border-radius: 10px;height: 3rem;" type="search" placeholder="jobTitle" aria-label="Search" type="text" id="floatingInput"  name="keyword">
+                        <input class="form-control me-2 " style="width: 400px; text-align: center; border-radius: 10px;height: 3rem;" type="search" placeholder="Job Title or Company or Type" aria-label="Search" type="text" id="floatingInput"  name="keyword">
                         &nbsp;&nbsp;&nbsp;
-                        <a href="JobSearchByTitle">
                             <button class="hover-link primary-button" style="border: none; width: 200px; border-radius: 10px; " type="submit">Search</button>
-                        </a> 
                     </form>
                 </div>
 
