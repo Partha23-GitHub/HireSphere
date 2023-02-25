@@ -190,9 +190,6 @@ public class JobDetailsService {
                 
                 result = true;
             }
-            
-            
-
 
         } catch (SQLException ex) {
             ex.printStackTrace();

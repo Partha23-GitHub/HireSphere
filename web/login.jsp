@@ -22,11 +22,11 @@
                     <form action="Login" method="post">
 
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input">
+                            <input type="email" placeholder="Email" class="input" name="email">
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Password" class="password">
+                            <input type="password" placeholder="Password" class="password" name="password">
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
@@ -69,19 +69,19 @@
                     <header>Signup</header>
                     <form action="Signup" method="post">
                         <div class="field input-field">
-                            <input type="text" placeholder="Name" class="input">
+                            <input type="text" placeholder="Name" class="input" name="name">
                         </div>
                         <div class="field input-field">
 
-                            <input type="email" placeholder="Email" class="input">
+                            <input type="email" placeholder="Email" class="input" name="email">
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Create password" class="password">
+                            <input type="password" placeholder="Create password" class="password" name="password">
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Confirm password" class="password">
+                            <input type="password" placeholder="Confirm password" class="password" name="confirmpassword">
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 

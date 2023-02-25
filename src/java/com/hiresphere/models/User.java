@@ -91,25 +91,6 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         return result;
     }
 
-//    public String doLogin() throws Exception {
-//        String result = "FAILURE";
-//
-//        boolean success = LoginService.getInstance().doLogin(this);
-//
-//        if (success) {
-//            System.out.println("returning Success from doLogin method");
-//            result = "SUCCESS";
-//            sessionMap.put("Loggedin", this);
-//            ArrayList empList = EmployeeService.getInstance().getAllEmployees();
-//            
-//
-//        } else {
-//            System.out.println("returning Failure from doLogin method");
-//        }
-//
-//        return result;
-//    }
-
 public String doLogin() throws Exception {
         String result = "FAILURE";
 
@@ -119,19 +100,20 @@ public String doLogin() throws Exception {
         if (success) {
             System.out.println("Returning Success from doLogin method");
             User user = UserService.getUser(this.getEmail());
-            if(user.getRoleId().equals("1")){
-                result = "CANDIDATE";
+            switch (user.getRoleId()) {
+                case "1":
+                    result = "CANDIDATE";
+                    break;
+                case "2":
+                    result = "HR";
+                    break;
+                case "3":
+                    result ="HR MANAGER";
+                    break;
+                default:
+                    result="FAILURE";
             }
-            else if(user.getRoleId().equals("2")){
-                result = "HR";
-            }
-            else {
-                result ="HR MANAGER";
-            }
-//            ArrayList fnolList = FNOLService.getAllFnols();
-//            sessionMap.put("fnolList", fnolList);
             sessionMap.put("User", user);
-//            result = "SUCCESS";
         } else {
             System.out.println("Returning Failure from doLogin method");
         }

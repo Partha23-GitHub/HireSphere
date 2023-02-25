@@ -5,7 +5,7 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" namespace="/" extends="struts-default">
-        <action name="Login" class="com.hiresphere.models.user" method="doLogin">
+        <action name="Login" class="com.hiresphere.models.User" method="doLogin">
 <!--            <result>candidatehome.jsp</result>-->
             <result name="CANDIDATE">candidatehome.jsp</result>
             <result name="HR">hrmenupage.jsp</result>
@@ -18,7 +18,7 @@
         <action name="Logout">
             <result>landingpage.jsp</result>
         </action>
-<!--        <action name="Signup1" class="com.exavalu.models.Employee" method="doLogin">
+<!--    <action name="Signup1" class="com.exavalu.models.Employee" method="doLogin">
             <result name="SUCCESS">employeeDetails.jsp</result>
             <result name="FAILURE">login.jsp</result>
         </action> -->

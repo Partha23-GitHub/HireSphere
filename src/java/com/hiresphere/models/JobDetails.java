@@ -20,15 +20,14 @@ import org.apache.struts2.interceptor.SessionAware;
  * @author user
  */
 public class JobDetails extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
-    private int jobId,userId;
-    private String companyName,companyWebsite,jobTitle,jobType,description;
-    private String educationQualification,requirements,responsibilities,location;
-    private String experience,closingDate,salary,postingDate;
-    private int hrManagerVerificationStatus,jobStatus;
-    
-    
-    
-     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
+
+    private int jobId, userId;
+    private String companyName, companyWebsite, jobTitle, jobType, description;
+    private String educationQualification, requirements, responsibilities, location;
+    private String experience, closingDate, salary, postingDate;
+    private int hrManagerVerificationStatus, jobStatus;
+
+    private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
 
@@ -57,28 +56,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setMap(ApplicationMap map) {
         this.map = map;
     }
-    private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
-    private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
-
-    @Override
-    public void setApplication(Map<String, Object> application) {
-        map = (ApplicationMap) application;
-    }
-
-    @Override
-    public void setSession(Map<String, Object> session) {
-        sessionMap = (SessionMap) session;
-    }
-
-    private int jobId;
-    private int userId;
-    private String companyName;
-    private String companyWebsite;
-    private String jobTitle;
-    private String jobType;
-    private String description;
-    private String educationQualification;
     public int getJobId() {
         return jobId;
     }
@@ -86,9 +64,11 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setJobId(int jobId) {
         this.jobId = jobId;
     }
+
     public int getUserId() {
         return userId;
     }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -100,9 +80,11 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
+
     public String getCompanyWebsite() {
         return companyWebsite;
     }
+
     public void setCompanyWebsite(String companyWebsite) {
         this.companyWebsite = companyWebsite;
     }
@@ -118,6 +100,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public String getJobType() {
         return jobType;
     }
+
     public void setJobType(String jobType) {
         this.jobType = jobType;
     }
@@ -129,9 +112,11 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setDescription(String description) {
         this.description = description;
     }
+
     public String getEducationQualification() {
         return educationQualification;
     }
+
     public void setEducationQualification(String educationQualification) {
         this.educationQualification = educationQualification;
     }
@@ -143,9 +128,11 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setRequirements(String requirements) {
         this.requirements = requirements;
     }
+
     public String getResponsibilities() {
         return responsibilities;
     }
+
     public void setResponsibilities(String responsibilities) {
         this.responsibilities = responsibilities;
     }
@@ -153,9 +140,11 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public String getLocation() {
         return location;
     }
+
     public void setLocation(String location) {
         this.location = location;
     }
+
     public String getExperience() {
         return experience;
     }
@@ -163,98 +152,61 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setExperience(String experience) {
         this.experience = experience;
     }
-    public String getRequirements() {
-        return requirements;
-    }
 
-    public void setRequirements(String requirements) {
-        this.requirements = requirements;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
     public String getClosingDate() {
         return closingDate;
     }
+
     public void setClosingDate(String closingDate) {
         this.closingDate = closingDate;
     }
+
     public String getSalary() {
         return salary;
     }
+
     public void setSalary(String salary) {
         this.salary = salary;
     }
+
     public String getPostingDate() {
         return postingDate;
     }
+
     public void setPostingDate(String postingDate) {
         this.postingDate = postingDate;
     }
+
     public int getHrManagerVerificationStatus() {
         return hrManagerVerificationStatus;
     }
+
     public void setHrManagerVerificationStatus(int hrManagerVerificationStatus) {
         this.hrManagerVerificationStatus = hrManagerVerificationStatus;
     }
+
     public int getJobStatus() {
         return jobStatus;
     }
-     public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
+
     public void setJobStatus(int jobStatus) {
         this.jobStatus = jobStatus;
     }
-     public String postAJob()
-    {
-        String result="FAILURE";
-        
-        boolean success=JobDetailsService.getInstance().postAjob(this);
-        if(success)
-        {
+
+    public String postAJob() {
+        String result = "FAILURE";
+
+        boolean success = JobDetailsService.getInstance().postAjob(this);
+        if (success) {
             System.out.println("returning Success from postAJob method");
             result = "SUCCESS";
-        }
-        else
-        {
-             System.out.println("returning Failure from postAJob method");
+        } else {
+            System.out.println("returning Failure from postAJob method");
         }
         return result;
-        
-    }
-   
-    public int getJobStatus() {
-        return jobStatus;
-    }
 
-    public void setJobStatus(int jobStatus) {
-        this.jobStatus = jobStatus;
     }
-
-    public String getPostingDate() {
-        return postingDate;
-    }
-
-    public void setPostingDate(String postingDate) {
-        this.postingDate = postingDate;
-    }
-
-    public String getExperience() {
-        return experience;
-    }
-
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
+    private String keyword;
 
     public String getKeyword() {
         return keyword;
@@ -263,47 +215,36 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
-    
-    private String responsibilities;
-        private String experience;
 
-    private String requirements;
-    private String location;
-    private String closingDate;
-    private String salary;
-    private int hrManagerVerificationStatus;
-    private int jobStatus;
-    private String postingDate;
-    private String keyword;
-            
- public String jobSearch()
- {
-     String result ="FAILURE";
-       ArrayList jobDetailsList = JobDetailsService.doJobSearch(this);
+    // for searching a perticular job        
+    public String jobSearch() {
+        String result = "FAILURE";
+        ArrayList jobDetailsList = JobDetailsService.doJobSearch(this);
 
-       if (jobDetailsList != null) {
+        if (jobDetailsList != null) {
             sessionMap.put("JobDetailsList", jobDetailsList);
             result = "SUCCESS";
-       }
+        }
 
-     return result;
-     
- }
- public String jobSearchByKeyword()
- {
-     String result ="FAILURE";
-       ArrayList jobDetailsList = JobDetailsService.doJobSearchByKeyword(this);
+        return result;
 
-       if (jobDetailsList != null) {
+    }
+
+    public String jobSearchByKeyword() {
+        String result = "FAILURE";
+        ArrayList jobDetailsList = JobDetailsService.doJobSearchByKeyword(this);
+
+        if (jobDetailsList != null) {
             sessionMap.put("JobDetailsList", jobDetailsList);
             result = "SUCCESS";
-       }
+        }
 
-     return result;
-     
- }
-  public String viewJobDetails(){
-     String result ="FAILURE";
+        return result;
+
+    }
+
+    public String viewJobDetails() {
+        String result = "FAILURE";
 
         JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
 
@@ -314,25 +255,9 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
             String viewJobDetailsErrorMsg = "Either Email or Password is Wrong!";
             sessionMap.put("ViewJobDetailsErrorMsg", viewJobDetailsErrorMsg);
             System.out.println("returning Failure from viewJobDetailsErrorMsg method");
-          //  logger.error("No Claim Found" + LocalDateTime.now());
+            //  logger.error("No Claim Found" + LocalDateTime.now());
         }
         return result;
-}
-     public String postAJob()
-    {
-        String result="FAILURE";
-        
-        boolean success=JobDetailsService.getInstance().postAjob(this);
-        if(success)
-        {
-            System.out.println("returning Success from postAJob method");
-            result = "SUCCESS";
-        }
-        else
-        {
-             System.out.println("returning Failure from postAJob method");
-        }
-        return result;
-        
     }
+
 }

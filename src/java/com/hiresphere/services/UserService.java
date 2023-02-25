@@ -4,7 +4,7 @@
  */
 package com.hiresphere.services;
 
-import com.exavalu.utils.JDBCConnectionManager;
+import com.hiresphere.utils.JDBCConnectionManager;
 import com.hiresphere.models.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

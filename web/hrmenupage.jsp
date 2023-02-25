@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -146,7 +147,7 @@
                                     aria-expanded="false"
                                     >
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                                          >Douglas McGee</span
+                                          >${User.getName()}</span
                                     >
                                     <img
                                         class="img-profile rounded-circle"
