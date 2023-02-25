@@ -47,5 +47,9 @@
             <result name="SUCCESS">jobdetails.jsp</result>
             <result name="FAILURE">joblist.jsp</result>
         </action>
+        <action name="ViewApplication" class="com.hiresphere.models.Candidate" method="viewJobApplication">
+            <result name="SUCCESS">allappliedjobs.jsp</result>
+            <result name="FAILURE">joblist.jsp</result>
+        </action>
     </package>
 </struts>

@@ -5,10 +5,12 @@
 package com.hiresphere.models;
 
 import com.hiresphere.services.CandidateService;
+import com.hiresphere.services.JobApplicationService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -19,7 +21,8 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  * @author Jayita
  */
-public class Candidate extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
+public class Candidate extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
+
     public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
     }
@@ -49,14 +52,14 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     public void setSession(Map<String, Object> session) {
         sessionMap = (SessionMap) session;
     }
- private int candidateId;
- private int userId;
- private String name;
- private String gender;
- private String phoneNumber;
- private String city;
- private String state;
- private String country;
+    private int candidateId;
+    private int userId;
+    private String name;
+    private String gender;
+    private String phoneNumber;
+    private String city;
+    private String state;
+    private String country;
 
     public int getCandidateId() {
         return candidateId;
@@ -121,7 +124,8 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     public void setCountry(String country) {
         this.country = country;
     }
-  public String visitCandidateProfile() {
+
+    public String visitCandidateProfile() {
         String result = "FAILURE";
 
         Candidate candidate = CandidateService.getCandidateById(this.candidateId);
@@ -133,8 +137,21 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
             String candidateProfileVisitErrorMsg = "Either Email or Password is Wrong!";
             sessionMap.put("CandidateProfileVisitErrorMsg", candidateProfileVisitErrorMsg);
             System.out.println("returning Failure from visitProfile method");
-           // logger.error("No Claim Found" + LocalDateTime.now());
+            // logger.error("No Claim Found" + LocalDateTime.now());
         }
         return result;
-    }  
+    }
+
+    public String viewJobApplication() {
+        String result = "FAILURE";
+        ArrayList jobApplicationList = JobApplicationService.doGetJobApplicationByCandidate(this.getCandidateId());
+        if (jobApplicationList != null) {
+            sessionMap.put("JobApplicationList", jobApplicationList);
+
+            result = "SUCCESS";
+        }
+        result = "SUCCESS";
+        return result;
+
+    }
 }
