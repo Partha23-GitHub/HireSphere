@@ -36,63 +36,33 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Email Address</th>
+                        <th scope="col">Application Id</th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Job Title</th>
+                        <th scope="col">Job Type</th>
                         <th scope="col">Resume</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Status</th>
 
                     </tr>
                 </thead>
 
                 <tbody>
+                    
+               
+                <c:forEach var = "jobApplication" items = "${JobApplicationList}">
+                  
                     <tr>
-                        <td>${candidate.getName()}Shivam Mishra </td>
-                    <td>${candidate.getPhoneNUmber()} 9051284831</td>
-                    <td>${candidate.getEmail()}itsshivamm03@gmail.com</td>
-                    <td> 
-                        <a href="" class="hover-link secondary-button">
-                            View Resume
-                        </a>
-                    </td>
-                    <td> 
-                        <a href="" class="hover-link secondary-button">
-                            Status
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>${candidate.getName()}Shivam Mishra </td>
-                    <td>${candidate.getPhoneNUmber()} 9051284831</td>
-                    <td>${candidate.getEmail()}itsshivamm03@gmail.com</td>
-                    <td> 
-                        <a href="">
-                            View Resume
-                        </a>
-                    </td>
-                    <td> 
-                        <a href="">
-                            Status
-                        </a>
-                    </td>
-                </tr>
-                <c:forEach var = "candidate" items = "${CandidateList}">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>${candidate.getName()}</td>
-                        <td>${candidate.getPhoneNUmber()}</td>
-                        <td>${candidate.getEmail()}</td>
+                        
+                        <td>${jobApplication.getApplicationId()}</td>
+                        <td>${jobApplication.getCompanyName()}</td>
+                        <td>${jobApplication.getJobTitle()}</td>
+                        <td>${jobApplication.getJobType()}</td>
                         <td> 
-                            <a href="" class="hover-link secondary-button">
+                            <a href="#" >
                                 View Resume
                             </a>
                         </td>
-                        <td> 
-                            <a href="" class="hover-link secondary-button">
-                                Status
-                            </a>
-                        </td>
+                         <td>${jobApplication.getApplicationMessage()}</td>
                     </tr>
                 </c:forEach>
             </tbody>
