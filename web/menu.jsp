@@ -25,7 +25,7 @@
         
             <nav>
                 <div class="container main-nav flex">
-                    <a href="#" class="company-logo">
+                    <a href="candidatehome.jsp" class="company-logo">
                         <img src="assets/HireSphere.png" alt="Company Logo">
                     </a>
                     <div class="nav-links">
