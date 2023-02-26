@@ -4,6 +4,7 @@
  */
 package com.hiresphere.models;
 
+import com.hiresphere.services.HrService;
 import com.hiresphere.services.UserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -119,6 +120,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                     result = "CANDIDATE";
                     break;
                 case 2:
+                    
                     result = "HR";
                     break;
                 case 3:

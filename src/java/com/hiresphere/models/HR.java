@@ -70,18 +70,10 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
             case "jobpost":
                 result = "POSTJOB";
                 break;
-            case "allapplicant":
-                ArrayList applicantList = new ArrayList();
-                System.out.println("on hr model");
-
-                applicantList = JobApplicationService.doGetApplicationByHrId(this);
-                if (applicantList != null) {
-                    sessionMap.put("ApplicantList", applicantList);
-                }
-
-                result = "ALLALLAPPLICANT";
-                break;
             case "allpostedjobs":
+                System.out.println(this.userId);
+                ArrayList jobList = HrService.getInstance().getAllJobPostedByHr(2);
+                sessionMap.put("JobPostedByHr", jobList);
                 result = "ALLPOSTEDJOB";
                 break;
             default:

@@ -12,7 +12,8 @@
 
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="586449488055-gnq921ei1bd0d7c0u1v5t6bit5ur0m4t.apps.googleusercontent.com">
     </head>
     <body>
         <section class="container forms">
@@ -53,7 +54,7 @@
                     </a>
                 </div>
 
-                <div class="media-options">
+                <div  class="g-signin2 media-options" data-onsuccess="onSignIn">
                     <a href="#" class="field google">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
@@ -104,17 +105,29 @@
                     </a>
                 </div>
 
-                <div class="media-options">
+                <div class="media-options" >
+                     <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     <a href="#" class="field google">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
                     </a>
                 </div>
+               
 
             </div>
         </section>
 
         <!-- JavaScript -->
         <script src="js/loginscript.js"></script>
+        <script>
+            function onSignIn(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                alert(  profile.getName());
+                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            }
+        </script>
     </body>
 </html>
