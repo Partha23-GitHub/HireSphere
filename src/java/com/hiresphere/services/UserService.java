@@ -105,7 +105,7 @@ public class UserService {
                 user.setEmail(rs.getString("email"));
                 user.setRoleId(rs.getInt("roleId"));
                 user.setName(rs.getString("name"));
-               
+                user.setUserId(rs.getInt("userId"));
                 // con.close();
             }
 

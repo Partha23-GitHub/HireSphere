@@ -7,11 +7,9 @@ package com.hiresphere.models;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import javax.ejb.Stateless;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-//@Stateless
 public class MailSender {
 
     static String fromEmail = "manna75partha@gmail.com";
@@ -34,14 +32,6 @@ public class MailSender {
                     return new PasswordAuthentication(userName, password);
                 }
             });
-
-//            Session mailSession = Session.getInstance(properties, new Authenticator() {
-//                @Override
-//                protected PasswordAuthentication getPasswordAuthentication() {
-//                    return new PasswordAuthentication(userName, password);
-//                }
-//            });
-            //mailSession.setDebug(true);
             Message mailMessage = new MimeMessage(session);
 
             //setting up all the messages

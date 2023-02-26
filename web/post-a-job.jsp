@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="./css/post-a-job.css" />
 <link
     rel="stylesheet"
@@ -30,7 +30,7 @@
                         required
                         />
                 </div>
-                        
+
 
                 <div class="input-field">
                     <label>Company Website</label>
@@ -42,15 +42,15 @@
                         />
                 </div>
 
-<!--                <div class="input-field">
-                    <label>Company Logo</label>
-                    <input
-                        type="file"
-                        placeholder="Choose logo"
-                        name="companyLogo"
-                        required
-                        />
-                </div>-->
+                <!--                <div class="input-field">
+                                    <label>Company Logo</label>
+                                    <input
+                                        type="file"
+                                        placeholder="Choose logo"
+                                        name="companyLogo"
+                                        required
+                                        />
+                                </div>-->
 
                 <div class="input-field">
                     <label>Job Title</label>
@@ -114,15 +114,17 @@
                     <label>Salary</label>
                     <input type="text" placeholder="CTC" name="salary" required />
                 </div>
-                 <input
-                        type="text"
-                        name="userId" value="${User.getUserId()}"
-                        hidden
-                        />
+                
+                <input
+                    type="hidden"
+                    name="userId" value="${User.getUserId()}"
+                    />
                 <div class="input-field">
                     <br>
                     <button type="submit" class="nextBtn btnText">Post</button>
                 </div>
             </div>
+
+        </div>
     </form>
 </div>

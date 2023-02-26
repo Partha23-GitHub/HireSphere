@@ -10,7 +10,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
-//import javax.ejb.EJB;
 import org.apache.log4j.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -128,6 +127,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 default:
                     result = "FAILURE";
             }
+            
             sessionMap.put("User", user);
         } else {
             System.out.println("Returning Failure from doLogin method");
