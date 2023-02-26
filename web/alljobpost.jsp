@@ -19,33 +19,27 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <table class="table" id="myTable">
         <thead class="thead-dark thead">
             <tr>
-                <th scope="col">Job Id</th>
                 <th scope="col">Job Title</th>
+                <th scope="col">Job Type</th>
                 <th scope="col">Job Location</th>
                 <th scope="col">Job Salary</th>
                 <th scope="col">Closes On</th>
-                <th scope="col">Job Description</th>
                 <th scope="col">Edit Job</th>
+                <th scope="col">View All Application</th>
             </tr>
         </thead>
         <tbody>
+            <c:forEach var="jobs" items="${JobPostedByHr}">
             <tr>
-                <th scope="row">1</th>
-                <td> SoftWare Developer</td>
-                <td> Pune</td>
-                <td> $500</td>
-                <td> 24.03.2023</td>
-                <td><a href="jobdetails.jsp" class="btn btn-primary"style="border-radius: 12px;">View More</a></td>
-                <td><a href="jobdetails.jsp" class="btn btn-primary"style="border-radius: 12px;">Edit</a></td>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>24.03.2023</td>
-                <td><a href="jobdetails.jsp" class="btn btn-primary"style="border-radius: 12px;">View More</a></td>
-                <td><a href="jobdetails.jsp" class="btn btn-primary"style="border-radius: 12px;">Edit</a></td>
+                <td>${jobs.getJobTitle()}</td>
+                <td>${jobs.getJobType()}</td>
+                <td>${jobs.getLocation()}</td>
+                <td>${jobs.getSalary()}</td>
+                <td>${jobs.getClosingDate()}</td>
+                <td><a href="EditJob?jobId=${jobs.getJobId()}" class="btn btn-primary"style="border-radius: 12px;">Edit</a></td>
+                <td><a href="ViewApplicant?jobId=${job.getJobId()}" class="btn btn-primary"style="border-radius: 12px;">View Applicants</a></td>
             </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>

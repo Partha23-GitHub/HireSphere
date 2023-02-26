@@ -86,4 +86,33 @@ public class JobApplicationService {
 
     }
 
+    public static ArrayList getAllApplicant(JobApplication aThis) {
+        ArrayList applicantList = new ArrayList();
+        String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber\n"
+                + "from candidates ca,jobapplication ja\n"
+                + "where ja.candidateId=ca.candidateId\n"
+                + "and jobId=?";
+        Connection con = JDBCConnectionManager.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                JobApplication applicant = new JobApplication();
+                applicant.setCandidateId(rs.getInt("candidateId"));
+                applicant.setCandidateName(rs.getString("name"));
+                applicant.setCandidateGender(rs.getString("gender"));
+                applicant.setCandidatePhoneNumber(rs.getString("phoneNumber"));
+                applicant.setJobId(rs.getInt("jobId"));
+                applicantList.add(applicant);
+                System.out.println("this is comment:" + applicant.getCandidateName());
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
+        return applicantList;
+    }
+
 }

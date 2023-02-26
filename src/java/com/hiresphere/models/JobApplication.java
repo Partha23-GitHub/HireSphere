@@ -4,9 +4,11 @@
  */
 package com.hiresphere.models;
 
+import com.hiresphere.services.JobApplicationService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -166,4 +168,10 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         this.appicationStatus = appicationStatus;
     }
 
+//    public String getAllApplicant(){
+//        String result = "FAILURE";
+//        ArrayList jobApplicant = JobApplicationService.getAllApplicant(this);
+//        
+//        return result;
+//    }
 }

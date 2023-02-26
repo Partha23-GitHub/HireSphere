@@ -5,11 +5,14 @@
 package com.hiresphere.services;
 
 
+import com.hiresphere.models.JobApplication;
 import com.hiresphere.models.JobDetails;
 import com.hiresphere.utils.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,63 +33,31 @@ public class HrService {
         }
     }
 
-    public boolean postAjob(JobDetails job) {
-        boolean result = false;
+    public ArrayList getAllJobPostedByHr(int userId){
+        ArrayList jobList= new ArrayList();
+        String sql ="Select * from jobdetails where userId=?";
         Connection con = JDBCConnectionManager.getConnection();
-        String sql = "INSERT INTO hiresphere.jobdetails\n"
-                + "(jobId,\n"
-                + "userId,\n"
-                + "companyName,\n"
-                + "companyWebsite,\n"
-                + "jobTitle,\n"
-                + "jobType,\n"
-                + "description,\n"
-                + "educationQualification,\n"
-                + "responsibilities,\n"
-                + "requirements,\n"
-                + "location,\n"
-                + "experience,\n"
-                + "closingDate,\n"
-                + "salary,\n"
-                + "hrManagerVerificationStatus,\n"
-                + "jobStatus,\n"
-                + "postingDate)\n"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
         try {
-            //System.out.println("entering try block");
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, job.getJobId());
-            preparedStatement.setInt(2, job.getUserId());
-            preparedStatement.setString(3, job.getCompanyName());
-            preparedStatement.setString(4, job.getCompanyWebsite());
-            preparedStatement.setString(5, job.getJobTitle());
-            preparedStatement.setString(6, job.getJobType());
-            preparedStatement.setString(7, job.getDescription());
-            preparedStatement.setString(8, job.getEducationQualification());
-            preparedStatement.setString(9, job.getResponsibilities());
-            preparedStatement.setString(10, job.getRequirements());
-            preparedStatement.setString(11, job.getLocation());
-            preparedStatement.setString(12, job.getExperience());
-            preparedStatement.setString(13, job.getClosingDate());
-            preparedStatement.setString(14, job.getSalary());
-            preparedStatement.setInt(15,0 );
-            preparedStatement.setInt(16,1 );
-            preparedStatement.setString(17, job.getPostingDate());
-            int rows = preparedStatement.executeUpdate();
-
-            if (rows==1) {
-                
-                result = true;
+            preparedStatement.setInt(1, userId);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                JobDetails jobdetails = new JobDetails();
+                jobdetails.setJobTitle(rs.getString("jobTitle"));
+                jobdetails.setLocation(rs.getString("location"));
+                jobdetails.setSalary(rs.getString("salary"));
+                jobdetails.setClosingDate(rs.getString("closingDate"));
+                jobdetails.setJobType(rs.getString("jobType"));
+                jobdetails.setJobId(rs.getInt("jobId"));
+                jobList.add(jobdetails);
             }
-             con.close();
-             System.out.println("LoginService :: "+preparedStatement);
-
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return result;
 
+        }
+        System.out.println(jobList.size());
+        return jobList;
     }
 
 }

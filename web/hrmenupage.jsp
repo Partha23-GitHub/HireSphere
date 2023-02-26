@@ -93,13 +93,7 @@
                 </li>
 
                 <!-- Nav Item - Charts -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" onclick="fetchContent('allapplicant', 'hr-home-content')">
-                        <span style="margin-left: 0.8rem; font-weight:700;cursor: pointer"
-                              >&#9755;&nbsp;View All Applications</span
-                        >
-                    </a>
-                </li>
+                
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
