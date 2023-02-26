@@ -66,6 +66,33 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     private String jobTitle;
     private String jobType;
     private String applicationMessage;
+    private String candidateName;
+    private String candidatePhoneNumber;
+    private String candidateGender;
+
+    public String getCandidateName() {
+        return candidateName;
+    }
+
+    public void setCandidateName(String candidateName) {
+        this.candidateName = candidateName;
+    }
+
+    public String getCandidatePhoneNumber() {
+        return candidatePhoneNumber;
+    }
+
+    public void setCandidatePhoneNumber(String candidatePhoneNumber) {
+        this.candidatePhoneNumber = candidatePhoneNumber;
+    }
+
+    public String getCandidateGender() {
+        return candidateGender;
+    }
+
+    public void setCandidateGender(String candidateGender) {
+        this.candidateGender = candidateGender;
+    }
 
     public String getApplicationMessage() {
         return applicationMessage;

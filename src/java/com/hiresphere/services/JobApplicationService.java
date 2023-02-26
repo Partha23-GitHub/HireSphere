@@ -4,6 +4,7 @@
  */
 package com.hiresphere.services;
 
+import com.hiresphere.models.HR;
 import com.hiresphere.models.JobApplication;
 import com.hiresphere.utils.JDBCConnectionManager;
 import java.sql.Connection;
@@ -53,6 +54,36 @@ public class JobApplicationService {
         }
 
         return jobApplicationList;
+    }
+
+    public static ArrayList doGetApplicationByHrId(HR hr) {
+        ArrayList applicantList = new ArrayList();
+        String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber,ja.jobId\n"
+                + "from candidates ca,jobapplication ja\n"
+                + "where ja.candidateId=ca.candidateId\n"
+                + "and hrId=?";
+        Connection con = JDBCConnectionManager.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                JobApplication applicant = new JobApplication();
+                applicant.setCandidateId(rs.getInt("candidateId"));
+                applicant.setCandidateName(rs.getString("name"));
+                applicant.setCandidateGender(rs.getString("gender"));
+                applicant.setCandidatePhoneNumber(rs.getString("phoneNumber"));
+                applicant.setJobId(rs.getInt("jobId"));
+                applicantList.add(applicant);
+                System.out.println("this is comment:" + applicant.getCandidateName());
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
+        return applicantList;
+
     }
 
 }

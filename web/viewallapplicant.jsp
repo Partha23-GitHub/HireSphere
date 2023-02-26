@@ -48,11 +48,11 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                     </a>
                 </td>
             </tr>
-            <tr>
-
-                <td>Shivam Mishra </td>
-                <td> 9051284831</td>
-                <td>itsshivamm03@gmail.com</td>
+            <c:forEach items="${ApplicantList}" var="applicant">
+                <tr>
+                 <td>${applicant.getCandidateName()} </td>
+                <td> ${applicant.getCandidatePhoneNumber()}</td>
+                <td>${applicant.getCandidateGender()}</td>
                 <td> 
                     <a href="">
                         View Resume
@@ -63,7 +63,8 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                         Status
                     </a>
                 </td>
-            </tr>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>

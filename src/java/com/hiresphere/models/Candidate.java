@@ -154,4 +154,25 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
         return result;
 
     }
+
+    public String updateProfile() {
+        String result = "FAILURE";
+        System.out.println("Candidate Update Start");
+        boolean success = CandidateService.updateCandidateProfile(this, this.candidateId);
+
+        if (success) {
+            //  Candidate candidate= CandidateService.getAllEmployees();
+            //sessionMap.put("candidate", this);
+            result = "SUCCESS";
+            String successMsg = "Profile is Successfully Updated!";
+            sessionMap.put("SuccessMsg", successMsg);
+
+        } else {
+            //  Logger log =  Logger.getLogger(HtmlLayoutLog.class.getName());
+            System.out.println("Update is incomplete" + "@" + LocalDateTime.now());
+
+        }
+        return result;
+
+    }
 }
