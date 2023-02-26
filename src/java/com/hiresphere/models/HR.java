@@ -5,9 +5,11 @@
 package com.hiresphere.models;
 
 import com.hiresphere.services.HrService;
+import com.hiresphere.services.JobApplicationService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -19,11 +21,10 @@ import org.apache.struts2.interceptor.SessionAware;
  * @author user
  */
 public class HR extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
-    
-    private int hrId,userId,companyId;
-    private String contactNumber,companyName,hrName;
 
-    
+    private int hrId, userId, companyId;
+    private String contactNumber, companyName, hrName;
+
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
@@ -38,7 +39,6 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
         setSessionMap((SessionMap<String, Object>) (SessionMap) session);
     }
 
-
     public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
     }
@@ -51,7 +51,6 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
         return map;
     }
 
-  
     public void setMap(ApplicationMap map) {
         this.map = map;
     }
@@ -72,6 +71,14 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
                 result = "POSTJOB";
                 break;
             case "allapplicant":
+                ArrayList applicantList = new ArrayList();
+                System.out.println("on hr model");
+
+                applicantList = JobApplicationService.doGetApplicationByHrId(this);
+                if (applicantList != null) {
+                    sessionMap.put("ApplicantList", applicantList);
+                }
+
                 result = "ALLALLAPPLICANT";
                 break;
             case "allpostedjobs":
@@ -166,5 +173,5 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
     public void setHrName(String hrName) {
         this.hrName = hrName;
     }
-   
+
 }
