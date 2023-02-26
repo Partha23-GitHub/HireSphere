@@ -12,8 +12,9 @@
             <result name="HR MANAGER">hrmenupage.jsp</result>
             <result name="FAILURE">login.jsp</result>
         </action>   
-        <action name="Signup">
-            <result>candidatehome.jsp</result>
+        <action name="Signup" class="com.hiresphere.models.User" method="doCandidateSignUp">
+            <result name="SUCCESS">login.jsp</result>
+            <result name="FAILURE">login.jsp</result>
         </action>
         <action name="Logout">
             <result>landingpage.jsp</result>

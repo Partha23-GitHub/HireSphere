@@ -7,11 +7,11 @@ package com.hiresphere.models;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.Stateless;
+//import javax.ejb.Stateless;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-@Stateless
+//@Stateless
 public class MailSender {
 
     static String fromEmail = "manna75partha@gmail.com";
@@ -61,36 +61,3 @@ public class MailSender {
     }
 }
 
-/*
-public static void sendEmailToRegisterUser(String fromEmail,String toEmail,String userName,String password,String subject,String message){
-        try {
-            Properties properties=System.getProperties();
-            properties.put("mail.smtp.host", "smtp.gmail.com");
-            properties.put("mail.smtp.auth", "true");
-            properties.put("mail.smtp.port", "465");
-            properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-            properties.put("mail.smtp.socketFactory.port", "465");
-            properties.put("mail.smtp.socketFactory.fallback", "false");
-            
-            Session mailSession=Session.getDefaultInstance(properties,null);
-            mailSession.setDebug(true);
-            Message mailMessage=new MimeMessage(mailSession);
-            
-            //setting up all the messages
-            mailMessage.setFrom(new InternetAddress(fromEmail));
-            mailMessage.setRecipient(Message.RecipientType.TO,new InternetAddress(toEmail));
-            mailMessage.setContent(message, "text/html");
-            mailMessage.setSubject(subject);
-            
-            //creating transfar object
-            Transport transport=mailSession.getTransport("smtp");
-            transport.connect("smtp.gmail.com", userName, password);
-            // sending email
-            transport.sendMessage(mailMessage,mailMessage.getAllRecipients());
-        } catch (AddressException ex) {
-            Logger.getLogger(MailSender.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(MailSender.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
- */
