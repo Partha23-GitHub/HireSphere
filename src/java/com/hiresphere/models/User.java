@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.ejb.EJB;
 import org.apache.log4j.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -26,7 +27,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     private String email;
     private String password;
     private Integer roleId;
-    private int userId; 
+    private int userId;
 
     public int getUserId() {
         return userId;
@@ -43,8 +44,6 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
-
-   
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -86,24 +85,31 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
     public String doCandidateSignUp() {
         String result = "FAILURE";
+        try {
+            boolean success = UserService.doSignup(this);
 
-        boolean success = UserService.doSignup(this);
+            if (success) {
+                //creating MailSender object and setting up all parameters
+                String toEmail = this.email;
+                String subject = "Thank you for registering with HireSphere";
+                String message = "You are succesfully registered with HireSphere with your email " + this.getEmail()
+                        + " and password " + this.getPassword() + ". You are just few step away to get hired. Best wishes from us for your future career.";
 
-        if (success) {
-            System.out.println("returning Success from doSignup method");
-            result = "SUCCESS";
-
-        } else {
-            System.out.println("returning Failure from doSignup method");
+                MailSender.sendEmailToRegisterUser(toEmail,subject, message);
+                result = "SUCCESS";
+            } else {
+                System.out.println("returning Failure from doSignup method");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return result;
     }
 
-public String doLogin() throws Exception {
+    public String doLogin() throws Exception {
         String result = "FAILURE";
 
-        
         boolean success = UserService.getInstance().doLogin(this);
 
         if (success) {
@@ -117,10 +123,10 @@ public String doLogin() throws Exception {
                     result = "HR";
                     break;
                 case 3:
-                    result ="HR MANAGER";
+                    result = "HR MANAGER";
                     break;
                 default:
-                    result="FAILURE";
+                    result = "FAILURE";
             }
             sessionMap.put("User", user);
         } else {

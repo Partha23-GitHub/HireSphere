@@ -36,7 +36,7 @@ public class UserService {
         Connection con = JDBCConnectionManager.getConnection();
 
         String sql = "INSERT INTO users(email,password,roleId,name)"
-                + "VALUES(? ,? ,? ,? ,? );";
+                + "VALUES(? ,? ,? ,?);";
 
         try {
 
@@ -44,7 +44,7 @@ public class UserService {
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setInt(3, 1);
-            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(4, user.getName());
 
             int rs = preparedStatement.executeUpdate();
 

@@ -16,4 +16,9 @@
     <welcome-file-list>
         <welcome-file>landingpage.jsp</welcome-file>
     </welcome-file-list>
+    <ejb-local-ref>
+        <ejb-ref-name>mailSender</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <ejb-link>#MailSender</ejb-link>
+    </ejb-local-ref>
 </web-app>
