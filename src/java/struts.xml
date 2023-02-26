@@ -52,5 +52,11 @@
             <result name="SUCCESS">allappliedjobs.jsp</result>
             <result name="FAILURE">joblist.jsp</result>
         </action>
+        <action name="UpdateProfile" class="com.hiresphere.models.Candidate" method="updateProfile">
+            <result name="SUCCESS">candidatehome.jsp</result>
+            <result name="FAILURE">candidateprofile.jsp</result>
+        </action>
+        
+
     </package>
 </struts>
