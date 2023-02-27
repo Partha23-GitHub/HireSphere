@@ -117,10 +117,12 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         if (success) {
             System.out.println("Returning Success from doLogin method");
             User user = UserService.getUser(this.getEmail());
+            System.out.println("user id from do log in"+user.getUserId());
 
             switch (user.getRoleId()) {
                 case 1:
                     Candidate candidate = CandidateService.getCandidateByUserId(user.getUserId());
+                    System.out.println("candifate id from log in"+candidate.getCandidateId());
                     sessionMap.put("Candidate", candidate);
                     result = "CANDIDATE";
                     break;

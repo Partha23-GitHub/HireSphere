@@ -4,6 +4,7 @@
  */
 package com.hiresphere.models;
 
+import com.hiresphere.services.HrService;
 import com.hiresphere.services.JobApplicationService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -63,7 +64,7 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     private int candidateId;
     private int hrId;
     private int jobId;
-    private int appicationStatus;
+    private int applicationStatus;
     private String companyName;
     private String jobTitle;
     private String jobType;
@@ -160,12 +161,12 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         this.jobId = jobId;
     }
 
-    public int getAppicationStatus() {
-        return appicationStatus;
+    public int getApplicationStatus() {
+        return applicationStatus;
     }
 
-    public void setAppicationStatus(int appicationStatus) {
-        this.appicationStatus = appicationStatus;
+    public void setApplicationStatus(int applicationStatus) {
+        this.applicationStatus = applicationStatus;
     }
 
 //    public String getAllApplicant(){
@@ -196,6 +197,31 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         if(update == true){
             
             result="SUCCESS";
+        }
+        return result;
+    }
+    public String applyJob() {
+        String result = "FAILURE";
+        
+        int Id=HrService.getInstance().getHrId(this.hrId);
+        JobApplication jobApplication=new JobApplication();
+        jobApplication.setJobId(this.jobId);
+        jobApplication.setCandidateId(this.candidateId);
+        jobApplication.setHrId(Id);
+        
+        boolean success = JobApplicationService.doApplyJob(jobApplication);
+        
+        if (success) {
+            ArrayList jobList = JobApplicationService.doGetJobApplicationByCandidate(this.candidateId);
+            System.out.println("applied job list"+jobList.size());
+            sessionMap.put("JobApplicationList", jobList);
+            result = "SUCCESS";
+        } 
+        else
+        {
+
+            System.out.println("Returning failure from job application");
+
         }
         return result;
     }

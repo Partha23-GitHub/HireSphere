@@ -108,7 +108,7 @@
                                     <li>Closes on : <span>${jobDetails.closingDate}</span></li>
                                 </ul>
                                 <div class="apply-btn2">
-                                    <a href="allappliedjobs.jsp" class="hover-link primary-button">Apply Now</a>
+                                    <a href="ApplyJobByCandidate?candidateId=${Candidate.getCandidateId()}&jobId=${jobDetails.jobId}&hrId=${jobDetails.userId}" class="hover-link primary-button">Apply Now</a>
                                 </div>
                             </div>
                             <div class="post-details4  mb-50">
