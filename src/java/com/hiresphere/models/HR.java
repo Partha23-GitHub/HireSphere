@@ -22,7 +22,15 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class HR extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
-    private int hrId, userId, companyId;
+    private int hrId, userId, companyId,value;
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
     private String contactNumber, companyName, hrName;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -71,8 +79,8 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
                 result = "POSTJOB";
                 break;
             case "allpostedjobs":
-                System.out.println(this.userId);
-                ArrayList jobList = HrService.getInstance().getAllJobPostedByHr(2);
+                System.out.println(this.value);
+                ArrayList jobList = HrService.getInstance().getAllJobPostedByHr(this.value);
                 sessionMap.put("JobPostedByHr", jobList);
                 result = "ALLPOSTEDJOB";
                 break;

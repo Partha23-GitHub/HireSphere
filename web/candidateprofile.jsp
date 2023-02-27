@@ -25,13 +25,13 @@
                         <header>Profile</header>
                         <hr>
                         
-                        <header>${candidate.getName()}</header>
-                    <form action="UpdateProfile?candidateId=<c:out value="${candidate.candidateId}"> </c:out>" method="Post">
+                        <header>${User.getName()}</header>
+                    <form action="UpdateProfile?candidateId=${candidate.getCandidateId()}" method="Post">
                                    
      
 
                         <div class="field input-field">
-                            <input type="text" placeholder="Gender" class="input" name="gender" value="${candidate.getGender()}" readonly>
+                            <input type="text" placeholder="Gender" class="input" name="gender" value="${candidate.getGender()}">
 
                         </div>
 

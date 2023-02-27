@@ -37,7 +37,7 @@ public class UserService {
 
         String sql = "INSERT INTO users(email,password,roleId,name)"
                 + "VALUES(? ,? ,? ,?);";
-
+        
         try {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class UserService {
         } catch (SQLException ex) {
            
         }
-
+        System.out.println("UserId: "+user.getUserId());
         return user;
     }
 }

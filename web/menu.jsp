@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
                             <li><a href="JobSearch" class="hover-link">Job Search</a></li>
                             <li><a href="ViewApplication?candidateId=1" class="hover-link">View Applications</a></li>
                             <li><a href="#footer-id" class="hover-link">Contact</a></li>
-                            <li><a href="VisitCandidateProfile" class="hover-link">Profile</a></li>
+                            <li><a href="VisitCandidateProfile?userId=${User.getUserId()}" class="hover-link">Profile</a></li>
                             <li><a href="Logout" class="hover-link secondary-button">Logout</a></li>
                         </ul>
                     </div>

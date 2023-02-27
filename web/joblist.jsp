@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Job board HTML-5 Template </title>
+        <title>View Jobs</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -118,7 +118,7 @@
                                                                             <div>
                                                                                 <p class="text-muted mb-0 mo-mb-2">
                                                                                     <span class="text-dark">Experience :</span
-                                                                                    >${jobDetails.experience} Year
+                                                                                    >${jobDetails.experience}
                                                                                 </p>
                                                                             </div>
                                                                         </div>

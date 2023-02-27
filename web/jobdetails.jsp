@@ -118,7 +118,7 @@
                                 </div>
                                 <ul>
                                     <li>Name: <span>${jobDetails.companyName}</span></li>
-                                    <li>Web : <span>${jobDetails.companyWebsite}</span></li>
+                                    <li>Website : <span>${jobDetails.companyWebsite}</span></li>
                                 </ul>
                             </div>
                         </div>

@@ -4,6 +4,7 @@
  */
 package com.hiresphere.models;
 
+import com.hiresphere.services.HrService;
 import com.hiresphere.services.JobDetailsService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -250,6 +251,25 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
 
         if (jobDetails != null) {
             sessionMap.put("JobDetails", jobDetails);
+            result = "SUCCESS";
+        } else {
+            String viewJobDetailsErrorMsg = "Either Email or Password is Wrong!";
+            sessionMap.put("ViewJobDetailsErrorMsg", viewJobDetailsErrorMsg);
+            System.out.println("returning Failure from viewJobDetailsErrorMsg method");
+            //  logger.error("No Claim Found" + LocalDateTime.now());
+        }
+        return result;
+    }
+
+    public String updateJob() {
+        String result = "FAILURE";
+        boolean success = JobDetailsService.updateJobDetails(this);
+        JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
+        System.out.println("in update job userId: "+jobDetails.userId);
+        if (success) {
+            ArrayList jobList = HrService.getInstance().getAllJobPostedByHr(this.userId);
+            System.out.println("List Size:"+jobList.size());
+            sessionMap.put("JobPostedByHr", jobList);
             result = "SUCCESS";
         } else {
             String viewJobDetailsErrorMsg = "Either Email or Password is Wrong!";

@@ -26,6 +26,42 @@ public class JobDetailsService {
 
     public static JobDetailsService jobDetailsService = null;
 
+    public static boolean updateJobDetails(JobDetails job) {
+        System.out.println("jod id in update job details:"+job.getJobId());
+        boolean result=false;
+        String sql="update jobdetails set companyName=?,companyWebsite=?,jobTitle=?,jobType=?,description=?,educationQualification=?,"
+                + "responsibilities=?,requirements=?,location=?,closingDate=?,salary=? where jobId=?";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, job.getCompanyName());
+            preparedStatement.setString(2, job.getCompanyWebsite());
+            preparedStatement.setString(3, job.getJobTitle());
+            preparedStatement.setString(4, job.getJobType());
+            preparedStatement.setString(5, job.getDescription());
+            preparedStatement.setString(6, job.getEducationQualification());
+            preparedStatement.setString(7, job.getResponsibilities());
+            preparedStatement.setString(8, job.getRequirements());
+            preparedStatement.setString(9, job.getLocation());
+            preparedStatement.setString(10, job.getClosingDate());
+            preparedStatement.setString(11, job.getSalary());
+            preparedStatement.setInt(12, job.getJobId());
+            System.out.println(preparedStatement);
+            int row = preparedStatement.executeUpdate();
+            if(row>0){
+                result=true;
+            }
+           
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+        }
+        
+        return result;
+    }
+
     private JobDetailsService() {
     }
 
@@ -115,6 +151,7 @@ public class JobDetailsService {
             ps.setInt(1, jobId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                jobdetails.setUserId(rs.getInt("userId"));
                 jobdetails.setJobId(rs.getInt("jobId"));
                 jobdetails.setJobTitle(rs.getString("jobTitle"));
                 jobdetails.setCompanyWebsite(rs.getString("companyWebsite"));

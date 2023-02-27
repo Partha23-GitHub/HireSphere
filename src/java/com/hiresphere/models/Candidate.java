@@ -127,8 +127,8 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     public String visitCandidateProfile() {
         String result = "FAILURE";
-
-        Candidate candidate = CandidateService.getCandidateById(this.candidateId);
+        
+        Candidate candidate = CandidateService.getCandidateByUserId(this.userId);
 
         if (candidate != null) {
             sessionMap.put("Candidate", candidate);

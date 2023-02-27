@@ -18,18 +18,17 @@ import java.time.LocalDateTime;
  */
 public class CandidateService {
 
-    public static Candidate getCandidateById(int candidateId) {
+    public static Candidate getCandidateByUserId(int userId) {
         Candidate candidate = new Candidate();
-        String sql = "SELECT * FROM candidates where candidateId=1";
+        String sql = "SELECT * FROM candidates where userId=?";
         try {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-            // ps.setInt(1, candidateId);
+             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 candidate.setCandidateId(rs.getInt("candidateId"));
                 candidate.setUserId(rs.getInt("userId"));
-                candidate.setName(rs.getString("name"));
                 candidate.setGender(rs.getString("gender"));
                 candidate.setPhoneNumber(rs.getString("phoneNumber"));
                 candidate.setCity(rs.getString("city"));
@@ -78,6 +77,33 @@ public class CandidateService {
 //            log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             System.out.println("Failure From Service Class Update Method");
         }
+        return result;
+    }
+
+    public static boolean doRegisterCandidate(int userId) {
+        boolean result = false;
+        Connection con = JDBCConnectionManager.getConnection();
+
+        String sql = "INSERT INTO candidates(userId) VALUES(?)";
+        
+        try {
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, userId);
+            
+
+            int rs = preparedStatement.executeUpdate();
+
+            if (rs != 0) {
+                result = true;
+            }
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+
+        }
+
         return result;
     }
 

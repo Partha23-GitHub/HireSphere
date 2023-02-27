@@ -4,6 +4,7 @@
  */
 package com.hiresphere.models;
 
+import com.hiresphere.services.CandidateService;
 import com.hiresphere.services.HrService;
 import com.hiresphere.services.UserService;
 import com.opensymphony.xwork2.ActionContext;
@@ -87,8 +88,9 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         String result = "FAILURE";
         try {
             boolean success = UserService.doSignup(this);
-
-            if (success) {
+            User user = UserService.getUser(this.getEmail());
+            boolean succes1=CandidateService.doRegisterCandidate(user.userId);
+            if (success && succes1) {
                 //creating MailSender object and setting up all parameters
                 String toEmail = this.email;
                 String subject = "Thank you for registering with HireSphere";

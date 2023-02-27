@@ -85,7 +85,7 @@
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" onclick="fetchContent('jobpost','hr-home-content')">
+                    <a class="nav-link collapsed" onclick="fetchContent('jobpost','hr-home-content','0')">
                         <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer";
                               >&#9755; &nbsp; Post Jobs</span
                         >
@@ -97,7 +97,7 @@
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" onclick="fetchContent('allpostedjobs', 'hr-home-content')">
+                    <a class="nav-link collapsed" onclick="fetchContent('allpostedjobs', 'hr-home-content',${User.getUserId()})">
                         <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer"
                               >&#9755;&nbsp;View All Posted Jobs</span
                         >
@@ -252,7 +252,11 @@
 
                             <!-- Content Row -->
                             <div id="pagecontent">
-                                <h1>Home Page contents</h1>
+                                <h1>Home Page contents </h1>
+                                <h2>${User.getEmail()}</h2>
+                                <h2>${User.getUserId()}</h2>
+                                <h2>${User.getName()}</h2>
+                                <h2>${User.getRoleId()}</h2>
                             </div>
                         </div>
                     </div>
@@ -267,12 +271,13 @@
     </body>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="text/javascript">
-              function fetchContent(selected, target) {
+              function fetchContent(selected, target,valueId) {
                   //alert("HI");
                   $.ajax({
                       url: 'LoadHRMenu',
                       data: {
-                          ['work']: (selected)
+                          ['work']: (selected),
+                          ['value']: (valueId)
                       },
                       success: function (responseText) {
                           $("#" + target).html(responseText);
