@@ -64,6 +64,18 @@
             <result name="SUCCESS">alljobpost.jsp</result>
             <result name="FAILURE">jobedit.jsp</result>
         </action>
+        <action name="ViewApplicant" class="com.hiresphere.models.JobApplication" method="viewAllApplicantByJobId">
+            <result name="SUCCESS">viewallapplicant.jsp</result>
+            <result name="FAILURE">alljobpost.jsp</result>
+        </action>
+        <action name="ApproveApplication" class="com.hiresphere.models.JobApplication" method="doApproveApplication">
+            <result name="SUCCESS">viewallapplicant.jsp</result>
+            <result name="FAILURE">alljobpost.jsp</result>
+        </action>
+        <action name="RejectApplication" class="com.hiresphere.models.JobApplication" method="viewAllApplicantByJobId">
+            <result name="SUCCESS">viewallapplicant.jsp</result>
+            <result name="FAILURE">alljobpost.jsp</result>
+        </action>
 
     </package>
 </struts>

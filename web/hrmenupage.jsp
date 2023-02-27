@@ -16,6 +16,11 @@
         <link href="./css/all.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template-->
         <link href="./css/sb-admin-2.min.css" rel="stylesheet" />
+        <style>
+            #Logo-HrMenu{
+                max-width: 200px;
+            }
+        </style>
     </head>
 
     <body id="page-top">
@@ -27,11 +32,8 @@
                 id="accordionSidebar"
                 >
                 <!-- Sidebar - Brand -->
-                <a
-                    class="sidebar-brand d-flex align-items-center justify-content-center"
-                    href="companyindex.html"
-                    >
-                    <img src="" alt="Company Logo" />
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="companyindex.html">
+                    <img id="Logo-HrMenu" src="./assets/HireSphere.png" alt="Company Logo" />
                 </a>
 
                 <!-- Divider -->

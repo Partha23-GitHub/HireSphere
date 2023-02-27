@@ -60,6 +60,15 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     private String city;
     private String state;
     private String country;
+    private int applicationId;
+
+    public int getApplicationId() {
+        return applicationId;
+    }
+
+    public void setApplicationId(int applicationId) {
+        this.applicationId = applicationId;
+    }
 
     public int getCandidateId() {
         return candidateId;
