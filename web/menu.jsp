@@ -32,7 +32,8 @@
                         <ul class="flex">
                             <li><a href="candidatehome.jsp" class="hover-link">Home</a></li>
                             <li><a href="JobSearch" class="hover-link">Job Search</a></li>
-                            <li><a href="ViewApplication?candidateId=1" class="hover-link">View Applications</a></li>
+                            <c:set value="${Candidate}" var="candidate"/>
+                            <li><a href="ViewApplication?candidateId=${candidate.getCandidateId()}" class="hover-link">View Applications</a></li>
                             <li><a href="#footer-id" class="hover-link">Contact</a></li>
                             <li><a href="VisitCandidateProfile?userId=${User.getUserId()}" class="hover-link">Profile</a></li>
                             <li><a href="Logout" class="hover-link secondary-button">Logout</a></li>

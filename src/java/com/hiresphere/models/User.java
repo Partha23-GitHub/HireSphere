@@ -89,7 +89,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         try {
             boolean success = UserService.doSignup(this);
             User user = UserService.getUser(this.getEmail());
-            boolean succes1=CandidateService.doRegisterCandidate(user.userId);
+            boolean succes1 = CandidateService.doRegisterCandidate(user.userId);
             if (success && succes1) {
                 //creating MailSender object and setting up all parameters
                 String toEmail = this.email;
@@ -97,7 +97,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 String message = "You are succesfully registered with HireSphere with your email " + this.getEmail()
                         + " and password " + this.getPassword() + ". You are just few step away to get hired. Best wishes from us for your future career.";
 
-                MailSender.sendEmailToRegisterUser(toEmail,subject, message);
+                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
                 result = "SUCCESS";
             } else {
                 System.out.println("returning Failure from doSignup method");
@@ -117,12 +117,15 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         if (success) {
             System.out.println("Returning Success from doLogin method");
             User user = UserService.getUser(this.getEmail());
+
             switch (user.getRoleId()) {
                 case 1:
+                    Candidate candidate = CandidateService.getCandidateByUserId(user.getUserId());
+                    sessionMap.put("Candidate", candidate);
                     result = "CANDIDATE";
                     break;
                 case 2:
-                    
+
                     result = "HR";
                     break;
                 case 3:
@@ -131,7 +134,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 default:
                     result = "FAILURE";
             }
-            
+
             sessionMap.put("User", user);
         } else {
             System.out.println("Returning Failure from doLogin method");
