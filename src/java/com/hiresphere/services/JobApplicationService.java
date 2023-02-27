@@ -4,6 +4,7 @@
  */
 package com.hiresphere.services;
 
+import com.hiresphere.models.Candidate;
 import com.hiresphere.models.HR;
 import com.hiresphere.models.JobApplication;
 import com.hiresphere.utils.JDBCConnectionManager;
@@ -113,6 +114,60 @@ public class JobApplicationService {
         }
 
         return applicantList;
+    }
+
+    public static ArrayList getApplicantByJobId(int jobId) {
+        ArrayList applicantList = new ArrayList();
+        String sql = "SELECT ca.candidateId,u.name,ca.gender,ca.phoneNumber,ja.applicationId\n"
+                + "                 from candidates ca,jobapplication ja,users u where \n"
+                + "                   ja.candidateId = ca.candidateId and ca.userId=u.userId\n"
+                + "                 and jobId=?;";
+        Connection con = JDBCConnectionManager.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, jobId);
+            System.out.println("Prepared Statement is :: " + preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Candidate applicant = new Candidate();
+                applicant.setCandidateId(rs.getInt("candidateId"));
+                applicant.setName(rs.getString("name"));
+                applicant.setGender(rs.getString("gender"));
+                applicant.setPhoneNumber(rs.getString("phoneNumber"));
+                applicant.setApplicationId(rs.getInt("applicationId"));
+                applicantList.add(applicant);
+                System.out.println("this is comment:" + applicant.getName());
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
+        return applicantList;
+    }
+
+    public static boolean updateApplicationStatus(int applicationId) {
+        boolean success = false;
+        String sql = "UPDATE hiresphere.jobapplication\n"
+                + "SET\n"
+                + "applicationStatus = ?\n"
+                + "WHERE applicationId = ?;";
+         Connection con = JDBCConnectionManager.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1,1);
+            preparedStatement.setInt(1,applicationId);
+            
+            int execute = preparedStatement.executeUpdate();
+            System.out.println("execute :: "+execute);
+            if(execute!=0){
+                success = true;
+            }
+        }
+        catch (SQLException ex){
+            
+        }
+        return success;
     }
 
 }

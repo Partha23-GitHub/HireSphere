@@ -29,40 +29,29 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                 <th scope="col">Email Address</th>
                 <th scope="col">Resume</th>
                 <th scope="col">Action</th>
-
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Shivam Mishra </td>
-                <td> 9051284831</td>
-                <td>itsshivamm03@gmail.com</td>
-                <td> 
-                    <a href="">
-                        View Resume
-                    </a>
-                </td>
-                <td> 
-                    <a href="">
-                        Status
-                    </a>
-                </td>
-            </tr>
             <c:forEach items="${ApplicantList}" var="applicant">
                 <tr>
-                 <td>${applicant.getCandidateName()} </td>
-                <td> ${applicant.getCandidatePhoneNumber()}</td>
-                <td>${applicant.getCandidateGender()}</td>
+                 <td>${applicant.getName()} </td>
+                <td> ${applicant.getPhoneNumber()}</td>
+                <td>${applicant.getGender()}</td>
                 <td> 
                     <a href="">
                         View Resume
                     </a>
                 </td>
                 <td> 
-                    <a href="">
-                        Status
+                    <a href="ApproveApplication?applicationId=${applicant.getApplicationId()}">
+                        Approve
+                    </a>
+                    <a href="RejectApplication">
+                        Reject
                     </a>
                 </td>
+                <td> Message </td>
                 </tr>
             </c:forEach>
         </tbody>

@@ -173,5 +173,5 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
     public void setHrName(String hrName) {
         this.hrName = hrName;
     }
-
+    
 }

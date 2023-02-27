@@ -174,4 +174,29 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
 //        
 //        return result;
 //    }
+    public String viewAllApplicantByJobId(){
+        String result="FAILURE";
+        
+        ArrayList applicantList = JobApplicationService.getApplicantByJobId(this.jobId);
+        if(applicantList != null){
+            System.out.println("Returning Success from View All Applicant from Id ");
+            sessionMap.put("ApplicantList", applicantList);
+            System.out.println("Applicant List Size ::"+applicantList.size());
+            result = "SUCCESS";
+        }
+        else{
+            System.out.println("Returning Failure from View All Applicant from Id ");
+        }
+        return result;
+    }
+    public String doApproveApplication(){
+        String result = "FAILURE";
+        boolean update = JobApplicationService.updateApplicationStatus(this.applicationId);
+        System.out.println("update ::"+update);
+        if(update == true){
+            
+            result="SUCCESS";
+        }
+        return result;
+    }
 }
