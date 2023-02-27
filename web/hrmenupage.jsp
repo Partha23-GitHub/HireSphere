@@ -32,7 +32,7 @@
                 id="accordionSidebar"
                 >
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="companyindex.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="hrmenupage.jsp"">
                     <img id="Logo-HrMenu" src="./assets/HireSphere.png" alt="Company Logo" />
                 </a>
 
@@ -255,10 +255,7 @@
                             <!-- Content Row -->
                             <div id="pagecontent">
                                 <h1>Home Page contents </h1>
-                                <h2>${User.getEmail()}</h2>
-                                <h2>${User.getUserId()}</h2>
-                                <h2>${User.getName()}</h2>
-                                <h2>${User.getRoleId()}</h2>
+                                
                             </div>
                         </div>
                     </div>

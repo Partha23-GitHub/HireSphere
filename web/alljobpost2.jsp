@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,18 +24,11 @@
     <script type="text/javascript" 
     src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <style>
-        #Logo-HrMenu{
-            max-width: 200px;
-        }
-        .viewallApplicant a {
-            display: inline-block; /* to make the anchor tag behave like a block element */
-            background-color: #20c9a6;
-            padding: 5px;
-            text-decoration: none;
-            color: black;
-        }
         .thead{
             background-color: #000;
+        }
+        #Logo-HrMenu{
+            max-width: 200px;
         }
     </style>
 </head>
@@ -192,40 +184,31 @@
 
                 <!-- Begin Page Content -->
                 <div id="hr-home-content">
-                    <div class="container viewallApplicant">
-                        <h1 class="h3 mb-0 text-gray-800">All Applied Candidates</h1>
+                    <div class="container">
+                        <h1 class="h3 mb-0 text-gray-800">Your Posted Jobs</h1>
                         <hr>
                         <table class="table" id="myTable">
                             <thead class="thead-dark thead">
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Phone Number</th>
-                                    <th scope="col">Email Address</th>
-                                    <th scope="col">Resume</th>
-                                    <th scope="col">Action</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Job Title</th>
+                                    <th scope="col">Job Type</th>
+                                    <th scope="col">Job Location</th>
+                                    <th scope="col">Job Salary</th>
+                                    <th scope="col">Closes On</th>
+                                    <th scope="col">Edit Job</th>
+                                    <th scope="col">View All Application</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${ApplicantList}" var="applicant">
+                                <c:forEach var="jobs" items="${JobPostedByHr}">
                                     <tr>
-                                        <td>${applicant.getName()} </td>
-                                        <td> ${applicant.getPhoneNumber()}</td>
-                                        <td>${applicant.getGender()}</td>
-                                        <td> 
-                                            <a href="">
-                                                View Resume
-                                            </a>
-                                        </td>
-                                        <td> 
-                                            <a href="ApproveApplication?applicationId=${applicant.getApplicationId()}">
-                                                Approve
-                                            </a>
-                                            <a href="RejectApplication">
-                                                Reject
-                                            </a>
-                                        </td>
-                                        <td> Message </td>
+                                        <td>${jobs.getJobTitle()}</td>
+                                        <td>${jobs.getJobType()}</td>
+                                        <td>${jobs.getLocation()}</td>
+                                        <td>${jobs.getSalary()}</td>
+                                        <td>${jobs.getClosingDate()}</td>
+                                        <td><a href="EditJob?jobId=${jobs.getJobId()}" class="btn btn-primary"style="border-radius: 12px;">Edit</a></td>
+                                        <td><a href="ViewApplicant?jobId=${jobs.getJobId()}" class="btn btn-primary"style="border-radius: 12px;">View Applicants</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -256,8 +239,10 @@
                             }
                         });
                     }
+
                     $(document).ready(function () {
                         $('#myTable').dataTable();
                     });
+
 </script>
 </html>

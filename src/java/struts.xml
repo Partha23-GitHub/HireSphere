@@ -6,7 +6,6 @@
     <!-- Configuration for the default package. -->
     <package name="default" namespace="/" extends="struts-default">
         <action name="Login" class="com.hiresphere.models.User" method="doLogin">
-<!--            <result>candidatehome.jsp</result>-->
             <result name="CANDIDATE">candidatehome.jsp</result>
             <result name="HR">hrmenupage.jsp</result>
             <result name="HR MANAGER">hrmenupage.jsp</result>
@@ -27,6 +26,9 @@
             <result name="POSTJOB">post-a-job.jsp</result>
             <result name="ALLALLAPPLICANT">viewallapplicant.jsp</result>
             <result name="ALLPOSTEDJOB">alljobpost.jsp</result>
+        </action> 
+        <action name="OpenJobPostPage">
+            <result name="POSTJOB">post-a-job.jsp</result>
         </action> 
         <action name="postForm" class="com.hiresphere.models.JobDetails" method="postAJob">
             <result name="SUCCESS">hrmenupage.jsp</result>
@@ -61,7 +63,7 @@
             <result name="FAILURE">joblist.jsp</result>
         </action>
         <action name="UpdateJob" class="com.hiresphere.models.JobDetails" method="updateJob">
-            <result name="SUCCESS">alljobpost.jsp</result>
+            <result name="SUCCESS">alljobpost2.jsp</result>
             <result name="FAILURE">jobedit.jsp</result>
         </action>
         <action name="ViewApplicant" class="com.hiresphere.models.JobApplication" method="viewAllApplicantByJobId">
