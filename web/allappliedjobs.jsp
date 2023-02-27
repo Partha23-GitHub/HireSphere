@@ -57,6 +57,7 @@
                         <td>${jobApplication.getCompanyName()}</td>
                         <td>${jobApplication.getJobTitle()}</td>
                         <td>${jobApplication.getJobType()}</td>
+                        
                         <td> 
                             <a href="#" >
                                 View Resume

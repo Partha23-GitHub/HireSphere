@@ -5,6 +5,7 @@
 package com.hiresphere.services;
 
 
+import com.hiresphere.models.HR;
 import com.hiresphere.models.JobApplication;
 import com.hiresphere.models.JobDetails;
 import com.hiresphere.utils.JDBCConnectionManager;
@@ -59,5 +60,29 @@ public class HrService {
         System.out.println(jobList.size());
         return jobList;
     }
+
+    public int getHrId(int hrId) {
+        HR hr=new HR();
+        String sql="Select hrId from hr where userId=?";
+        Connection con = JDBCConnectionManager.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, hrId);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                hr.setHrId(rs.getInt("hrId"));
+            }
+            
+
+        } catch (SQLException ex) {
+
+        }
+        int id=hr.getHrId();
+         return id;
+    }
+        
+    
 
 }
