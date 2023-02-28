@@ -27,9 +27,9 @@ public class JobDetailsService {
     public static JobDetailsService jobDetailsService = null;
 
     public static boolean updateJobDetails(JobDetails job) {
-        System.out.println("jod id in update job details:"+job.getJobId());
-        boolean result=false;
-        String sql="update jobdetails set companyName=?,companyWebsite=?,jobTitle=?,jobType=?,description=?,educationQualification=?,"
+        System.out.println("jod id in update job details:" + job.getJobId());
+        boolean result = false;
+        String sql = "update jobdetails set companyName=?,companyWebsite=?,jobTitle=?,jobType=?,description=?,educationQualification=?,"
                 + "responsibilities=?,requirements=?,location=?,closingDate=?,salary=? where jobId=?";
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -48,17 +48,60 @@ public class JobDetailsService {
             preparedStatement.setInt(12, job.getJobId());
             System.out.println(preparedStatement);
             int row = preparedStatement.executeUpdate();
-            if(row>0){
-                result=true;
+            if (row > 0) {
+                result = true;
             }
-           
 
         } catch (SQLException ex) {
             ex.printStackTrace();
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
             log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
         }
-        
+
+        return result;
+    }
+
+    public static boolean doAcceptByHrManager(int jobId) {
+        boolean result = false;
+
+        String sql = "UPDATE hiresphere.jobdetails\n"
+                + "SET\n"
+                + "hrManagerVerificationStatus =?\n"
+                + "Where jobId = ?";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(2, jobId);
+            preparedStatement.executeUpdate();
+            result = true;
+
+        } catch (SQLException ex) {
+
+        }
+
+        return result;
+    }
+
+    public static boolean doRejectByHrManager(int jobId) {
+        boolean result = false;
+
+        String sql = "UPDATE hiresphere.jobdetails\n"
+                + "SET\n"
+                + "hrManagerVerificationStatus =?\n"
+                + "Where jobId = ?";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, 2);
+            preparedStatement.setInt(2, jobId);
+            preparedStatement.executeUpdate();
+            result = true;
+
+        } catch (SQLException ex) {
+
+        }
+
         return result;
     }
 
