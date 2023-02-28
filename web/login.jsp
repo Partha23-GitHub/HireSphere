@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="media-options" >
-                     <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                     <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
                     <a href="#" class="field google">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>

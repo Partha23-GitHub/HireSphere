@@ -8,7 +8,7 @@
         <action name="Login" class="com.hiresphere.models.User" method="doLogin">
             <result name="CANDIDATE">candidatehome.jsp</result>
             <result name="HR">hrmenupage.jsp</result>
-            <result name="HR MANAGER">hrmenupage.jsp</result>
+            <result name="HR MANAGER">hrmanagerhome.jsp</result>
             <result name="FAILURE">login.jsp</result>
         </action>   
         <action name="Signup" class="com.hiresphere.models.User" method="doCandidateSignUp">
