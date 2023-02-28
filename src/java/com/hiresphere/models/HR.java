@@ -9,6 +9,7 @@ import com.hiresphere.services.JobApplicationService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
@@ -31,7 +32,7 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
     public void setValue(int value) {
         this.value = value;
     }
-    private String contactNumber, companyName, hrName;
+    private String contactNumber, companyName, hrName,gender;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -111,6 +112,14 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
         return userId;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     /**
      * @param userId the userId to set
      */
@@ -173,5 +182,40 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
     public void setHrName(String hrName) {
         this.hrName = hrName;
     }
-    
+     public String visitHRProfile() {
+        String result = "FAILURE";
+        
+        HR hr = HrService.getHrByUserId(this.userId);
+
+        if (hr != null) {
+            sessionMap.put("HR", hr);
+            result = "SUCCESS";
+        } else {
+            String hrProfileVisitErrorMsg = "Either Email or Password is Wrong!";
+            sessionMap.put("HRProfileVisitErrorMsg", hrProfileVisitErrorMsg);
+            System.out.println("returning Failure from hrvisitProfile method");
+            // logger.error("No Claim Found" + LocalDateTime.now());
+        }
+        return result;
+    }
+      public String updateHRProfile() {
+        String result = "FAILURE";
+        System.out.println("HR Update Start");
+        boolean success = HrService.updateHRProfile(this, this.hrId);
+
+        if (success) {
+            //  HR hr= HRService.getAllEmployees();
+            //sessionMap.put("hr", this);
+            result = "SUCCESS";
+            String successMsg = "Profile is Successfully Updated!";
+            sessionMap.put("SuccessMsg", successMsg);
+
+        } else {
+            //  Logger log =  Logger.getLogger(HtmlLayoutLog.class.getName());
+            System.out.println("Update is incomplete" + "@" + LocalDateTime.now());
+
+        }
+        return result;
+
+    }
 }
