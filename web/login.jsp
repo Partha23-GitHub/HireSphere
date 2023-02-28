@@ -6,7 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login and Signup Form </title>
-
+        <style>
+           body {
+               
+                background-image: url("./assets/profile-background.png");
+                
+            }
+            
+        </style>
         <!-- CSS -->
         <link rel="stylesheet" href="css/loginstyle.css">
 
@@ -19,7 +26,7 @@
         <section class="container forms">
             <div class="form login">
                 <div class="form-content">
-                    <header>Login</header>
+                    <header>HireSphere</header>
                     <form action="Login" method="post">
 
                         <div class="field input-field">
@@ -54,8 +61,8 @@
                     </a>
                 </div>
 
-                <div  class="g-signin2 media-options" data-onsuccess="onSignIn">
-                    <a href="#" class="field google">
+                <div  class=" media-options" data-onsuccess="onSignIn">
+                    <a href="#" class="field facebook">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
                     </a>
@@ -107,7 +114,7 @@
 
                 <div class="media-options" >
                      <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
-                    <a href="#" class="field google">
+                    <a href="#" class="field facebook">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
                     </a>
