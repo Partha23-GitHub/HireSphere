@@ -10,25 +10,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/loginstyle.css">
         <!-- CSS here -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/jobdetail.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <style>
+           body {
+               
+                background-image: url("./assets/profile-background.png");
+                
+            }
+        </style>
+        <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="css/profileDecoration.css">
+        <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
     </head>
     <body>
 
         <c:set var="candidate" value="${Candidate}"></c:set>       
 
-
+            <div class="bg-image">
             <section class="container forms">
                 <div class="form login">
                     <div class="form-content">
-                        <header>Profile</header>
-                        <hr>
+                        <header><img src="./assets/logo-profile.png" alt="Logo"/></header>
                         
-                        <header>${User.getName()}</header>
+                        <hr>
+
+                        <header class="profile-name">${User.getName()}</header>
                     <form action="UpdateProfile?candidateId=${candidate.getCandidateId()}" method="Post">
-                                   
-     
+
+
 
                         <div class="field input-field">
                             <input type="text" placeholder="Gender" class="input" name="gender" value="${candidate.getGender()}">
@@ -51,19 +59,24 @@
                             <input type="text" placeholder="Country" class="input" name="country" value="${candidate.getCountry()}">
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
-
-                        <div class="field button-field">
-
-                            <button type="submit">Update</button>
-
+                            <div class="field input-field" style="background: #FFF !important;">
+                            <input type="file" placeholder="Resume" class="input" name="resume" value="Upload">
+                            <i class='bx bx-hide eye-icon'></i>
                         </div>
+                        <div style="display: flex;align-items: center;justify-content: center;"> 
+                            <div class="field button-field">
 
-                        <div class="field button-field">
+                                <button type="submit">Update</button>
 
-                            <a href="candidatehome.jsp">
+                            </div>
+                            &nbsp
+                            <div class="field button-field">
 
-                                <button class="btn-danger">Back</button>
-                            </a>
+                                <a href="candidatehome.jsp">
+
+                                    <button class="field button-field" style="width: 180px !important; transform: translateY(-1.2rem) !important; transform: translateX(2ch) ;">Back</button>
+                                </a>
+                            </div>
                         </div>
                     </form>
 
@@ -74,8 +87,9 @@
             </div>
 
         </section>
+    </div>
 
         <!-- JavaScript -->
         <script src="js/loginscript.js"></script>
-    </body>
+         </body>
 </html>
