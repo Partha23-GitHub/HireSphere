@@ -30,11 +30,11 @@
                     <form action="Login" method="post">
 
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input" name="email">
+                            <input type="email" placeholder="Email" class="input" name="email" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Password" class="password" name="password">
+                            <input type="password" placeholder="Password" class="password" name="password" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
@@ -77,19 +77,19 @@
                     <header>Signup</header>
                     <form action="Signup" method="post">
                         <div class="field input-field">
-                            <input type="text" placeholder="Name" class="input" name="name">
+                            <input type="text" placeholder="Name" class="input" name="name" required>
                         </div>
                         <div class="field input-field">
 
-                            <input type="email" placeholder="Email" class="input" name="email">
+                            <input type="email" placeholder="Email" class="input" name="email" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Create password" class="password" name="password">
+                            <input type="password" placeholder="Create password" class="password" name="password" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Confirm password" class="password" name="confirmpassword">
+                            <input type="password" placeholder="Confirm password" class="password" name="confirmpassword" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
