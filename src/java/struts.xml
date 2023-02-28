@@ -1,3 +1,4 @@
+<<<<<<< OURS
 <!DOCTYPE struts PUBLIC
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
@@ -18,10 +19,6 @@
         <action name="Logout">
             <result>landingpage.jsp</result>
         </action>
-<!--    <action name="Signup1" class="com.exavalu.models.Employee" method="doLogin">
-            <result name="SUCCESS">employeeDetails.jsp</result>
-            <result name="FAILURE">login.jsp</result>
-        </action> -->
         <action name="LoadHRMenu" class="com.hiresphere.models.HR" method="loadMenuContent">
             <result name="POSTJOB">post-a-job.jsp</result>
             <result name="ALLALLAPPLICANT">viewallapplicant.jsp</result>
@@ -85,3 +82,86 @@
 
     </package>
 </struts>
+=======
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="Login" class="com.hiresphere.models.User" method="doLogin">
+<!--            <result>candidatehome.jsp</result>-->
+            <result name="CANDIDATE">candidatehome.jsp</result>
+            <result name="HR">hrmenupage.jsp</result>
+            <result name="HR MANAGER">hrmenupage.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>   
+        <action name="Signup" class="com.hiresphere.models.User" method="doCandidateSignUp">
+            <result name="SUCCESS">login.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Logout">
+            <result>landingpage.jsp</result>
+        </action>
+<!--    <action name="Signup1" class="com.exavalu.models.Employee" method="doLogin">
+            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action> -->
+        <action name="LoadHRMenu" class="com.hiresphere.models.HR" method="loadMenuContent">
+            <result name="POSTJOB">post-a-job.jsp</result>
+            <result name="ALLALLAPPLICANT">viewallapplicant.jsp</result>
+            <result name="ALLPOSTEDJOB">alljobpost.jsp</result>
+        </action> 
+        <action name="postForm" class="com.hiresphere.models.JobDetails" method="postAJob">
+            <result name="SUCCESS">hrmenupage.jsp</result>
+            <result name="FAILURE">post-a-job.jsp</result>
+        </action>    
+        <action name="VisitCandidateProfile" class="com.hiresphere.models.Candidate" method="visitCandidateProfile">
+            <result name="SUCCESS">candidateprofile.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>   
+         <action name="JobSearch" class="com.hiresphere.models.JobDetails" method="jobSearch">
+            <result name="SUCCESS">joblist.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>
+         <action name="JobSearchByKeyword" class="com.hiresphere.models.JobDetails" method="jobSearchByKeyword">
+            <result name="SUCCESS">joblist.jsp</result>
+            <result name="FAILURE">candidatehome.jsp</result>
+        </action>
+          <action name="ViewJobDetails" class="com.hiresphere.models.JobDetails" method="viewJobDetails">
+            <result name="SUCCESS">jobdetails.jsp</result>
+            <result name="FAILURE">joblist.jsp</result>
+        </action>
+        <action name="ViewApplication" class="com.hiresphere.models.Candidate" method="viewJobApplication">
+            <result name="SUCCESS">allappliedjobs.jsp</result>
+            <result name="FAILURE">joblist.jsp</result>
+        </action>
+        <action name="UpdateProfile" class="com.hiresphere.models.Candidate" method="updateProfile">
+            <result name="SUCCESS">candidatehome.jsp</result>
+            <result name="FAILURE">candidateprofile.jsp</result>
+        </action>
+        <action name="EditJob" class="com.hiresphere.models.JobDetails" method="viewJobDetails">
+            <result name="SUCCESS">jobedit.jsp</result>
+            <result name="FAILURE">joblist.jsp</result>
+        </action>
+        <action name="UpdateJob" class="com.hiresphere.models.JobDetails" method="updateJob">
+            <result name="SUCCESS">alljobpost.jsp</result>
+            <result name="FAILURE">jobedit.jsp</result>
+        </action>
+        <action name="ViewApplicant" class="com.hiresphere.models.JobApplication" method="viewAllApplicantByJobId">
+            <result name="SUCCESS">viewallapplicant.jsp</result>
+            <result name="FAILURE">alljobpost.jsp</result>
+        </action>
+        <action name="ApproveApplication" class="com.hiresphere.models.JobApplication" method="doApproveApplication">
+            <result name="SUCCESS">viewallapplicant.jsp</result>
+            <result name="FAILURE">alljobpost.jsp</result>
+        </action>
+        <action name="RejectApplication" class="com.hiresphere.models.JobApplication" method="viewAllApplicantByJobId">
+            <result name="SUCCESS">viewallapplicant.jsp</result>
+            <result name="FAILURE">alljobpost.jsp</result>
+        </action>
+
+    </package>
+</struts>
+>>>>>>> THEIRS

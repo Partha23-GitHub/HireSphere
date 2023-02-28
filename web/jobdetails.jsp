@@ -37,7 +37,7 @@
                                 <div class="single-job-items mb-50">
                                     <div class="job-items">
                                         <div class="col-md-3">
-                                            <div class="mo-mb-2">
+                                            <div class="mo-mb-2" style="margin-right: 15px;">
                                                 <img
                                                     src="./assets/Exavalu Logo.png"
                                                     alt=""
