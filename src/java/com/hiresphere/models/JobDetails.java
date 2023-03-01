@@ -27,6 +27,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     private String educationQualification, requirements, responsibilities, location;
     private String experience, closingDate, salary, postingDate;
     private int hrManagerVerificationStatus, jobStatus;
+    private String jobStatusMessage;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -194,6 +195,14 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
         this.jobStatus = jobStatus;
     }
 
+    public String getJobStatusMessage() {
+        return jobStatusMessage;
+    }
+
+    public void setJobStatusMessage(String jobStatusMessage) {
+        this.jobStatusMessage = jobStatusMessage;
+    }
+
     public String postAJob() {
         String result = "FAILURE";
 
@@ -217,7 +226,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
         this.keyword = keyword;
     }
 
-    // for searching a perticular job        
+    // for searching a perticular job
     public String jobSearch() {
         String result = "FAILURE";
         ArrayList jobDetailsList = JobDetailsService.doJobSearch(this);
@@ -278,6 +287,41 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
             sessionMap.put("ViewJobDetailsErrorMsg", viewJobDetailsErrorMsg);
             System.out.println("returning Failure from viewJobDetailsErrorMsg method");
             //  logger.error("No Claim Found" + LocalDateTime.now());
+        }
+        return result;
+    }
+
+    public String viewJobDetailsByHrManager() {
+        String result = "FAILURE";
+
+        JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
+
+        if (jobDetails != null) {
+            sessionMap.put("JobDetails", jobDetails);
+            result = "SUCCESS";
+        } else {
+            String viewJobDetailsErrorMsg = "Either Email or Password is Wrong!";
+            sessionMap.put("ViewJobDetailsErrorMsg", viewJobDetailsErrorMsg);
+            System.out.println("returning Failure from viewJobDetailsErrorMsg method");
+            //  logger.error("No Claim Found" + LocalDateTime.now());
+        }
+        return result;
+    }
+
+    public String acceptByHrManager() {
+        String result = "FAILURE";
+        boolean success = JobDetailsService.doAcceptByHrManager(this.jobId);
+        if (success == true) {
+            result = "SUCCESS";
+        }
+        return result;
+    }
+
+    public String rejectByHrManager() {
+        String result = "FAILURE";
+        boolean success = JobDetailsService.doRejectByHrManager(this.jobId);
+        if (success == true) {
+            result = "SUCCESS";
         }
         return result;
     }

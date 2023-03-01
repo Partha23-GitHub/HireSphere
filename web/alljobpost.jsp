@@ -36,8 +36,8 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                 <td>${jobs.getLocation()}</td>
                 <td>${jobs.getSalary()}</td>
                 <td>${jobs.getClosingDate()}</td>
-                <td><a href="EditJob?jobId=${jobs.getJobId()}" class="btn btn-primary"style="border-radius: 12px;">Edit</a></td>
-                <td><a href="ViewApplicant?jobId=${jobs.getJobId()}" class="btn btn-primary"style="border-radius: 12px;">View Applicants</a></td>
+                <td><a href="EditJob?jobId=${jobs.getJobId()}" class="btn btn-primary" style="border-radius: 12px;">Edit</a></td>
+                <td><a href="ViewApplicant?jobId=${jobs.getJobId()}" class="btn btn-primary" style="border-radius: 12px;">View Applicants</a></td>
             </tr>
             </c:forEach>
         </tbody>

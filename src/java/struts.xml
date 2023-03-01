@@ -62,6 +62,11 @@
             <result name="SUCCESS">alljobpost2.jsp</result>
             <result name="FAILURE">jobedit.jsp</result>
         </action>
+      
+        <action name="UpdateJobByHrManager" class="com.hiresphere.models.JobDetails" method="updateJob">
+            <result name="SUCCESS">hrmanagerhome.jsp</result>
+            <result name="FAILURE">jobeditbyhrmanager.jsp</result>
+        </action>
         <action name="ViewApplicant" class="com.hiresphere.models.JobApplication" method="viewAllApplicantByJobId">
             <result name="SUCCESS">viewallapplicant.jsp</result>
             <result name="FAILURE">alljobpost.jsp</result>
@@ -78,6 +83,30 @@
             <result name="SUCCESS">allappliedjobs.jsp</result>
             <result name="FAILURE">jobdetails.jsp</result>
         </action>
+         <action name="LoadHRManagerMenu" class="com.hiresphere.models.HrManager" method="loadMenuContent">
+            <result name="POSTJOB">post-a-job.jsp</result>
+            <result name="ALLALLAPPLICANT">viewallapplicant.jsp</result>
+            <result name="ALLPOSTEDJOB">joblisthrmanager.jsp</result>
+        </action> 
+        <action name="ViewJobDetailsByHrManager" class="com.hiresphere.models.JobDetails" method="viewJobDetails">
+            <result name="SUCCESS">jobdetailsforhrmanager.jsp</result>
+            <result name="FAILURE">joblist.jsp</result>
+        </action>
+        <action name="EditJobByHrManager" class="com.hiresphere.models.JobDetails" method="viewJobDetailsByHrManager">
+            <result name="SUCCESS">jobeditbyhrmanager.jsp</result>
+            <result name="FAILURE">jobeditbyhrmanager.jsp</result>
+        </action>
+        
+        <action name="AcceptByHrManager" class="com.hiresphere.models.JobDetails" method="acceptByHrManager">
+            <result name="SUCCESS">hrmanagerhome.jsp</result>
+            <result name="FAILURE">jobedit.jsp</result>
+        </action>
+        
+        <action name="RejectByHrManager" class="com.hiresphere.models.JobDetails" method="rejectByHrManager">
+            <result name="SUCCESS">hrmanagerhome.jsp</result>
+            <result name="FAILURE">jobedit.jsp</result>
+        </action>
+
  <action name="VisitHRProfile" class="com.hiresphere.models.HR" method="visitHRProfile">
             <result name="SUCCESS">hrprofile.jsp</result>
             <result name="FAILURE">hrmenupage.jsp</result>

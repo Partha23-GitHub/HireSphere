@@ -86,20 +86,20 @@
                 <div class="sidebar-heading">Get Your Job Done By</div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" onclick="fetchContent('jobpost','hr-home-content','0')">
+<!--                <li class="nav-item">
+                    <a class="nav-link collapsed" onclick="fetchContent('jobpost', 'hr-home-content', '0')">
                         <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer";
                               >&#9755; &nbsp; Post Jobs</span
                         >
                     </a>
-                </li>
+                </li>-->
 
                 <!-- Nav Item - Charts -->
-                
+
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" onclick="fetchContent('allpostedjobs', 'hr-home-content',${User.getUserId()})">
+                    <a class="nav-link collapsed" onclick="fetchContent('allpostedjobs', 'hr-Manager-home-content',${User.getUserId()})">
                         <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer"
                               >&#9755;&nbsp;View All Posted Jobs</span
                         >
@@ -173,7 +173,7 @@
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
-                    <div id="hr-home-content">
+                    <div id="hr-Manager-home-content">
                         <div class="container-fluid">
                             <!-- Page Heading -->
                             <div
@@ -255,34 +255,34 @@
                             <!-- Content Row -->
                             <div id="pagecontent">
                                 <h1>Home Page contents </h1>
-                                
+
                             </div>
                         </div>
                     </div>
                     <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
-                
+
             </div>
             <!-- End of Content Wrapper -->
-            
+
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="text/javascript">
-              function fetchContent(selected, target,valueId) {
-                  //alert("HI");
-                  $.ajax({
-                      url: 'LoadHRMenu',
-                      data: {
-                          ['work']: (selected),
-                          ['value']: (valueId)
-                      },
-                      success: function (responseText) {
-                          $("#" + target).html(responseText);
-                      }
-                  });
-              }
+                        function fetchContent(selected, target, valueId) {
+                            //alert("HI");
+                            $.ajax({
+                                url: 'LoadHRManagerMenu',
+                                data: {
+                                    ['work']: (selected),
+                                    ['value']: (valueId)
+                                },
+                                success: function (responseText) {
+                                    $("#" + target).html(responseText);
+                                }
+                            });
+                        }
 
     </script>
 </html>
