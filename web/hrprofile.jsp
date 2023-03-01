@@ -16,6 +16,12 @@
                 background-image: url("./assets/hrProfileBackGround.jpg");
 
             }
+            #closing-logo-hr-profile{
+                transform: translate(22.8rem,-5.8rem);
+            }
+            #logo-hr-profile{
+                transform: translate(6.5rem,-0.1009rem);
+            }
         </style>
         <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
         <link rel="stylesheet" href="css/profileDecoration.css">
@@ -29,8 +35,8 @@
                 <section class="container forms">
                     <div class="form login">
                         <div class="form-content">
-                            <header><img src="./assets/logo-profile.png" alt="Logo"/></header>
-
+                            <a href="hrmenupage.jsp"><img id="closing-logo-hr-profile" src="assets/close-icon.png" alt="alt"/></a>
+                            <img id="logo-hr-profile" src="./assets/logo-profile.png" alt="Logo"/>
                             <hr>
 
                             <header class="profile-name">${User.getName()}</header>
@@ -57,14 +63,6 @@
 
                                     <button type="submit">Update</button>
 
-                                </div>
-                                &nbsp
-                                <div class="field button-field">
-
-                                    <a href="hrmenupage.jsp">
-
-                                        <button class="field button-field" style="width: 180px !important; transform: translateY(-1.2rem) !important; transform: translateX(2ch) ;">Back</button>
-                                    </a>
                                 </div>
                             </div>
                         </form>

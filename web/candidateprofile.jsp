@@ -16,6 +16,17 @@
                 background-image: url("./assets/profile-background.png");
                 
             }
+            #closing-logo-profile{
+                transform: translate(22.5rem,-5.1rem);
+                    
+            }
+            #closing-logo-login{
+                padding-top: 0px;
+                padding-bottom: 5px; 
+            }
+            #logo-profile{
+              transform: translate(6.5rem,-0.1000000000009rem);
+            }
         </style>
         <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
         <link rel="stylesheet" href="css/profileDecoration.css">
@@ -29,7 +40,8 @@
             <section class="container forms">
                 <div class="form login">
                     <div class="form-content">
-                        <header><img src="./assets/logo-profile.png" alt="Logo"/></header>
+                        <a href="candidatehome.jsp"><img id="closing-logo-profile" src="assets/close-icon.png" alt="alt"/></a>
+                       <img id="logo-profile" src="./assets/logo-profile.png" alt="Logo"/>
                         
                         <hr>
 
@@ -68,14 +80,6 @@
 
                                 <button type="submit">Update</button>
 
-                            </div>
-                            &nbsp
-                            <div class="field button-field">
-
-                                <a href="candidatehome.jsp">
-
-                                    <button class="field button-field" style="width: 180px !important; transform: translateY(-1.2rem) !important; transform: translateX(2ch) ;">Back</button>
-                                </a>
                             </div>
                         </div>
                     </form>

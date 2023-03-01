@@ -34,7 +34,7 @@
             <div class="header-left">
                 <h1>Top companies hiring now</h1>
                 <p>"Your talent determines what you can do. Your motivation determines how much you are willing to do. Your attitude determines how well you do it." - Lou Holtz</p>
-                <a href="#" class="primary-button get-started-btn">Get Started</a>
+                <a href="login.jsp" class="primary-button get-started-btn">Get Started</a>
             </div>
             <div class="header-right">
                 <img src="assets/1.webp" alt="hero image">
