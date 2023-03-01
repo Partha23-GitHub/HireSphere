@@ -172,53 +172,68 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
 //    public String getAllApplicant(){
 //        String result = "FAILURE";
 //        ArrayList jobApplicant = JobApplicationService.getAllApplicant(this);
-//        
+//
 //        return result;
 //    }
-    public String viewAllApplicantByJobId(){
-        String result="FAILURE";
-        
+    public String viewAllApplicantByJobId() {
+        String result = "FAILURE";
+
         ArrayList applicantList = JobApplicationService.getApplicantByJobId(this.jobId);
-        if(applicantList != null){
+        if (applicantList != null) {
             System.out.println("Returning Success from View All Applicant from Id ");
             sessionMap.put("ApplicantList", applicantList);
-            System.out.println("Applicant List Size ::"+applicantList.size());
+            System.out.println("Applicant List Size ::" + applicantList.size());
             result = "SUCCESS";
-        }
-        else{
+        } else {
             System.out.println("Returning Failure from View All Applicant from Id ");
         }
         return result;
     }
-    public String doApproveApplication(){
+
+    public String doApproveApplication() {
         String result = "FAILURE";
         boolean update = JobApplicationService.updateApplicationStatus(this.applicationId);
-        System.out.println("update ::"+update);
-        if(update == true){
-            
-            result="SUCCESS";
+        System.out.println("update ::" + update);
+        if (update == true) {
+            ArrayList applicantList = JobApplicationService.getApplicantByJobId(this.jobId);
+            sessionMap.put("ApplicantList", applicantList);
+
+            result = "SUCCESS";
         }
         return result;
     }
+
+    public String doRejectApplication() {
+        String result = "FAILURE";
+        boolean update = JobApplicationService.rejectApplication(this.applicationId);
+        System.out.println("update ::" + update);
+        if (update == true) {
+
+            ArrayList applicantList = JobApplicationService.getApplicantByJobId(this.jobId);
+            sessionMap.put("ApplicantList", applicantList);
+
+            result = "SUCCESS";
+        }
+        return result;
+    }
+
     public String applyJob() {
         String result = "FAILURE";
-        
-        int Id=HrService.getInstance().getHrId(this.hrId);
-        JobApplication jobApplication=new JobApplication();
+
+        int Id = HrService.getInstance().getHrId(this.hrId);
+        JobApplication jobApplication = new JobApplication();
         jobApplication.setJobId(this.jobId);
         jobApplication.setCandidateId(this.candidateId);
         jobApplication.setHrId(Id);
-        
+
         boolean success = JobApplicationService.doApplyJob(jobApplication);
-        
+
         if (success) {
             ArrayList jobList = JobApplicationService.doGetJobApplicationByCandidate(this.candidateId);
-            System.out.println("applied job list"+jobList.size());
+            System.out.println("applied job list" + jobList.size());
             sessionMap.put("JobApplicationList", jobList);
             result = "SUCCESS";
-        } 
-        else
-        {
+        } else {
 
             System.out.println("Returning failure from job application");
 

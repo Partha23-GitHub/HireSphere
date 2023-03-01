@@ -217,14 +217,22 @@
                                             </a>
                                         </td>
                                         <td> 
-                                            <a href="ApproveApplication?applicationId=${applicant.getApplicationId()}">
+                                            <a href="ApproveApplication?applicationId=${applicant.getApplicationId()}&jobId=${applicant.getJobId()}">
                                                 Approve
                                             </a>
-                                            <a href="RejectApplication">
+                                            <a href="RejectApplication?applicationId=${applicant.getApplicationId()}&jobId=${applicant.getJobId()}">
                                                 Reject
                                             </a>
                                         </td>
-                                        <td> Message </td>
+                                        <c:if test="${applicant.getApplicationStatus()==1}">
+                                            <td> Approved</td>
+                                        </c:if>
+                                            <c:if test="${applicant.getApplicationStatus()==0}">
+                                            <td> Processing</td>
+                                        </c:if>
+                                            <c:if test="${applicant.getApplicationStatus()==2}">
+                                            <td> Rejected</td>
+                                        </c:if>
                                     </tr>
                                 </c:forEach>
                             </tbody>
