@@ -218,7 +218,7 @@
                                         </td>
                                         <td> 
                                             <a href="ApproveApplication?applicationId=${applicant.getApplicationId()}&jobId=${applicant.getJobId()}">
-                                                Approve
+                                                Shortlisted
                                             </a>
                                             <a href="RejectApplication?applicationId=${applicant.getApplicationId()}&jobId=${applicant.getJobId()}">
                                                 Reject
