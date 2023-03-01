@@ -107,5 +107,13 @@
             <result name="FAILURE">jobedit.jsp</result>
         </action>
 
+ <action name="VisitHRProfile" class="com.hiresphere.models.HR" method="visitHRProfile">
+            <result name="SUCCESS">hrprofile.jsp</result>
+            <result name="FAILURE">hrmenupage.jsp</result>
+        </action>
+        <action name="UpdateHRProfile" class="com.hiresphere.models.HR" method="updateHRProfile">
+            <result name="SUCCESS">hrmenupage.jsp</result>
+            <result name="FAILURE">hrprofile.jsp</result>
+        </action>
     </package>
 </struts>

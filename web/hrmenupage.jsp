@@ -11,7 +11,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>{Compamy-Name} | Home</title>
+        <title>{Company-Name} | Home</title>
         <!-- Custom fonts for this template-->
         <link href="./css/all.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template-->
@@ -53,7 +53,7 @@
                 <li class="nav-item">
                     <a
                         class="nav-link collapsed"
-                        href="#"
+                        href="VisitHRProfile?userId=${User.getUserId()}"
                         data-target="#collapseTwo"
                         aria-expanded="true"
                         aria-controls="collapseTwo"

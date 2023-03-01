@@ -243,9 +243,11 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public String jobSearchByKeyword() {
         String result = "FAILURE";
         ArrayList jobDetailsList = JobDetailsService.doJobSearchByKeyword(this);
+        System.out.println("userId from view job details" + this.userId);
 
         if (jobDetailsList != null) {
             sessionMap.put("JobDetailsList", jobDetailsList);
+            
             result = "SUCCESS";
         }
 
@@ -255,7 +257,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
 
     public String viewJobDetails() {
         String result = "FAILURE";
-
+        System.out.println("userId from view job details" + this.userId);
         JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
 
         if (jobDetails != null) {

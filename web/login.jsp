@@ -6,7 +6,24 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login and Signup Form </title>
-
+        <style>
+           body {
+               
+                background-image: url("./assets/profile-background.png");
+                
+            }
+            #closing-logo{
+                transform: translate(22.5rem,0.5rem);
+                    
+            }
+             #closing-logo-login{
+                transform: translate(22.5rem,-1.1rem);
+                    
+            }
+            #signup-style{
+                padding-top: 1px;
+            }
+        </style>
         <!-- CSS -->
         <link rel="stylesheet" href="css/loginstyle.css">
 
@@ -19,15 +36,16 @@
         <section class="container forms">
             <div class="form login">
                 <div class="form-content">
-                    <header>Login</header>
+                    <a href="landingpage.jsp"><img id="closing-logo-login" src="assets/close-icon.png" alt="alt"/></a>
+                    <header>HireSphere</header>
                     <form action="Login" method="post">
 
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input" name="email">
+                            <input type="email" placeholder="Email" class="input" name="email" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Password" class="password" name="password">
+                            <input type="password" placeholder="Password" class="password" name="password" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
@@ -54,8 +72,8 @@
                     </a>
                 </div>
 
-                <div  class="g-signin2 media-options" data-onsuccess="onSignIn">
-                    <a href="#" class="field google">
+                <div  class=" media-options" data-onsuccess="onSignIn">
+                    <a href="#" class="field facebook">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
                     </a>
@@ -65,24 +83,25 @@
 
             <!-- Signup Form -->
 
-            <div class="form signup">
+            <div class="form signup" id="signup-style">
                 <div class="form-content">
-                    <header>Signup</header>
+                        <a href="landingpage.jsp"><img id="closing-logo" src="assets/close-icon.png" alt="alt"/></a>
+                    <header>HireSphere</header>
                     <form action="Signup" method="post">
                         <div class="field input-field">
-                            <input type="text" placeholder="Name" class="input" name="name">
+                            <input type="text" placeholder="Name" class="input" name="name" required>
                         </div>
                         <div class="field input-field">
 
-                            <input type="email" placeholder="Email" class="input" name="email">
+                            <input type="email" placeholder="Email" class="input" name="email" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Create password" class="password" name="password">
+                            <input type="password" placeholder="Create password" class="password" name="password" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Confirm password" class="password" name="confirmpassword">
+                            <input type="password" placeholder="Confirm password" class="password" name="confirmpassword" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
@@ -107,7 +126,7 @@
 
                 <div class="media-options" >
                      <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
-                    <a href="#" class="field google">
+                    <a href="#" class="field facebook">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
                     </a>
