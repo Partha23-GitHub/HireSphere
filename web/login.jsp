@@ -12,7 +12,17 @@
                 background-image: url("./assets/profile-background.png");
                 
             }
-            
+            #closing-logo{
+                transform: translate(22.5rem,0.5rem);
+                    
+            }
+             #closing-logo-login{
+                transform: translate(22.5rem,-1.1rem);
+                    
+            }
+            #signup-style{
+                padding-top: 1px;
+            }
         </style>
         <!-- CSS -->
         <link rel="stylesheet" href="css/loginstyle.css">
@@ -26,6 +36,7 @@
         <section class="container forms">
             <div class="form login">
                 <div class="form-content">
+                    <a href="landingpage.jsp"><img id="closing-logo-login" src="assets/close-icon.png" alt="alt"/></a>
                     <header>HireSphere</header>
                     <form action="Login" method="post">
 
@@ -72,9 +83,10 @@
 
             <!-- Signup Form -->
 
-            <div class="form signup">
+            <div class="form signup" id="signup-style">
                 <div class="form-content">
-                    <header>Signup</header>
+                        <a href="landingpage.jsp"><img id="closing-logo" src="assets/close-icon.png" alt="alt"/></a>
+                    <header>HireSphere</header>
                     <form action="Signup" method="post">
                         <div class="field input-field">
                             <input type="text" placeholder="Name" class="input" name="name" required>

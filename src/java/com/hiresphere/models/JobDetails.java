@@ -234,9 +234,11 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public String jobSearchByKeyword() {
         String result = "FAILURE";
         ArrayList jobDetailsList = JobDetailsService.doJobSearchByKeyword(this);
+        System.out.println("userId from view job details" + this.userId);
 
         if (jobDetailsList != null) {
             sessionMap.put("JobDetailsList", jobDetailsList);
+            
             result = "SUCCESS";
         }
 
@@ -246,7 +248,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
 
     public String viewJobDetails() {
         String result = "FAILURE";
-
+        System.out.println("userId from view job details" + this.userId);
         JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
 
         if (jobDetails != null) {
@@ -265,10 +267,10 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
         String result = "FAILURE";
         boolean success = JobDetailsService.updateJobDetails(this);
         JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
-        System.out.println("in update job userId: "+jobDetails.userId);
+        System.out.println("in update job userId: " + jobDetails.userId);
         if (success) {
             ArrayList jobList = HrService.getInstance().getAllJobPostedByHr(this.userId);
-            System.out.println("List Size:"+jobList.size());
+            System.out.println("List Size:" + jobList.size());
             sessionMap.put("JobPostedByHr", jobList);
             result = "SUCCESS";
         } else {
