@@ -61,6 +61,24 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     private String state;
     private String country;
     private int applicationId;
+    private int applicationStatus;
+    private int jobId;
+
+    public int getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
+    }
+
+    public int getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    public void setApplicationStatus(int applicationStatus) {
+        this.applicationStatus = applicationStatus;
+    }
 
     public int getApplicationId() {
         return applicationId;
@@ -136,7 +154,7 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     public String visitCandidateProfile() {
         String result = "FAILURE";
-        
+
         Candidate candidate = CandidateService.getCandidateByUserId(this.userId);
 
         if (candidate != null) {

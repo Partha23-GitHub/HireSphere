@@ -25,9 +25,9 @@ public class JobApplicationService {
     public static ArrayList doGetJobApplicationByCandidate(int candidateId) {
         ArrayList jobApplicationList = new ArrayList();
         Connection con = JDBCConnectionManager.getConnection();
-        String sql =" SELECT applicationId, candidates.candidateId, jobdetails.jobId,companyName, jobTitle, jobType,applicationMessage\n" +
-"                 FROM jobapplication inner join candidates on jobapplication.candidateId=candidates.candidateId inner join jobdetails on \n" +
-"                 jobapplication.jobId=jobdetails.jobId inner join jobapplicationstatuses on jobapplication.applicationStatus=jobapplicationstatuses.applicationStatus where candidates.candidateId=?;";
+        String sql = " SELECT applicationId, candidates.candidateId, jobdetails.jobId,companyName, jobTitle, jobType,applicationMessage\n"
+                + "                 FROM jobapplication inner join candidates on jobapplication.candidateId=candidates.candidateId inner join jobdetails on \n"
+                + "                 jobapplication.jobId=jobdetails.jobId inner join jobapplicationstatuses on jobapplication.applicationStatus=jobapplicationstatuses.applicationStatus where candidates.candidateId=?;";
 //"SELECT ja.applicationId, ja.candidateId, ja.jobId,companyName, jobTitle, jobType,ja.applicationStatus,applicationMessage\n"
 //                + "                 FROM hiresphere.jobapplication ja, jobdetails jd, hr h, candidates c,jobapplicationstatuses js\n"
 //                + "                 WHERE ja.candidateId = c.candidateId\n"
@@ -122,7 +122,7 @@ public class JobApplicationService {
 
     public static ArrayList getApplicantByJobId(int jobId) {
         ArrayList applicantList = new ArrayList();
-        String sql = "SELECT ca.candidateId,u.name,ca.gender,ca.phoneNumber,ja.applicationId\n"
+        String sql = "SELECT ca.candidateId,u.name,ca.gender,ca.phoneNumber,ja.applicationId ,ja.applicationStatus,ja.jobId\n"
                 + "                 from candidates ca,jobapplication ja,users u where \n"
                 + "                   ja.candidateId = ca.candidateId and ca.userId=u.userId\n"
                 + "                 and jobId=?;";
@@ -139,6 +139,8 @@ public class JobApplicationService {
                 applicant.setGender(rs.getString("gender"));
                 applicant.setPhoneNumber(rs.getString("phoneNumber"));
                 applicant.setApplicationId(rs.getInt("applicationId"));
+                applicant.setApplicationStatus(rs.getInt("applicationStatus"));
+                applicant.setJobId(rs.getInt("jobId"));
                 applicantList.add(applicant);
                 System.out.println("this is comment:" + applicant.getName());
             }
@@ -156,27 +158,26 @@ public class JobApplicationService {
                 + "SET\n"
                 + "applicationStatus = ?\n"
                 + "WHERE applicationId = ?;";
-         Connection con = JDBCConnectionManager.getConnection();
+        Connection con = JDBCConnectionManager.getConnection();
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1,1);
-            preparedStatement.setInt(1,applicationId);
-            
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(2, applicationId);
+            System.out.println(preparedStatement);
+
             int execute = preparedStatement.executeUpdate();
-            System.out.println("execute :: "+execute);
-            if(execute!=0){
+            System.out.println("execute :: " + execute);
+            if (execute != 0) {
                 success = true;
             }
-        }
-        catch (SQLException ex){
-            
+        } catch (SQLException ex) {
+
         }
         return success;
     }
+
     public static boolean doApplyJob(JobApplication jobApplication) {
         boolean result = false;
-           
-
 
         Connection con = JDBCConnectionManager.getConnection();
 
@@ -199,6 +200,30 @@ public class JobApplicationService {
         }
 
         return result;
+    }
+
+    public static boolean rejectApplication(int applicationId) {
+        boolean success = false;
+        String sql = "UPDATE hiresphere.jobapplication\n"
+                + "SET\n"
+                + "applicationStatus = ?\n"
+                + "WHERE applicationId = ?;";
+        Connection con = JDBCConnectionManager.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, 2);
+            preparedStatement.setInt(2, applicationId);
+            System.out.println(preparedStatement);
+
+            int execute = preparedStatement.executeUpdate();
+            System.out.println("execute :: " + execute);
+            if (execute != 0) {
+                success = true;
+            }
+        } catch (SQLException ex) {
+
+        }
+        return success;
     }
 
 }

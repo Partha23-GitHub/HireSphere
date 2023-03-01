@@ -75,7 +75,7 @@
             <result name="SUCCESS">viewallapplicant.jsp</result>
             <result name="FAILURE">alljobpost.jsp</result>
         </action>
-        <action name="RejectApplication" class="com.hiresphere.models.JobApplication" method="viewAllApplicantByJobId">
+        <action name="RejectApplication" class="com.hiresphere.models.JobApplication" method="doRejectApplication">
             <result name="SUCCESS">viewallapplicant.jsp</result>
             <result name="FAILURE">alljobpost.jsp</result>
         </action>
