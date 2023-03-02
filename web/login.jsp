@@ -96,7 +96,7 @@
                         </div>
                         <div class="field input-field">
 
-                            <input type="email" placeholder="Email" class="input" name="email" required>
+                            <input type="email"  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email" class="input" name="email" required>
                         </div>
 
                         <div class="field input-field">
@@ -107,7 +107,8 @@
                             <input type="password" placeholder="Confirm password" class="password" name="confirmpassword" id="password2" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
-
+                        <p id="password-error"></p>
+ 
                         <div class="field button-field">
                             <button type="submit" onclick="passwordMatch()">Signup</button>
                         </div>
@@ -140,8 +141,8 @@
         </section>
 
         <!--for google-->
-        
-        
+
+
         <script src="js/loginscript.js"></script>
         <script>
                                 function onSignIn(googleUser) {
@@ -151,11 +152,26 @@
 //                                    console.log('Name: ' + profile.getName());
 //                                    console.log('Image URL: ' + profile.getImageUrl());
 //                                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-                                    const responsePayLoad=decodeJwtResponse(response.credential);
+                                    const responsePayLoad = decodeJwtResponse(response.credential);
                                     console.log(responsePayLoad);
                                     console.log(responsePayLoad.email);
-                                    
+
                                 }
+
+        </script>
+
+        <script >
+            const passwordInput = document.getElementById('password1');
+            const confirmPasswordInput = document.getElementById('password2');
+            const passwordError = document.getElementById('password-error');
+
+            confirmPasswordInput.addEventListener('input', () => {
+                if (confirmPasswordInput.value !== passwordInput.value) {
+                    passwordError.innerText = "Passwords do not match";
+                } else {
+                    passwordError.innerText = "";
+                }
+            });
 
         </script>
     </body>

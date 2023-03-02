@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -294,7 +296,12 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
 
     public String updateJob() {
         String result = "FAILURE";
-        boolean success = JobDetailsService.updateJobDetails(this);
+        boolean success=false;
+        try {
+            success = JobDetailsService.updateJobDetails(this);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(JobDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
         System.out.println("in update job userId: " + jobDetails.userId);
         if (success) {
