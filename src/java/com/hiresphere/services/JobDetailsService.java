@@ -248,7 +248,7 @@ public class JobDetailsService {
 
     public boolean postAjob(JobDetails job) throws FileNotFoundException {
         Date d = Calendar.getInstance().getTime();
-        DateFormat df = new SimpleDateFormat("dd-mm-yyy");
+        DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
         String postingDate = df.format(d);
         boolean result = false;
         Connection con = JDBCConnectionManager.getConnection();

@@ -35,14 +35,24 @@
     <body>
 
         <c:set var="candidate" value="${Candidate}"></c:set>       
-
+         <c:set var="male" value="Male" />
+             <c:set var="female" value="Female" />
             <div class="bg-image">
             <section class="container forms">
                 <div class="form login">
                     <div class="form-content">
                         <a href="candidatehome.jsp"><img id="closing-logo-profile" src="assets/close-icon.png" alt="alt"/></a>
-                       <img id="logo-profile" src="./assets/logo-profile.png" alt="Logo"/>
-                        
+
+                        <c:if test="${candidate.getGender()==null}"> 
+                            <img id="logo-profile" src="./assets/logo-profile.png" alt="Logo"/>
+                        </c:if> 
+                        <c:if test="${candidate.getGender()== male}"> 
+                            <img id="logo-profile" src="./assets/logo_profile-male.png" alt="Logo"/>
+                        </c:if> 
+                        <c:if test="${candidate.getGender()== female}"> 
+                            <img id="logo-profile" src="./assets/logo-profile.png" alt="Logo"/>
+                        </c:if> 
+
                         <hr>
 
                         <header class="profile-name">${User.getName()}</header>
