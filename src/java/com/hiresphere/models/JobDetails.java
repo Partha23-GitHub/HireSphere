@@ -32,7 +32,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     private String educationQualification, requirements, responsibilities, location;
     private String experience, closingDate, salary, postingDate;
     private int hrManagerVerificationStatus, jobStatus;
-    private String jobStatusMessage,imageData;
+    private String jobStatusMessage, imageData;
     private File companyLogo;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -224,7 +224,6 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setImageData(String imageData) {
         this.imageData = imageData;
     }
-    
 
     public String postAJob() throws FileNotFoundException, IOException {
         String result = "FAILURE";
@@ -269,7 +268,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
 
         if (jobDetailsList != null) {
             sessionMap.put("JobDetailsList", jobDetailsList);
-            
+
             result = "SUCCESS";
         }
 
@@ -295,8 +294,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     }
 
     public String updateJob() {
-        String result = "FAILURE";
-        boolean success=false;
+        boolean success = false;
         try {
             success = JobDetailsService.updateJobDetails(this);
         } catch (FileNotFoundException ex) {
