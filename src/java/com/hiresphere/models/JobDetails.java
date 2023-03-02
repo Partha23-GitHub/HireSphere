@@ -293,25 +293,25 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
         return result;
     }
 
-    public String updateJob() {
-        boolean success = false;
+    public String updateJob() throws FileNotFoundException {
+        String result = "FAILURE";
         try {
-            success = JobDetailsService.updateJobDetails(this);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(JobDetails.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
-        System.out.println("in update job userId: " + jobDetails.userId);
-        if (success) {
-            ArrayList jobList = HrService.getInstance().getAllJobPostedByHr(this.userId);
-            System.out.println("List Size:" + jobList.size());
-            sessionMap.put("JobPostedByHr", jobList);
-            result = "SUCCESS";
-        } else {
-            String viewJobDetailsErrorMsg = "Either Email or Password is Wrong!";
-            sessionMap.put("ViewJobDetailsErrorMsg", viewJobDetailsErrorMsg);
-            System.out.println("returning Failure from viewJobDetailsErrorMsg method");
-            //  logger.error("No Claim Found" + LocalDateTime.now());
+            boolean success = JobDetailsService.updateJobDetails(this);
+            JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
+            System.out.println("in update job userId: " + jobDetails.userId);
+            if (success) {
+                ArrayList jobList = HrService.getInstance().getAllJobPostedByHr(this.userId);
+                System.out.println("List Size:" + jobList.size());
+                sessionMap.put("JobPostedByHr", jobList);
+                result = "SUCCESS";
+            } else {
+                String viewJobDetailsErrorMsg = "Either Email or Password is Wrong!";
+                sessionMap.put("ViewJobDetailsErrorMsg", viewJobDetailsErrorMsg);
+                System.out.println("returning Failure from viewJobDetailsErrorMsg method");
+                //  logger.error("No Claim Found" + LocalDateTime.now());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return result;
     }
