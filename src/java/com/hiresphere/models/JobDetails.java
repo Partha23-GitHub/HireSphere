@@ -294,7 +294,6 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     }
 
     public String updateJob() {
-        String result = "FAILURE";
         boolean success = false;
         try {
             success = JobDetailsService.updateJobDetails(this);
