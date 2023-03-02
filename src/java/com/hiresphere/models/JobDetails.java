@@ -8,6 +8,9 @@ import com.hiresphere.services.HrService;
 import com.hiresphere.services.JobDetailsService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
@@ -27,7 +30,8 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     private String educationQualification, requirements, responsibilities, location;
     private String experience, closingDate, salary, postingDate;
     private int hrManagerVerificationStatus, jobStatus;
-    private String jobStatusMessage;
+    private String jobStatusMessage,imageData;
+    private File companyLogo;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -203,9 +207,25 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
         this.jobStatusMessage = jobStatusMessage;
     }
 
-    public String postAJob() {
-        String result = "FAILURE";
+    public File getCompanyLogo() {
+        return companyLogo;
+    }
 
+    public void setCompanyLogo(File companyLogo) {
+        this.companyLogo = companyLogo;
+    }
+
+    public String getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(String imageData) {
+        this.imageData = imageData;
+    }
+    
+
+    public String postAJob() throws FileNotFoundException, IOException {
+        String result = "FAILURE";
         boolean success = JobDetailsService.getInstance().postAjob(this);
         if (success) {
             System.out.println("returning Success from postAJob method");

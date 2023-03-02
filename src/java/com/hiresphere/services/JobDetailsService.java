@@ -6,6 +6,9 @@ package com.hiresphere.services;
 
 import com.hiresphere.models.JobDetails;
 import com.hiresphere.utils.JDBCConnectionManager;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
@@ -16,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Base64;
 import org.apache.log4j.Logger;
 
 /**
@@ -26,12 +30,14 @@ public class JobDetailsService {
 
     public static JobDetailsService jobDetailsService = null;
 
-    public static boolean updateJobDetails(JobDetails job) {
+    public static boolean updateJobDetails(JobDetails job) throws FileNotFoundException {
         System.out.println("jod id in update job details:" + job.getJobId());
         boolean result = false;
         String sql = "update jobdetails set companyName=?,companyWebsite=?,jobTitle=?,jobType=?,description=?,educationQualification=?,"
-                + "responsibilities=?,requirements=?,location=?,closingDate=?,salary=? where jobId=?";
+                + "responsibilities=?,requirements=?,location=?,closingDate=?,salary=?,jobLogo=? where jobId=?";
         try {
+            FileInputStream inputStream = new FileInputStream(job.getCompanyLogo());
+            
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, job.getCompanyName());
@@ -45,7 +51,9 @@ public class JobDetailsService {
             preparedStatement.setString(9, job.getLocation());
             preparedStatement.setString(10, job.getClosingDate());
             preparedStatement.setString(11, job.getSalary());
-            preparedStatement.setInt(12, job.getJobId());
+            preparedStatement.setBinaryStream(12, inputStream); //adding input stream
+            preparedStatement.setInt(13, job.getJobId());
+            
             System.out.println(preparedStatement);
             int row = preparedStatement.executeUpdate();
             if (row > 0) {
@@ -136,6 +144,15 @@ public class JobDetailsService {
                 job.setSalary(rs.getString("salary"));
                 job.setLocation(rs.getString("location"));
                 job.setExperience(rs.getString("experience"));
+                
+                //retriveing image from DB
+                Blob imageBlob = rs.getBlob("jobLogo");
+                if (imageBlob != null) {
+                    byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
+                    String imageString = Base64.getEncoder().encodeToString(imageBytes);
+                    job.setImageData(imageString);
+                }
+
                 System.out.println("result" + job.getJobTitle() + job.getExperience() + job.getJobType() + job.getLocation() + job.getSalary() + job.getCompanyName());
                 jobdetailsList.add(job);
             }
@@ -172,6 +189,13 @@ public class JobDetailsService {
                 job.setSalary(rs.getString("salary"));
                 job.setLocation(rs.getString("location"));
                 job.setExperience(rs.getString("experience"));
+                //retriveing image from DB
+                Blob imageBlob = rs.getBlob("jobLogo");
+                if (imageBlob != null) {
+                    byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
+                    String imageString = Base64.getEncoder().encodeToString(imageBytes);
+                    job.setImageData(imageString);
+                }
                 System.out.println("result" + job.getJobTitle() + job.getExperience() + job.getJobType() + job.getLocation() + job.getSalary() + job.getCompanyName());
                 jobdetailsList.add(job);
             }
@@ -209,8 +233,12 @@ public class JobDetailsService {
                 jobdetails.setSalary(rs.getString("salary"));
                 jobdetails.setPostingDate(rs.getString("postingDate"));
                 jobdetails.setExperience(rs.getString("experience"));
-                System.out.println("jobDetails:" + jobdetails.getJobTitle());
-
+                Blob imageBlob = rs.getBlob("jobLogo");
+                if (imageBlob != null) {
+                    byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
+                    String imageString = Base64.getEncoder().encodeToString(imageBytes);
+                    jobdetails.setImageData(imageString);
+                }
             }
         } catch (SQLException ex) {
             //  logger.error(ex.getMessage() + LocalDateTime.now());
@@ -218,7 +246,7 @@ public class JobDetailsService {
         return jobdetails;
     }
 
-    public boolean postAjob(JobDetails job) {
+    public boolean postAjob(JobDetails job) throws FileNotFoundException {
         Date d = Calendar.getInstance().getTime();
         DateFormat df = new SimpleDateFormat("dd-mm-yyy");
         String postingDate = df.format(d);
@@ -240,12 +268,16 @@ public class JobDetailsService {
                 + "salary,\n"
                 + "hrManagerVerificationStatus,\n"
                 + "jobStatus,\n"
-                + "postingDate)\n"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                + "postingDate,\n"
+                +"jobLogo)\n"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
         try {
             //System.out.println("entering try block");
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
+            //converting image to fileInputStream
+            FileInputStream inputStream = new FileInputStream(job.getCompanyLogo());
+            
             preparedStatement.setInt(1, job.getUserId());
             preparedStatement.setString(2, job.getCompanyName());
             preparedStatement.setString(3, job.getCompanyWebsite());
@@ -262,7 +294,8 @@ public class JobDetailsService {
             preparedStatement.setInt(14, 0);
             preparedStatement.setInt(15, 1);
             preparedStatement.setString(16, postingDate);
-            System.out.println("LoginService :: " + preparedStatement);
+            preparedStatement.setBinaryStream(17, inputStream);
+            System.out.println("PostAJobService :: " + preparedStatement);
             int rows = preparedStatement.executeUpdate();
 
             if (rows == 1) {

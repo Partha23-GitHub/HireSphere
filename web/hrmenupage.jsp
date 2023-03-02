@@ -11,7 +11,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>{Company-Name} | Home</title>
+        <title> HireSphere | Home</title>
         <!-- Custom fonts for this template-->
         <link href="./css/all.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template-->
@@ -135,7 +135,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a
                                     class="nav-link dropdown-toggle"
-                                    href="#"
+                                    href="VisitHRProfile?userId=${User.getUserId()}"
                                     id="userDropdown"
                                     role="button"
                                     data-toggle="dropdown"

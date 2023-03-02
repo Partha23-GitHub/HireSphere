@@ -78,8 +78,8 @@
                                                                         <div class="col-md-2">
                                                                             <div class="mo-mb-2">
                                                                                 <img
-                                                                                    src="./assets/Exavalu Logo.png"
-                                                                                    alt=""
+                                                                                    src="data:image/jpg/jpeg/png;base64,${jobDetails.imageData}"
+                                                                                    alt=" Image Not Found"
                                                                                     class="img-fluid mx-auto d-block"
                                                                                     />
                                                                             </div>
@@ -87,7 +87,7 @@
                                                                         <div class="col-md-3">
                                                                             <div>
                                                                                 <h5 class="f-18">
-                                                                                    <a href="#" class="text-dark">${jobDetails.getJobTitle()}</a>
+                                                                                    <a class="text-dark">${jobDetails.getJobTitle()}</a>
                                                                                 </h5>
                                                                                 <p class="text-muted mb-0">${jobDetails.companyName}</p>
                                                                             </div>
