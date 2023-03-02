@@ -8,6 +8,7 @@ import com.hiresphere.services.CandidateService;
 import com.hiresphere.services.JobApplicationService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -63,7 +64,25 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     private int applicationId;
     private int applicationStatus;
     private int jobId;
+    private File resume;
+    private String resumeData;
 
+    public File getResume() {
+        return resume;
+    }
+
+    public void setResume(File resume) {
+        this.resume = resume;
+    }
+
+    public String getResumeData() {
+        return resumeData;
+    }
+
+    public void setResumeData(String resumeData) {
+        this.resumeData = resumeData;
+    }
+    
     public int getJobId() {
         return jobId;
     }

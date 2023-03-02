@@ -11,7 +11,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>{Compamy-Name} | Home</title>
+        <title>HireSphere | Home</title>
         <!-- Custom fonts for this template-->
         <link href="./css/all.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template-->
@@ -33,7 +33,7 @@
                 >
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="hrmenupage.jsp"">
-                    <img id="Logo-HrMenu" src="./assets/HireSphere.png" alt="Company Logo" />
+                    <img id="Logo-HrMenu" src="./assets/1677744230975-null" alt="Company Logo" />
                 </a>
 
                 <!-- Divider -->
