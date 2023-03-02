@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -30,7 +32,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     private String educationQualification, requirements, responsibilities, location;
     private String experience, closingDate, salary, postingDate;
     private int hrManagerVerificationStatus, jobStatus;
-    private String jobStatusMessage,imageData;
+    private String jobStatusMessage, imageData;
     private File companyLogo;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -222,7 +224,6 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
     public void setImageData(String imageData) {
         this.imageData = imageData;
     }
-    
 
     public String postAJob() throws FileNotFoundException, IOException {
         String result = "FAILURE";
@@ -267,7 +268,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
 
         if (jobDetailsList != null) {
             sessionMap.put("JobDetailsList", jobDetailsList);
-            
+
             result = "SUCCESS";
         }
 
@@ -294,7 +295,12 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
 
     public String updateJob() {
         String result = "FAILURE";
-        boolean success = JobDetailsService.updateJobDetails(this);
+        boolean success = false;
+        try {
+            success = JobDetailsService.updateJobDetails(this);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(JobDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
         System.out.println("in update job userId: " + jobDetails.userId);
         if (success) {

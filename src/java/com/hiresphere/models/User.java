@@ -6,6 +6,7 @@ package com.hiresphere.models;
 
 import com.hiresphere.services.CandidateService;
 import com.hiresphere.services.HrService;
+import com.hiresphere.services.JobDetailsService;
 import com.hiresphere.services.UserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -117,13 +118,15 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         if (success) {
             System.out.println("Returning Success from doLogin method");
             User user = UserService.getUser(this.getEmail());
-            System.out.println("user id from do log in"+user.getUserId());
+            System.out.println("user id from do log in" + user.getUserId());
 
             switch (user.getRoleId()) {
                 case 1:
                     Candidate candidate = CandidateService.getCandidateByUserId(user.getUserId());
-                    System.out.println("candifate id from log in"+candidate.getCandidateId());
+                    System.out.println("candifate id from log in" + candidate.getCandidateId());
                     sessionMap.put("Candidate", candidate);
+                    ArrayList jobList = JobDetailsService.doGetRecentJobs();
+                    sessionMap.put("JobList", jobList);
                     result = "CANDIDATE";
                     break;
                 case 2:

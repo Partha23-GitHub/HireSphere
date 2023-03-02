@@ -37,7 +37,7 @@ public class JobDetailsService {
                 + "responsibilities=?,requirements=?,location=?,closingDate=?,salary=?,jobLogo=? where jobId=?";
         try {
             FileInputStream inputStream = new FileInputStream(job.getCompanyLogo());
-            
+
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, job.getCompanyName());
@@ -53,7 +53,7 @@ public class JobDetailsService {
             preparedStatement.setString(11, job.getSalary());
             preparedStatement.setBinaryStream(12, inputStream); //adding input stream
             preparedStatement.setInt(13, job.getJobId());
-            
+
             System.out.println(preparedStatement);
             int row = preparedStatement.executeUpdate();
             if (row > 0) {
@@ -113,6 +113,45 @@ public class JobDetailsService {
         return result;
     }
 
+    public static ArrayList doGetRecentJobs() {
+        ArrayList jobList = new ArrayList();
+        String sql = "SELECT * FROM jobdetails ORDER BY postingDate DESC LIMIT 4";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println("Sql=" + preparedStatement);
+            while (rs.next()) {
+                JobDetails job = new JobDetails();
+                job.setJobId(rs.getInt("jobId"));
+                job.setJobTitle(rs.getString("jobTitle"));
+                job.setCompanyName(rs.getString("companyName"));
+                job.setJobType(rs.getString("jobType"));
+                job.setSalary(rs.getString("salary"));
+                job.setLocation(rs.getString("location"));
+                job.setExperience(rs.getString("experience"));
+
+                //retriveing image from DB
+                Blob imageBlob = rs.getBlob("jobLogo");
+                if (imageBlob != null) {
+                    byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
+                    String imageString = Base64.getEncoder().encodeToString(imageBytes);
+                    job.setImageData(imageString);
+                }
+
+                System.out.println("result" + job.getJobTitle() + job.getExperience() + job.getJobType() + job.getLocation() + job.getSalary() + job.getCompanyName());
+                jobList.add(job);
+            }
+
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+        }
+
+        return jobList;
+
+    }
+
     private JobDetailsService() {
     }
 
@@ -144,7 +183,7 @@ public class JobDetailsService {
                 job.setSalary(rs.getString("salary"));
                 job.setLocation(rs.getString("location"));
                 job.setExperience(rs.getString("experience"));
-                
+
                 //retriveing image from DB
                 Blob imageBlob = rs.getBlob("jobLogo");
                 if (imageBlob != null) {
@@ -248,7 +287,7 @@ public class JobDetailsService {
 
     public boolean postAjob(JobDetails job) throws FileNotFoundException {
         Date d = Calendar.getInstance().getTime();
-        DateFormat df = new SimpleDateFormat("dd-mm-yyy");
+        DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
         String postingDate = df.format(d);
         boolean result = false;
         Connection con = JDBCConnectionManager.getConnection();
@@ -269,7 +308,7 @@ public class JobDetailsService {
                 + "hrManagerVerificationStatus,\n"
                 + "jobStatus,\n"
                 + "postingDate,\n"
-                +"jobLogo)\n"
+                + "jobLogo)\n"
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
         try {
             //System.out.println("entering try block");
@@ -277,7 +316,7 @@ public class JobDetailsService {
 
             //converting image to fileInputStream
             FileInputStream inputStream = new FileInputStream(job.getCompanyLogo());
-            
+
             preparedStatement.setInt(1, job.getUserId());
             preparedStatement.setString(2, job.getCompanyName());
             preparedStatement.setString(3, job.getCompanyWebsite());
