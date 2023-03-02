@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Job board HTML-5 Template </title>
+        <title>Job Details</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -39,14 +39,14 @@
                                         <div class="col-md-3">
                                             <div class="mo-mb-2" style="margin-right: 15px;">
                                                 <img
-                                                    src="./assets/Exavalu Logo.png"
+                                                    src="data:image/jpg/jpeg/png;base64,${jobDetails.imageData}"
                                                     alt=""
-                                                    class="img-fluid mx-auto d-block"
+                                                    class="img-fluid mx-auto d-block" style="width:25rem;height: 5rem;"
                                                     />
                                             </div>
                                         </div>
                                         <div class="job-tittle">
-                                            <a href="#">
+                                            <a>
                                                 <h4>${jobDetails.getJobTitle()}</h4>
                                         </a>
                                         <ul>

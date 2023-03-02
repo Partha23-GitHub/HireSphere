@@ -42,7 +42,7 @@
                         />
                 </div>
 
-                <!--                <div class="input-field">
+                                <div class="input-field">
                                     <label>Company Logo</label>
                                     <input
                                         type="file"
@@ -50,7 +50,7 @@
                                         name="companyLogo"
                                         required
                                         />
-                                </div>-->
+                                </div>
 
                 <div class="input-field">
                     <label>Job Title</label>

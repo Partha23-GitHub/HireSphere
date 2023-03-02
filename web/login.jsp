@@ -7,30 +7,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login and Signup Form </title>
         <style>
-           body {
-               
+            body {
+
                 background-image: url("./assets/profile-background.png");
-                
+
             }
             #closing-logo{
                 transform: translate(22.5rem,0.5rem);
-                    
+
             }
-             #closing-logo-login{
+            #closing-logo-login{
                 transform: translate(22.5rem,-1.1rem);
-                    
+
             }
             #signup-style{
                 padding-top: 1px;
             }
+            .g-signin2{
+                margin-top: 16px;
+                width: 50em;
+            }
         </style>
         <!-- CSS -->
         <link rel="stylesheet" href="css/loginstyle.css">
-
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <meta name="google-signin-client_id" content="816324468267-473tpouctgevecfiffsl5gch1ljdcfar.apps.googleusercontent.com">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <meta name="google-signin-client_id" content="586449488055-gnq921ei1bd0d7c0u1v5t6bit5ur0m4t.apps.googleusercontent.com">
     </head>
     <body>
         <section class="container forms">
@@ -85,7 +88,7 @@
 
             <div class="form signup" id="signup-style">
                 <div class="form-content">
-                        <a href="landingpage.jsp"><img id="closing-logo" src="assets/close-icon.png" alt="alt"/></a>
+                    <a href="landingpage.jsp"><img id="closing-logo" src="assets/close-icon.png" alt="alt"/></a>
                     <header>HireSphere</header>
                     <form action="Signup" method="post">
                         <div class="field input-field">
@@ -97,16 +100,16 @@
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Create password" class="password" name="password" required>
+                            <input type="password" placeholder="Create password" class="password" name="password" id="password1" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Confirm password" class="password" name="confirmpassword" required>
+                            <input type="password" placeholder="Confirm password" class="password" name="confirmpassword" id="password2" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
                         <div class="field button-field">
-                            <button type="submit">Signup</button>
+                            <button type="submit" onclick="passwordMatch()">Signup</button>
                         </div>
                     </form>
 
@@ -125,28 +128,35 @@
                 </div>
 
                 <div class="media-options" >
-                     <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
+                    <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
                     <a href="#" class="field facebook">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
                     </a>
                 </div>
-               
+
 
             </div>
         </section>
 
-        <!-- JavaScript -->
+        <!--for google-->
+        
+        
         <script src="js/loginscript.js"></script>
         <script>
-            function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();
-                alert(  profile.getName());
-                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            }
+                                function onSignIn(googleUser) {
+//                                    var profile = googleUser.getBasicProfile();
+//                                    alert(profile.getName());
+//                                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//                                    console.log('Name: ' + profile.getName());
+//                                    console.log('Image URL: ' + profile.getImageUrl());
+//                                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                                    const responsePayLoad=decodeJwtResponse(response.credential);
+                                    console.log(responsePayLoad);
+                                    console.log(responsePayLoad.email);
+                                    
+                                }
+
         </script>
     </body>
 </html>
