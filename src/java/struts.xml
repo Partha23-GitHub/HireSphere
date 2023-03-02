@@ -115,5 +115,16 @@
             <result name="SUCCESS">hrmenupage.jsp</result>
             <result name="FAILURE">hrprofile.jsp</result>
         </action>
+        
+        <action name="VisitHRManagerProfile" class="com.hiresphere.models.HrManager" method="visitHRManagerProfile">
+            <result name="SUCCESS">hrmanagerprofile.jsp</result>
+            <result name="FAILURE">hrmanagerhome.jsp</result>
+        </action>
+        
+        <action name="UpdateHRManagerProfile" class="com.hiresphere.models.HrManager" method="updateHRManagerProfile">
+            <result name="SUCCESS">hrmanagerhome.jsp</result>
+            <result name="FAILURE">hrprofile.jsp</result>
+        </action>
+        
     </package>
 </struts>

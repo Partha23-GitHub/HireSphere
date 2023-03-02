@@ -97,13 +97,13 @@
                 <div class="sidebar-heading">Get Your Job Done By</div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+<!--                <li class="nav-item">
                     <a class="nav-link collapsed" onclick="fetchContent('jobpost', 'hr-home-content', '0')">
                         <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer";
                               >&#9755; &nbsp; Post Jobs</span
                         >
                     </a>
-                </li>
+                </li>-->
 
                 <!-- Nav Item - Charts -->
 
