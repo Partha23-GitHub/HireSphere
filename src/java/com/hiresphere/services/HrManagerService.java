@@ -4,6 +4,7 @@
  */
 package com.hiresphere.services;
 
+import com.hiresphere.models.HrManager;
 import com.hiresphere.models.JobDetails;
 import com.hiresphere.utils.JDBCConnectionManager;
 import java.sql.Connection;
@@ -44,6 +45,65 @@ public class HrManagerService {
         System.out.println(jobList.size());
         return jobList;
 
+    }
+
+    public static HrManager getHrManagerByUserId(int userId) {
+        HrManager hrManager = new HrManager();
+        String sql = "SELECT * from hrmanager h, companies c  where h.companyId=c.companyId having userId=?";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            System.out.println(ps);
+            while (rs.next()) {
+                hrManager.setHrManagerId(rs.getInt("hrManagerId"));
+                hrManager.setUserId(rs.getInt("userId"));
+                hrManager.setGender(rs.getString("gender"));
+
+                hrManager.setContactNumber(rs.getString("contactNumber"));
+                hrManager.setCompanyName(rs.getString("companyName"));
+
+            }
+        } catch (SQLException ex) {
+            //    logger.error(ex.getMessage() + LocalDateTime.now());
+        }
+        return hrManager;
+    }
+
+    public static boolean updateHRManagerProfile(HrManager hrManager, int hrManagerId) {
+        boolean result = false;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "UPDATE hiresphere.hrmanager\n"
+                    + "SET \n"
+                    + "gender = ? , contactNumber = ?  \n"
+                    + "WHERE hrManagerId = ?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setString(1, hrManager.getGender());
+            preparedStatement.setString(2, hrManager.getContactNumber());
+            //   preparedStatement.setString(3, hr.getCompanyName());
+
+            preparedStatement.setInt(3, hrManagerId);
+            System.out.println("sql=" + preparedStatement);
+            System.out.println("Success From Update");
+
+            int row = preparedStatement.executeUpdate();
+
+            if (row == 1) {
+                result = true;
+            }
+
+        } catch (SQLException ex) {
+//Logger log =  Logger.getLogger(HRService.class.getName());
+//            log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            System.out.println("Failure From Service Class Update Method");
+        }
+        return result;
     }
 
 }

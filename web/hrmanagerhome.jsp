@@ -41,7 +41,7 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="hrmenupage.jsp">
+                    <a class="nav-link" href="hrmanagerhome.jsp">
                         <span style="margin-left: 2rem">&#9751;&nbsp;Home</span></a
                     >
                 </li>
@@ -53,7 +53,7 @@
                 <li class="nav-item">
                     <a
                         class="nav-link collapsed"
-                        href="#"
+                        href="VisitHRManagerProfile?userId=${User.getUserId()}"
                         data-target="#collapseTwo"
                         aria-expanded="true"
                         aria-controls="collapseTwo"

@@ -9,6 +9,7 @@ import com.hiresphere.services.HrService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
@@ -31,7 +32,7 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
     public void setValue(int value) {
         this.value = value;
     }
-    private String contactNumber, companyName, hrName;
+    private String contactNumber, companyName, hrManagerName, gender;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -160,14 +161,60 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
     /**
      * @return the hrName
      */
-    public String getHrName() {
-        return hrName;
+    public String getHrManagerName() {
+        return hrManagerName;
     }
 
-    /**
-     * @param hrName the hrName to set
-     */
-    public void setHrName(String hrName) {
-        this.hrName = hrName;
+    public void setHrManagerName(String hrManagerName) {
+        this.hrManagerName = hrManagerName;
     }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String visitHRManagerProfile() {
+        String result = "FAILURE";
+        System.out.println(this.userId);
+        HrManager hrmanager = HrManagerService.getHrManagerByUserId(this.userId);
+
+        if (hrmanager != null) {
+            sessionMap.put("HRManager", hrmanager);
+            System.out.println(hrmanager.getGender());
+            result = "SUCCESS";
+        } else {
+            String hrmanagerProfileVisitErrorMsg = "Either Email or Password is Wrong!";
+            sessionMap.put("HRProfileVisitErrorMsg", hrmanagerProfileVisitErrorMsg);
+            System.out.println("returning Failure from HRManagervisitProfile method");
+            // logger.error("No Claim Found" + LocalDateTime.now());
+        }
+        return result;
+
+    }
+
+    public String updateHRManagerProfile() {
+        String result = "FAILURE";
+        System.out.println("HR Manager Update Start");
+        boolean success = HrManagerService.updateHRManagerProfile(this, this.hrManagerId);
+
+        if (success) {
+            //  HR hr= HRService.getAllEmployees();
+            //sessionMap.put("hr", this);
+            result = "SUCCESS";
+            String successMsg = "Profile is Successfully Updated!";
+            sessionMap.put("SuccessMsg", successMsg);
+
+        } else {
+            //  Logger log =  Logger.getLogger(HtmlLayoutLog.class.getName());
+            System.out.println("Update is incomplete" + "@" + LocalDateTime.now());
+
+        }
+        return result;
+
+    }
+
 }
