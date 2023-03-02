@@ -115,7 +115,10 @@ public class JobDetailsService {
 
     public static ArrayList doGetRecentJobs() {
         ArrayList jobList = new ArrayList();
-        String sql = "SELECT * FROM jobdetails ORDER BY postingDate DESC LIMIT 4";
+        String sql = "SELECT * FROM jobdetails \n"
+                + "WHERE hrManagerVerificationStatus=1 \n"
+                + "ORDER BY postingDate DESC \n"
+                + "LIMIT 5";
         try {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
