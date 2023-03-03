@@ -59,7 +59,7 @@
                         <td>${jobApplication.getJobType()}</td>
                         
                         <td> 
-                            <a href="#" >
+                            <a href="data:base64,${jobApplication.resumeData}" target="_blank">
                                 View Resume
                             </a>
                         </td>

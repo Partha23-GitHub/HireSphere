@@ -13,12 +13,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login and Signup Form </title>
         <style>
-           body {
-               
+            body {
+
                 background-image: url("./assets/profile-background.png");
-                
+
             }
-            
+
         </style>
         <!-- CSS -->
         <link rel="stylesheet" href="css/loginstyle.css">
@@ -85,15 +85,7 @@
                         <div class="field input-field">
                             <input type="text" placeholder="Name" class="input" name="name">
                         </div>
-                       <div class="field button-field">
-                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               Choose your Role:
-                           </button>
-                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                               <a class="dropdown-item" href="#">HR</a>
-                               <a class="dropdown-item" href="#">HR Manager</a>
-                           </div>
-                       </div>
+                       
                         <div class="field input-field">
 
                             <input type="email" placeholder="Email" class="input" name="email">
@@ -128,13 +120,13 @@
                 </div>
 
                 <div class="media-options" >
-                     <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
+                    <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
                     <a href="#" class="field facebook">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
                     </a>
                 </div>
-               
+
 
             </div>
         </section>
@@ -144,7 +136,7 @@
         <script>
             function onSignIn(googleUser) {
                 var profile = googleUser.getBasicProfile();
-                alert(  profile.getName());
+                alert(profile.getName());
                 console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
                 console.log('Name: ' + profile.getName());
                 console.log('Image URL: ' + profile.getImageUrl());

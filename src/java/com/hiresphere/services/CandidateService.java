@@ -6,6 +6,9 @@ package com.hiresphere.services;
 
 import com.hiresphere.models.Candidate;
 import com.hiresphere.utils.JDBCConnectionManager;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +27,7 @@ public class CandidateService {
         try {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-             ps.setInt(1, userId);
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 candidate.setCandidateId(rs.getInt("candidateId"));
@@ -43,26 +46,27 @@ public class CandidateService {
     }
 
     public static boolean updateCandidateProfile(Candidate candidate, int candidateId) {
-
         boolean result = false;
         try {
             Connection con = JDBCConnectionManager.getConnection();
 
             String sql = "UPDATE hiresphere.candidates\n"
                     + "SET \n"
-                    + "gender = ? , phoneNumber = ? , city = ?,state = ?, country=? \n"
+                    + "gender = ? , phoneNumber = ? , city = ?,state = ?, country=?,resume=?\n"
                     + "WHERE candidateId = ?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            //preparedStatement.setString(1, candidate.getName());
+            //setting up the file input strea
+            FileReader reader = new FileReader(candidate.getResume());
+
             preparedStatement.setString(1, candidate.getGender());
             preparedStatement.setString(2, candidate.getPhoneNumber());
             preparedStatement.setString(3, candidate.getCity());
             preparedStatement.setString(4, candidate.getState());
             preparedStatement.setString(5, candidate.getCountry());
-
-            preparedStatement.setInt(6, candidateId);
+            preparedStatement.setCharacterStream(6, reader);
+            preparedStatement.setInt(7, candidateId);
             System.out.println("sql=" + preparedStatement);
             System.out.println("Success From Update");
 
@@ -72,7 +76,7 @@ public class CandidateService {
                 result = true;
             }
 
-        } catch (SQLException ex) {
+        } catch (FileNotFoundException | SQLException ex) {
 //Logger log =  Logger.getLogger(CandidateService.class.getName());
 //            log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             System.out.println("Failure From Service Class Update Method");
@@ -85,12 +89,11 @@ public class CandidateService {
         Connection con = JDBCConnectionManager.getConnection();
 
         String sql = "INSERT INTO candidates(userId) VALUES(?)";
-        
+
         try {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, userId);
-            
 
             int rs = preparedStatement.executeUpdate();
 
