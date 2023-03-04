@@ -212,7 +212,7 @@
                                         <td> ${applicant.getPhoneNumber()}</td>
                                         <td>${applicant.getGender()}</td>
                                         <td> 
-                                            <a href="">
+                                            <a href="./Resume/${applicant.getResumePath()}" target="_blank">
                                                 View Resume
                                             </a>
                                         </td>

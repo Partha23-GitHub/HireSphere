@@ -8,12 +8,10 @@ import com.hiresphere.models.Candidate;
 import com.hiresphere.utils.JDBCConnectionManager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 /**
  *
@@ -37,7 +35,24 @@ public class CandidateService {
                 candidate.setCity(rs.getString("city"));
                 candidate.setState(rs.getString("state"));
                 candidate.setCountry(rs.getString("country"));
-
+                candidate.setResumePath(rs.getString("resume"));
+            }
+        } catch (SQLException ex) {
+            //    logger.error(ex.getMessage() + LocalDateTime.now());
+        }
+        return candidate;
+    }
+    
+    public static Candidate getCandidateByCandidateId(int candidateId) {
+        Candidate candidate = new Candidate();
+        String sql = "SELECT resume FROM candidates where candidateId=?";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, candidateId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                candidate.setResumePath(rs.getString("resume"));
             }
         } catch (SQLException ex) {
             //    logger.error(ex.getMessage() + LocalDateTime.now());
@@ -45,7 +60,7 @@ public class CandidateService {
         return candidate;
     }
 
-    public static boolean updateCandidateProfile(Candidate candidate, int candidateId) {
+    public static boolean updateCandidateProfile(Candidate candidate,int candidateId,String uploadPath) {
         boolean result = false;
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -58,14 +73,12 @@ public class CandidateService {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
             //setting up the file input strea
-            FileReader reader = new FileReader(candidate.getResume());
-
             preparedStatement.setString(1, candidate.getGender());
             preparedStatement.setString(2, candidate.getPhoneNumber());
             preparedStatement.setString(3, candidate.getCity());
             preparedStatement.setString(4, candidate.getState());
             preparedStatement.setString(5, candidate.getCountry());
-            preparedStatement.setCharacterStream(6, reader);
+            preparedStatement.setString(6, uploadPath);
             preparedStatement.setInt(7, candidateId);
             System.out.println("sql=" + preparedStatement);
             System.out.println("Success From Update");
@@ -76,7 +89,7 @@ public class CandidateService {
                 result = true;
             }
 
-        } catch (FileNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
 //Logger log =  Logger.getLogger(CandidateService.class.getName());
 //            log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             System.out.println("Failure From Service Class Update Method");
