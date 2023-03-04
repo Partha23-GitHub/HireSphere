@@ -24,7 +24,7 @@
                     <li><a href="login.jsp" class="hover-link">Job Search</a></li>
                     <li><a href="#footer-id" class="hover-link">Contact</a></li>
                     <li><a href="login.jsp" class="hover-link primary-button">Login/SignUp</a></li>
-                    <!--<li><a href="#" class="hover-link secondary-button">Sign up</a></li>-->
+                    <li><a href="hrlogin.jsp" class="hover-link secondary-button">Company ?</a></li>
                 </ul>
             </div>
         </div>

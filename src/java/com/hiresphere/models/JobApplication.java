@@ -9,6 +9,8 @@ import com.hiresphere.services.JobApplicationService;
 import com.hiresphere.services.JobDetailsService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
@@ -89,8 +91,17 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     private String candidateName;
     private String candidatePhoneNumber;
     private String candidateGender;
-  private String email;
+    private String email;
     private String password;
+    private String resumePath;
+
+    public String getResumePath() {
+        return resumePath;
+    }
+
+    public void setResumePath(String resumePath) {
+        this.resumePath = resumePath;
+    }
     
     public String getCandidateName() {
         return candidateName;
@@ -236,7 +247,7 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         return result;
     }
 
-    public String applyJob() {
+    public String applyJob() throws IOException {
         String result = "FAILURE";
 
         int Id = HrService.getInstance().getHrId(this.hrId);

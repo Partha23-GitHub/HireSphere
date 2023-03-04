@@ -56,9 +56,7 @@
                         <hr>
 
                         <header class="profile-name">${User.getName()}</header>
-                    <form action="UpdateProfile?candidateId=${candidate.getCandidateId()}" method="Post">
-
-
+                    <form action="UpdateProfile?candidateId=${candidate.getCandidateId()}" method="Post" enctype="multipart/form-data">
 
                         <div class="field input-field">
                             <input type="text" placeholder="Gender" class="input" name="gender" value="${candidate.getGender()}">

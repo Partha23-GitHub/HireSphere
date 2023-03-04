@@ -8,10 +8,15 @@ import com.hiresphere.services.CandidateService;
 import com.hiresphere.services.JobApplicationService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -21,7 +26,7 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  * @author Jayita
  */
-public class Candidate extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
+public class Candidate extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
 
     public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
@@ -63,6 +68,44 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     private int applicationId;
     private int applicationStatus;
     private int jobId;
+    private File resume;
+    private String resumePath;
+    private String resumeFileName;
+    private String resumeContentType;
+
+    public String getResumePath() {
+        return resumePath;
+    }
+
+    public void setResumePath(String resumePath) {
+        this.resumePath = resumePath;
+    }
+    
+    
+    public String getResumeFileName() {
+        return resumeFileName;
+    }
+
+    public void setResumeFileName(String resumeFileName) {
+        this.resumeFileName = resumeFileName;
+    }
+
+    public String getResumeContentType() {
+        return resumeContentType;
+    }
+
+    public void setResumeContentType(String resumeContentType) {
+        this.resumeContentType = resumeContentType;
+    }
+    
+
+    public File getResume() {
+        return resume;
+    }
+
+    public void setResume(File resume) {
+        this.resume = resume;
+    }
 
     public int getJobId() {
         return jobId;
@@ -169,7 +212,7 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
         return result;
     }
 
-    public String viewJobApplication() {
+    public String viewJobApplication() throws IOException {
         String result = "FAILURE";
         ArrayList jobApplicationList = JobApplicationService.doGetJobApplicationByCandidate(this.getCandidateId());
         if (jobApplicationList != null) {
@@ -182,10 +225,22 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     }
 
-    public String updateProfile() {
+    public String updateProfile() throws FileNotFoundException, IOException, FileUploadException, Exception {
         String result = "FAILURE";
-        System.out.println("Candidate Update Start");
-        boolean success = CandidateService.updateCandidateProfile(this, this.candidateId);
+        // checking if any resume is there of candidate., if there then delete it
+        String oldPath=CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
+        if(oldPath!=null){
+            File file=new File("C:\\Users\\user\\Desktop\\HireSphere\\web\\Resume/"+oldPath);
+            file.delete();
+        }
+        // store the new resume
+        String relativePath=System.currentTimeMillis()+ resumeFileName; // for creating unique file name
+        String filePath = "C:\\Users\\user\\Desktop\\HireSphere\\web\\Resume/" +relativePath; 
+        File destFile = new File(filePath);
+        FileUtils.copyFile(resume, destFile);
+        System.out.println(relativePath);
+        System.out.println(candidateId);
+         boolean success = CandidateService.updateCandidateProfile(this, candidateId, relativePath);
 
         if (success) {
             //  Candidate candidate= CandidateService.getAllEmployees();

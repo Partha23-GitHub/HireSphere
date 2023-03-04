@@ -8,13 +8,14 @@ import com.hiresphere.models.Candidate;
 import com.hiresphere.models.HR;
 import com.hiresphere.models.JobApplication;
 import com.hiresphere.utils.JDBCConnectionManager;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,10 +23,10 @@ import java.util.logging.Logger;
  */
 public class JobApplicationService {
 
-    public static ArrayList doGetJobApplicationByCandidate(int candidateId) {
+    public static ArrayList doGetJobApplicationByCandidate(int candidateId) throws IOException {
         ArrayList jobApplicationList = new ArrayList();
         Connection con = JDBCConnectionManager.getConnection();
-        String sql = " SELECT applicationId, candidates.candidateId, jobdetails.jobId,companyName, jobTitle, jobType,applicationMessage\n"
+        String sql = " SELECT applicationId, candidates.candidateId,candidates.resume, jobdetails.jobId,companyName, jobTitle, jobType,applicationMessage\n"
                 + "                 FROM jobapplication inner join candidates on jobapplication.candidateId=candidates.candidateId inner join jobdetails on \n"
                 + "                 jobapplication.jobId=jobdetails.jobId inner join jobapplicationstatuses on jobapplication.applicationStatus=jobapplicationstatuses.applicationStatus where candidates.candidateId=?;";
 //"SELECT ja.applicationId, ja.candidateId, ja.jobId,companyName, jobTitle, jobType,ja.applicationStatus,applicationMessage\n"
@@ -42,15 +43,17 @@ public class JobApplicationService {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 JobApplication jobApplication = new JobApplication();
-                jobApplication.setApplicationId(rs.getInt("applicationId"));
+                //jobApplication.setApplicationId(rs.getInt("applicationId"));
                 jobApplication.setCandidateId(rs.getInt("candidateId"));
                 jobApplication.setJobId(rs.getInt("jobId"));
                 jobApplication.setCompanyName(rs.getString("companyName"));
                 jobApplication.setJobTitle(rs.getString("jobTitle"));
                 jobApplication.setJobType(rs.getString("jobType"));
-
-//                jobApplication.setAppicationStatus(rs.getInt("applicationStatus"));
+//              jobApplication.setAppicationStatus(rs.getInt("applicationStatus"));
+                jobApplication.setResumePath(rs.getString("resume"));
                 jobApplication.setApplicationMessage(rs.getString("applicationMessage"));
+                        
+//              
                 jobApplicationList.add(jobApplication);
 
             }
@@ -63,7 +66,7 @@ public class JobApplicationService {
 
     public static ArrayList doGetApplicationByHrId(HR hr) {
         ArrayList applicantList = new ArrayList();
-        String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber,ja.jobId\n"
+        String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber,ca.resume,ja.jobId\n"
                 + "from candidates ca,jobapplication ja\n"
                 + "where ja.candidateId=ca.candidateId\n"
                 + "and hrId=?";
@@ -79,6 +82,7 @@ public class JobApplicationService {
                 applicant.setCandidateGender(rs.getString("gender"));
                 applicant.setCandidatePhoneNumber(rs.getString("phoneNumber"));
                 applicant.setJobId(rs.getInt("jobId"));
+                applicant.setResumePath(rs.getString("resume"));
                 applicantList.add(applicant);
                 System.out.println("this is comment:" + applicant.getCandidateName());
             }
@@ -93,7 +97,7 @@ public class JobApplicationService {
 
     public static ArrayList getAllApplicant(JobApplication aThis) {
         ArrayList applicantList = new ArrayList();
-        String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber\n"
+        String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber,ca.resume\n"
                 + "from candidates ca,jobapplication ja\n"
                 + "where ja.candidateId=ca.candidateId\n"
                 + "and jobId=?";
@@ -109,6 +113,7 @@ public class JobApplicationService {
                 applicant.setCandidateGender(rs.getString("gender"));
                 applicant.setCandidatePhoneNumber(rs.getString("phoneNumber"));
                 applicant.setJobId(rs.getInt("jobId"));
+                applicant.setResumePath(rs.getString("resume"));
                 applicantList.add(applicant);
                 System.out.println("this is comment:" + applicant.getCandidateName());
             }
@@ -122,7 +127,7 @@ public class JobApplicationService {
 
     public static ArrayList getApplicantByJobId(int jobId) {
         ArrayList applicantList = new ArrayList();
-        String sql = "SELECT ca.candidateId,u.name,ca.gender,ca.phoneNumber,ja.applicationId ,ja.applicationStatus,ja.jobId\n"
+        String sql = "SELECT ca.candidateId,u.name,ca.gender,ca.phoneNumber,ca.resume,ja.applicationId ,ja.applicationStatus,ja.jobId\n"
                 + "                 from candidates ca,jobapplication ja,users u where \n"
                 + "                   ja.candidateId = ca.candidateId and ca.userId=u.userId\n"
                 + "                 and jobId=?;";
@@ -141,6 +146,7 @@ public class JobApplicationService {
                 applicant.setApplicationId(rs.getInt("applicationId"));
                 applicant.setApplicationStatus(rs.getInt("applicationStatus"));
                 applicant.setJobId(rs.getInt("jobId"));
+                applicant.setResumePath(rs.getString("resume"));
                 applicantList.add(applicant);
                 System.out.println("this is comment:" + applicant.getName());
             }
