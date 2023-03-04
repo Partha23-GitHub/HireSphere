@@ -107,7 +107,7 @@
                             <input type="password" placeholder="Confirm password" class="password" name="confirmpassword" id="password2" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
-                        <p id="password-error"></p>
+                        <p id="password-error" style="text-align: center; color: red;"></p>
  
                         <div class="field button-field">
                             <button type="submit" onclick="passwordMatch()">Signup</button>
