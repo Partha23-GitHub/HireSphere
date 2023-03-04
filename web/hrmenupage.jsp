@@ -16,6 +16,7 @@
         <link href="./css/all.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template-->
         <link href="./css/sb-admin-2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/styles.css">
         <style>
             #Logo-HrMenu{
                 max-width: 200px;
@@ -193,7 +194,8 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        Technology & Services
+                                                      POSTED JOBS<hr><h3>15</h3>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -208,7 +210,8 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        Business & Consultancy
+                                                    APPLICATION<hr><h3>9</h3>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -226,7 +229,8 @@
                                                             <div
                                                                 class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
                                                                 >
-                                                                Finances & Banking
+                                                                HIRED<hr><h3>5</h3>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -243,8 +247,9 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        Sales & Marketing and many more...
+                                                        PENDING <hr><h3>4</h3>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -254,7 +259,32 @@
 
                             <!-- Content Row -->
                             <div id="pagecontent">
-                                <h1>Home Page contents </h1>
+                                 <div id="content-wrapper" class="d-flex flex-column">
+    <div class="grid-container">
+  
+        <main class="main-container">
+         
+  
+     
+  
+          <div class="charts">
+  
+            <div class="charts-card">
+              <h2 class="chart-title">JOB APPLICATION STATISTICS</h2>
+              <div id="bar-chart"></div>
+            </div>
+  
+            <div class="charts-card">
+              <h2 class="chart-title"></h2>
+              <div id="area-chart"></div>
+            </div>
+  
+          </div>
+        </main>
+        <!-- End Main -->
+  
+      </div>
+</div>
                                 
                             </div>
                         </div>
@@ -285,4 +315,7 @@
               }
 
     </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/scripts.js"></script>
 </html>
