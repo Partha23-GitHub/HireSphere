@@ -27,7 +27,6 @@
                 margin-top: 16px;
                 width: 50em;
             }
-            }
 
         </style>
         <!-- CSS -->
