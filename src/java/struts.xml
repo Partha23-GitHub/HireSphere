@@ -43,7 +43,7 @@
             <result name="FAILURE">candidatehome.jsp</result>
         </action>
           <action name="ViewJobDetails" class="com.hiresphere.models.JobDetails" method="viewJobDetails">
-            <result name="SUCCESS">jobdetails.jsp</result>
+            <result name="SUCCESS">jobdetails1.jsp</result>
             <result name="FAILURE">joblist.jsp</result>
         </action>
         <action name="ViewApplication" class="com.hiresphere.models.Candidate" method="viewJobApplication">

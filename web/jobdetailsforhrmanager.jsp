@@ -13,7 +13,14 @@
 
         <!-- CSS here -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/candidate_menu.css">
         <link rel="stylesheet" href="css/jobdetail.css">
+        <style>
+            #hovering :hover{
+                box-shadow: 5px 10px #e9e3e3;
+                transition: ease-out;
+            }
+        </style>
     </head>
 
     <body>
@@ -34,7 +41,8 @@
                             <!-- Left Content -->
                             <div class="col-xl-7 col-lg-8">
                                 <!-- job single -->
-                                <div class="single-job-items mb-50">
+                                <div id="hovering" >
+                                <div class="single-job-items mb-50"  style="padding: 30px 30px 30px 30px; border: 1px solid #7e7c7c; border-radius: 6px; ">
                                     <div class="job-items">
                                         <div class="col-md-3">
                                             <div class="mo-mb-2" style="margin-right: 15px;">
@@ -57,9 +65,10 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
                             <!-- job single End -->
 
-                            <div class="job-post-details">
+                            <div class="job-post-details" style="padding: 30px 30px 30px 30px; border: 1px solid #7e7c7c; border-radius: 6px;">
                                 <div class="post-details1 mb-50">
                                     <!-- Small Section Tittle -->
                                     <div class="small-section-tittle">
@@ -94,7 +103,7 @@
                         </div>
                         <!-- Right Content -->
                         <div class="col-xl-4 col-lg-4">
-                            <div class="post-details3  mb-50">
+                            <div class="post-details3  mb-50" style="border: 1px solid #7e7c7c; border-radius: 6px;">
                                 <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h4>Job Overview</h4>
@@ -107,14 +116,16 @@
                                     <li>Salary :  <span>${jobDetails.salary}</span></li>
                                     <li>Closes on : <span>${jobDetails.closingDate}</span></li>
                                 </ul>
+                                <div class="flex" style="gap: 15px;">
                                 <div class="apply-btn2">
-                                    <a href="EditJobByHrManager?jobId=${jobDetails.getJobId()}" class="btn btn-primary" style="border-radius: 12px;">Edit</a>
+                                    <a href="EditJobByHrManager?jobId=${jobDetails.getJobId()}" class="hover-link primary-button" style="border-radius: 12px;">Edit</a>
                                 </div>
                                  <div class="apply-btn2">
-                                    <a href="AcceptByHrManager?jobId=${jobDetails.getJobId()}" class="btn btn-primary" style="border-radius: 12px;">Accept</a>
+                                    <a href="AcceptByHrManager?jobId=${jobDetails.getJobId()}" class="hover-link primary-button" style="border-radius: 12px;">Accept</a>
                                 </div>
                                  <div class="apply-btn2">
-                                    <a href="RejectByHrManager?jobId=${jobDetails.getJobId()}" class="btn btn-primary" style="border-radius: 12px;">Reject</a>
+                                    <a href="RejectByHrManager?jobId=${jobDetails.getJobId()}" class="hover-link primary-button" style="border-radius: 12px;">Reject</a>
+                                </div>
                                 </div>
                             </div>
                             <div class="post-details4  mb-50">

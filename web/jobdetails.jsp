@@ -39,7 +39,7 @@
                                         <div class="col-md-3">
                                             <div class="mo-mb-2" style="margin-right: 15px;">
                                                 <img
-                                                    src="data:image/jpg/jpeg/png;base64,${jobDetails.imageData}"
+                                                    src="./assets/google-logo.jpg${jobDetails.imageData}"
                                                     alt=""
                                                     class="img-fluid mx-auto d-block" style="width:25rem;height: 5rem;"
                                                     />
