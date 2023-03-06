@@ -43,7 +43,7 @@
                             <div class="job-detail border rounded p-4">
                                 <div class="job-detail-content">
                                     <img
-                                        src="data:image/jpg/jpeg/png;base64,${jobDetails.imageData}"
+                                        src="./assets/google-logo.jpg${jobDetails.imageData}"
                                     alt=""
                                     class="img-fluid mx-auto d-block" style="width:25rem;height: 5rem;"
                                     />
