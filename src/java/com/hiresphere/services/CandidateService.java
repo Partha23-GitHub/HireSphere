@@ -6,11 +6,12 @@ package com.hiresphere.services;
 
 import com.hiresphere.models.Candidate;
 import com.hiresphere.utils.JDBCConnectionManager;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 /**
  *
@@ -24,7 +25,7 @@ public class CandidateService {
         try {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-             ps.setInt(1, userId);
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 candidate.setCandidateId(rs.getInt("candidateId"));
@@ -34,7 +35,24 @@ public class CandidateService {
                 candidate.setCity(rs.getString("city"));
                 candidate.setState(rs.getString("state"));
                 candidate.setCountry(rs.getString("country"));
-
+                candidate.setResumePath(rs.getString("resume"));
+            }
+        } catch (SQLException ex) {
+            //    logger.error(ex.getMessage() + LocalDateTime.now());
+        }
+        return candidate;
+    }
+    
+    public static Candidate getCandidateByCandidateId(int candidateId) {
+        Candidate candidate = new Candidate();
+        String sql = "SELECT resume FROM candidates where candidateId=?";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, candidateId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                candidate.setResumePath(rs.getString("resume"));
             }
         } catch (SQLException ex) {
             //    logger.error(ex.getMessage() + LocalDateTime.now());
@@ -42,27 +60,26 @@ public class CandidateService {
         return candidate;
     }
 
-    public static boolean updateCandidateProfile(Candidate candidate, int candidateId) {
-
+    public static boolean updateCandidateProfile(Candidate candidate,int candidateId,String uploadPath) {
         boolean result = false;
         try {
             Connection con = JDBCConnectionManager.getConnection();
 
             String sql = "UPDATE hiresphere.candidates\n"
                     + "SET \n"
-                    + "gender = ? , phoneNumber = ? , city = ?,state = ?, country=? \n"
+                    + "gender = ? , phoneNumber = ? , city = ?,state = ?, country=?,resume=?\n"
                     + "WHERE candidateId = ?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            //preparedStatement.setString(1, candidate.getName());
+            //setting up the file input strea
             preparedStatement.setString(1, candidate.getGender());
             preparedStatement.setString(2, candidate.getPhoneNumber());
             preparedStatement.setString(3, candidate.getCity());
             preparedStatement.setString(4, candidate.getState());
             preparedStatement.setString(5, candidate.getCountry());
-
-            preparedStatement.setInt(6, candidateId);
+            preparedStatement.setString(6, uploadPath);
+            preparedStatement.setInt(7, candidateId);
             System.out.println("sql=" + preparedStatement);
             System.out.println("Success From Update");
 
@@ -85,12 +102,11 @@ public class CandidateService {
         Connection con = JDBCConnectionManager.getConnection();
 
         String sql = "INSERT INTO candidates(userId) VALUES(?)";
-        
+
         try {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, userId);
-            
 
             int rs = preparedStatement.executeUpdate();
 

@@ -15,6 +15,7 @@
     </head>
     <body>
         <jsp:include page="menu.jsp"></jsp:include>
+        
             <header>
                 <div class="container header-section flex">
                     <div class="header-left">

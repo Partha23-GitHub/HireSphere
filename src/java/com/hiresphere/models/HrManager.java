@@ -76,9 +76,6 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
     public String loadMenuContent() throws Exception {
         String result = "FAILURE";
         switch (this.getWork()) {
-            case "jobpost":
-                result = "POSTJOB";
-                break;
             case "allpostedjobs":
                 System.out.println(this.value);
                 ArrayList jobList = HrManagerService.getAlljobsByHrManager(this.value);

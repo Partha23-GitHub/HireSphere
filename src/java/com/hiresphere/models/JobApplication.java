@@ -6,8 +6,11 @@ package com.hiresphere.models;
 
 import com.hiresphere.services.HrService;
 import com.hiresphere.services.JobApplicationService;
+import com.hiresphere.services.JobDetailsService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
@@ -64,6 +67,22 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     private int candidateId;
     private int hrId;
     private int jobId;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     private int applicationStatus;
     private String companyName;
     private String jobTitle;
@@ -72,7 +91,18 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     private String candidateName;
     private String candidatePhoneNumber;
     private String candidateGender;
+    private String email;
+    private String password;
+    private String resumePath;
 
+    public String getResumePath() {
+        return resumePath;
+    }
+
+    public void setResumePath(String resumePath) {
+        this.resumePath = resumePath;
+    }
+    
     public String getCandidateName() {
         return candidateName;
     }
@@ -217,21 +247,28 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         return result;
     }
 
-    public String applyJob() {
+    public String applyJob() throws IOException {
         String result = "FAILURE";
 
         int Id = HrService.getInstance().getHrId(this.hrId);
+        JobDetails jobDetails = JobDetailsService.getInstance().viewJobDetailsById(this.jobId);
         JobApplication jobApplication = new JobApplication();
         jobApplication.setJobId(this.jobId);
         jobApplication.setCandidateId(this.candidateId);
         jobApplication.setHrId(Id);
 
-        boolean success = JobApplicationService.doApplyJob(jobApplication);
+      boolean success = JobApplicationService.doApplyJob(jobApplication);
 
         if (success) {
             ArrayList jobList = JobApplicationService.doGetJobApplicationByCandidate(this.candidateId);
             System.out.println("applied job list" + jobList.size());
             sessionMap.put("JobApplicationList", jobList);
+            String toEmail = this.email;
+            String subject = "Successfully Applied";
+            String message = "You are succesfully applied in  " + jobDetails.getJobTitle()
+                    + " in company " + jobDetails.getCompanyName()+ ". You are just few step away to get hired. Best wishes from us for your future career.";
+
+                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
             result = "SUCCESS";
         } else {
 

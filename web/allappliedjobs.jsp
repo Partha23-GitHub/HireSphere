@@ -36,7 +36,7 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Application Id</th>
+                        <!--<th scope="col">Application Id</th>-->
                         <th scope="col">Company Name</th>
                         <th scope="col">Job Title</th>
                         <th scope="col">Job Type</th>
@@ -53,13 +53,13 @@
                   
                     <tr>
                         
-                        <td>${jobApplication.getApplicationId()}</td>
+                        <!--<td>${jobApplication.getApplicationId()}</td>-->
                         <td>${jobApplication.getCompanyName()}</td>
                         <td>${jobApplication.getJobTitle()}</td>
                         <td>${jobApplication.getJobType()}</td>
                         
-                        <td> 
-                            <a href="#" >
+                        <td>
+                            <a href="./Resume/${jobApplication.getResumePath()}" target="_blank">
                                 View Resume
                             </a>
                         </td>
