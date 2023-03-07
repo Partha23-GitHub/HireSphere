@@ -230,6 +230,7 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
         boolean success = JobDetailsService.getInstance().postAjob(this);
         if (success) {
             System.out.println("returning Success from postAJob method");
+            sessionMap.put("NumberOfPostedJobs",HrService.getInstance().countNumberOfPostedJobs(this.userId));
             result = "SUCCESS";
         } else {
             System.out.println("returning Failure from postAJob method");

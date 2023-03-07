@@ -130,7 +130,12 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                     result = "CANDIDATE";
                     break;
                 case 2:
-
+                    sessionMap.put("NumberOfPostedJobs",HrService.getInstance().countNumberOfPostedJobs(user.getUserId()));
+                    int hrId=HrService.getInstance().getHrId(user.userId);
+                    sessionMap.put("TotalApplication",HrService.getInstance().getTotalApplication(hrId));
+                    sessionMap.put("TotalShortlisted",HrService.getInstance().getTotalShortlisted(hrId));
+                    sessionMap.put("TotalPending",HrService.getInstance().getTotalPending(user.getUserId()));
+                    sessionMap.put("TotalVerified",HrService.getInstance().getTotalVerified(user.getUserId()));
                     result = "HR";
                     break;
                 case 3:

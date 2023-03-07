@@ -1,31 +1,34 @@
-// SIDEBAR TOGGLE
-
-var sidebarOpen = false;
-var sidebar = document.getElementById("sidebar");
-
-function openSidebar() {
-  if(!sidebarOpen) {
-    sidebar.classList.add("sidebar-responsive");
-    sidebarOpen = true;
-  }
-}
-
-function closeSidebar() {
-  if(sidebarOpen) {
-    sidebar.classList.remove("sidebar-responsive");
-    sidebarOpen = false;
-  }
-}
-
-
+//// SIDEBAR TOGGLE
+//
+//var sidebarOpen = false;
+//var sidebar = document.getElementById("sidebar");
+//
+//function openSidebar() {
+//  if(!sidebarOpen) {
+//    sidebar.classList.add("sidebar-responsive");
+//    sidebarOpen = true;
+//  }
+//}
+//
+//function closeSidebar() {
+//  if(sidebarOpen) {
+//    sidebar.classList.remove("sidebar-responsive");
+//    sidebarOpen = false;
+//  }
+//}
+//
+//
 
 // ---------- CHARTS ----------
 
 // BAR CHART
+var postedJobs='${NumberOfPostedJobs}';
+var verifiedByHrManager='${TotalVerified}';
+var shortlisted='${TotalShortlisted}';
 var barChartOptions = {
   series: [{
     data: [10, 8, 6],
-    name: "Products",
+    name: "Value",
   }],
   chart: {
     type: "bar",
@@ -87,7 +90,7 @@ var barChartOptions = {
     theme: "dark",
   },
   xaxis: {
-    categories: ["Posted Jobs", "Verified By HR Manager", "Hired"],
+    categories: ["Posted Jobs", "Verified By HR Manager", "Shortlisted"],
     title: {
       style: {
         color: "#f5f7ff",

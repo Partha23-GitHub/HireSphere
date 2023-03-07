@@ -11,7 +11,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>{Compamy-Name} | Home</title>
+        <title>All Applicant | HireSphere</title>
         <!-- Custom fonts for this template-->
         <link href="./css/all.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template-->
@@ -70,7 +70,7 @@
             <li class="nav-item">
                 <a
                     class="nav-link collapsed"
-                    href="#"
+                    href="VisitHRProfile?userId=${User.getUserId()}"
                     data-target="#collapseTwo"
                     aria-expanded="true"
                     aria-controls="collapseTwo"
@@ -227,10 +227,10 @@
                                         <c:if test="${applicant.getApplicationStatus()==1}">
                                             <td> Approved</td>
                                         </c:if>
-                                            <c:if test="${applicant.getApplicationStatus()==0}">
+                                        <c:if test="${applicant.getApplicationStatus()==0}">
                                             <td> Processing</td>
                                         </c:if>
-                                            <c:if test="${applicant.getApplicationStatus()==2}">
+                                        <c:if test="${applicant.getApplicationStatus()==2}">
                                             <td> Rejected</td>
                                         </c:if>
                                     </tr>

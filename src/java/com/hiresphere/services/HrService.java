@@ -4,10 +4,10 @@
  */
 package com.hiresphere.services;
 
-
 import com.hiresphere.models.HR;
 import com.hiresphere.models.JobApplication;
 import com.hiresphere.models.JobDetails;
+import com.hiresphere.models.User;
 import com.hiresphere.utils.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,21 +24,20 @@ public class HrService {
     public static HrService hrService = null;
 
     public static HR getHrByUserId(int userId) {
-         HR hr = new HR();
+        HR hr = new HR();
         String sql = "SELECT * from hr h, companies c  where h.companyId=c.companyId having userId=?";
         try {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-             ps.setInt(1, userId);
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 hr.setHrId(rs.getInt("hrId"));
                 hr.setUserId(rs.getInt("userId"));
                 hr.setGender(rs.getString("gender"));
-               
+
                 hr.setContactNumber(rs.getString("contactNumber"));
-               hr.setCompanyName(rs.getString("companyName"));
-              
+                hr.setCompanyName(rs.getString("companyName"));
 
             }
         } catch (SQLException ex) {
@@ -58,9 +57,9 @@ public class HrService {
         }
     }
 
-    public ArrayList getAllJobPostedByHr(int userId){
-        ArrayList jobList= new ArrayList();
-        String sql ="Select * from jobdetails where userId=?";
+    public ArrayList getAllJobPostedByHr(int userId) {
+        ArrayList jobList = new ArrayList();
+        String sql = "Select * from jobdetails where userId=?";
         Connection con = JDBCConnectionManager.getConnection();
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -85,29 +84,27 @@ public class HrService {
         return jobList;
     }
 
-    public int getHrId(int hrId) {
-        HR hr=new HR();
-        String sql="Select hrId from hr where userId=?";
+    public int getHrId(int Id) {
+        HR hr = new HR();
+        String sql = "Select hrId from hr where userId=?";
         Connection con = JDBCConnectionManager.getConnection();
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, hrId);
+            preparedStatement.setInt(1, Id);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
                 hr.setHrId(rs.getInt("hrId"));
             }
-            
 
         } catch (SQLException ex) {
 
         }
-        int id=hr.getHrId();
-         return id;
+        int id = hr.getHrId();
+        return id;
     }
-        
-   public static boolean updateHRProfile(HR hr, int hrId) {
+
+    public static boolean updateHRProfile(HR hr, int hrId) {
 
         boolean result = false;
         try {
@@ -123,8 +120,7 @@ public class HrService {
             //preparedStatement.setString(1, hr.getName());
             preparedStatement.setString(1, hr.getGender());
             preparedStatement.setString(2, hr.getContactNumber());
-       //   preparedStatement.setString(3, hr.getCompanyName());
-          
+            //   preparedStatement.setString(3, hr.getCompanyName());
 
             preparedStatement.setInt(3, hrId);
             System.out.println("sql=" + preparedStatement);
@@ -143,6 +139,131 @@ public class HrService {
         }
         return result;
     }
- 
 
+    public int countNumberOfPostedJobs(int userId) {
+        int postedJobs = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "select count(jobTitle) from jobdetails where userId=?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, userId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                postedJobs = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+               //Logger log =  Logger.getLogger(HRService.class.getName());
+              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            ex.printStackTrace();
+            System.out.println("Failure From Service Class Update Method");
+        }
+        System.out.println("Posted Jobs :"+postedJobs);
+        return postedJobs;
+    }
+
+    public int getTotalApplication(int hrId) {
+        int totalApplication = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "SELECT count(applicationId) FROM hiresphere.jobapplication where hrId=?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, hrId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                totalApplication = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+               //Logger log =  Logger.getLogger(HRService.class.getName());
+              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            ex.printStackTrace();
+            System.out.println("Failure From Service Class Update Method");
+        }
+        return totalApplication;
+    }
+    
+    public int getTotalShortlisted(int hrId) {
+        int totalShortlisted = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "SELECT count(applicationStatus) FROM hiresphere.jobapplication where hrId=? and applicationStatus=1;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, hrId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                totalShortlisted = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+               //Logger log =  Logger.getLogger(HRService.class.getName());
+              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            ex.printStackTrace();
+            System.out.println("Failure From Service Class Update Method");
+        }
+        return totalShortlisted;
+    }
+    
+    public int getTotalPending(int userId) {
+        int totalPending = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "select count(hrManagerVerificationStatus) from jobdetails where userId=? and hrManagerVerificationStatus=0;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, userId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                totalPending = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+               //Logger log =  Logger.getLogger(HRService.class.getName());
+              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            ex.printStackTrace();
+            System.out.println("Failure From Service Class Update Method");
+        }
+        return totalPending;
+    }
+    
+    public int getTotalVerified(int userId) {
+        int totalPending = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "select count(hrManagerVerificationStatus) from jobdetails where userId=? and hrManagerVerificationStatus=1;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, userId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                totalPending = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+               //Logger log =  Logger.getLogger(HRService.class.getName());
+              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            ex.printStackTrace();
+            System.out.println("Failure From Service Class Update Method");
+        }
+        return totalPending;
+    }
+    
 }

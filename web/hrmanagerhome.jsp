@@ -16,8 +16,8 @@
         <link href="./css/all.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template-->
         <link href="./css/sb-admin-2.min.css" rel="stylesheet" />
-         <link rel="stylesheet" href="css/styles.css">
-       
+        <link rel="stylesheet" href="css/styles.css">
+
         <style>
             #Logo-HrMenu{
                 max-width: 200px;
@@ -35,7 +35,7 @@
                 >
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="hrmenupage.jsp"">
-                    <img id="Logo-HrMenu" src="./assets/1677744230975-null" alt="Company Logo" />
+                    <img id="Logo-HrMenu" src="./assets/HireSphere.png" alt="Company Logo" />
                 </a>
 
                 <!-- Divider -->
@@ -88,13 +88,13 @@
                 <div class="sidebar-heading">Get Your Job Done By</div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-<!--                <li class="nav-item">
-                    <a class="nav-link collapsed" onclick="fetchContent('jobpost', 'hr-home-content', '0')">
-                        <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer";
-                              >&#9755; &nbsp; Post Jobs</span
-                        >
-                    </a>
-                </li>-->
+                <!--                <li class="nav-item">
+                                    <a class="nav-link collapsed" onclick="fetchContent('jobpost', 'hr-home-content', '0')">
+                                        <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer";
+                                              >&#9755; &nbsp; Post Jobs</span
+                                        >
+                                    </a>
+                                </li>-->
 
                 <!-- Nav Item - Charts -->
 
@@ -177,17 +177,10 @@
                     <!-- Begin Page Content -->
                     <div id="hr-Manager-home-content">
                         <div class="container-fluid">
-                            <!-- Page Heading -->
-                            <div
-                                class="d-sm-flex align-items-center justify-content-between mb-4"
-                                >
-                                <h1 class="h4 mb-0 text-gray-800">
-                                    Hire Talents In The Fields Of
-                                </h1>
-                            </div>
+
 
                             <!-- Content Row -->
-                             <div class="row">
+                            <div class="row">
                                 <!-- Earnings (Monthly) Card Example -->
                                 <div class="col-xl-3 col-md-6 mb-4">
                                     <div class="card border-left-primary shadow h-100 py-2">
@@ -195,7 +188,7 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                      POSTED JOBS<hr><h3>15</h3>
+                                                        POSTED JOBS<hr><h3>15</h3>
 
                                                     </div>
                                                 </div>
@@ -211,7 +204,7 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    APPLICATION<hr><h3>9</h3>
+                                                        APPLICATION<hr><h3>9</h3>
 
                                                     </div>
                                                 </div>
@@ -250,7 +243,7 @@
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                         PENDING <hr><h3>4</h3>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -260,63 +253,63 @@
 
                             <!-- Content Row -->
                             <div id="pagecontent">
-                                 <div id="content-wrapper" class="d-flex flex-column">
-    <div class="grid-container">
-  
-        <main class="main-container">
-         
-  
-     
-  
-          <div class="charts">
-  
-            <div class="charts-card">
-              <h2 class="chart-title">JOB APPLICATION STATISTICS</h2>
-              <div id="bar-chart"></div>
-            </div>
-  
-            <div class="charts-card">
-              <h2 class="chart-title"></h2>
-              <div id="area-chart"></div>
-            </div>
-  
-          </div>
-        </main>
-        <!-- End Main -->
-  
-      </div>
-</div>
-                                
+                                <div id="content-wrapper" class="d-flex flex-column">
+                                    <div class="grid-container">
+
+                                        <main class="main-container">
+
+
+
+
+                                            <div class="charts">
+
+                                                <div class="charts-card">
+                                                    <h2 class="chart-title">JOB APPLICATION STATISTICS</h2>
+                                                    <div id="bar-chart"></div>
+                                                </div>
+
+                                                <div class="charts-card">
+                                                    <h2 class="chart-title"></h2>
+                                                    <div id="area-chart"></div>
+                                                </div>
+
+                                            </div>
+                                        </main>
+                                        <!-- End Main -->
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
-                
+
             </div>
             <!-- End of Content Wrapper -->
-            
+
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="text/javascript">
-              function fetchContent(selected, target,valueId) {
-                  //alert("HI");
-                  $.ajax({
-                      url: 'LoadHRMenu',
-                      data: {
-                          ['work']: (selected),
-                          ['value']: (valueId)
-                      },
-                      success: function (responseText) {
-                          $("#" + target).html(responseText);
-                      }
-                  });
-              }
+                        function fetchContent(selected, target, valueId) {
+                            //alert("HI");
+                            $.ajax({
+                                url: 'LoadHRManagerMenu',
+                                data: {
+                                    ['work']: (selected),
+                                    ['value']: (valueId)
+                                },
+                                success: function (responseText) {
+                                    $("#" + target).html(responseText);
+                                }
+                            });
+                        }
 
     </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
     <!-- Custom JS -->
     <script src="js/scripts.js"></script>
 </html>
