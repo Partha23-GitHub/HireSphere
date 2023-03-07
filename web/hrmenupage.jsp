@@ -88,7 +88,7 @@
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" onclick="fetchContent('jobpost','hr-home-content','0')">
+                    <a class="nav-link collapsed" onclick="fetchContent('jobpost', 'hr-home-content', '0')">
                         <span style="margin-left: 0.8rem; font-weight: 700;cursor: pointer";
                               >&#9755; &nbsp; Post Jobs</span
                         >
@@ -96,7 +96,7 @@
                 </li>
 
                 <!-- Nav Item - Charts -->
-                
+
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
@@ -177,14 +177,6 @@
                     <div id="hr-home-content">
                         <div class="container-fluid">
                             <!-- Page Heading -->
-                            <div
-                                class="d-sm-flex align-items-center justify-content-between mb-4"
-                                >
-                                <h1 class="h4 mb-0 text-gray-800">
-                                    Hire Talents In The Fields Of
-                                </h1>
-                            </div>
-
                             <!-- Content Row -->
                             <div class="row">
                                 <!-- Earnings (Monthly) Card Example -->
@@ -194,7 +186,7 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                      POSTED JOBS<hr><h3>15</h3>
+                                                        POSTED JOBS<hr><h3>${NumberOfPostedJobs}</h3>
 
                                                     </div>
                                                 </div>
@@ -210,7 +202,7 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    APPLICATION<hr><h3>9</h3>
+                                                        APPLICATION<hr><h3>${TotalApplication}</h3>
 
                                                     </div>
                                                 </div>
@@ -229,7 +221,7 @@
                                                             <div
                                                                 class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
                                                                 >
-                                                                HIRED<hr><h3>5</h3>
+                                                                SHORTLISTED<hr><h3>${TotalShortlisted}</h3>
 
                                                             </div>
                                                         </div>
@@ -247,9 +239,9 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        PENDING <hr><h3>4</h3>
+                                                        PENDING APPROVED<hr><h3>${TotalPending}</h3>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -259,63 +251,320 @@
 
                             <!-- Content Row -->
                             <div id="pagecontent">
-                                 <div id="content-wrapper" class="d-flex flex-column">
-    <div class="grid-container">
-  
-        <main class="main-container">
-         
-  
-     
-  
-          <div class="charts">
-  
-            <div class="charts-card">
-              <h2 class="chart-title">JOB APPLICATION STATISTICS</h2>
-              <div id="bar-chart"></div>
-            </div>
-  
-            <div class="charts-card">
-              <h2 class="chart-title"></h2>
-              <div id="area-chart"></div>
-            </div>
-  
-          </div>
-        </main>
-        <!-- End Main -->
-  
-      </div>
-</div>
-                                
+                                <div id="content-wrapper" class="d-flex flex-column">
+                                    <div class="grid-container">
+
+                                        <main class="main-container">
+
+
+
+
+                                            <div class="charts">
+
+                                                <div class="charts-card">
+                                                    <h2 class="chart-title">JOB STATISTICS</h2>
+                                                    <div id="bar-chart"></div>
+                                                </div>
+
+                                                <div class="charts-card">
+                                                    <h2 class="chart-title"></h2>
+                                                    <div id="area-chart"></div>
+                                                </div>
+
+                                            </div>
+                                        </main>
+                                        <!-- End Main -->
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
-                
+
             </div>
             <!-- End of Content Wrapper -->
-            
+
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="text/javascript">
-              function fetchContent(selected, target,valueId) {
-                  //alert("HI");
-                  $.ajax({
-                      url: 'LoadHRMenu',
-                      data: {
-                          ['work']: (selected),
-                          ['value']: (valueId)
-                      },
-                      success: function (responseText) {
-                          $("#" + target).html(responseText);
-                      }
-                  });
-              }
+                        function fetchContent(selected, target, valueId) {
+                            //alert("HI");
+                            $.ajax({
+                                url: 'LoadHRMenu',
+                                data: {
+                                    ['work']: (selected),
+                                    ['value']: (valueId)
+                                },
+                                success: function (responseText) {
+                                    $("#" + target).html(responseText);
+                                }
+                            });
+                        }
 
     </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
     <!-- Custom JS -->
-    <script src="js/scripts.js"></script>
+    <!--<script src="js/scripts.js"></script>-->
+    <script>
+                        //// SIDEBAR TOGGLE
+//
+//var sidebarOpen = false;
+//var sidebar = document.getElementById("sidebar");
+//
+//function openSidebar() {
+//  if(!sidebarOpen) {
+//    sidebar.classList.add("sidebar-responsive");
+//    sidebarOpen = true;
+//  }
+//}
+//
+//function closeSidebar() {
+//  if(sidebarOpen) {
+//    sidebar.classList.remove("sidebar-responsive");
+//    sidebarOpen = false;
+//  }
+//}
+//
+//
+
+// ---------- CHARTS ----------
+
+// BAR CHART
+                        var postedJobs = '${NumberOfPostedJobs}';
+                        var verifiedByHrManager = '${TotalVerified}';
+                        var shortlisted = '${TotalShortlisted}';
+                        var barChartOptions = {
+                            series: [{
+                                    data: [postedJobs, verifiedByHrManager, shortlisted],
+                                    name: "Value",
+                                }],
+                            chart: {
+                                type: "bar",
+                                background: "transparent",
+                                height: 300,
+                                toolbar: {
+                                    show: false,
+                                },
+                            },
+                            colors: [
+                                "#2962ff",
+                                "#d50000",
+                                "#2e7d32",
+                                "#ff6d00",
+                                "#583cb3",
+                            ],
+                            plotOptions: {
+                                bar: {
+                                    distributed: true,
+                                    borderRadius: 4,
+                                    horizontal: false,
+                                    columnWidth: "40%"
+                                }
+                            },
+                            dataLabels: {
+                                enabled: false,
+                            },
+                            fill: {
+                                opacity: 1,
+                            },
+                            grid: {
+                                borderColor: "#55596e",
+                                yaxis: {
+                                    lines: {
+                                        show: true,
+                                    },
+                                },
+                                xaxis: {
+                                    lines: {
+                                        show: true,
+                                    },
+                                },
+                            },
+                            legend: {
+                                labels: {
+                                    colors: "#f5f7ff",
+                                },
+                                show: true,
+                                position: "top",
+                            },
+                            stroke: {
+                                colors: ["transparent"],
+                                show: true,
+                                width: 2
+                            },
+                            tooltip: {
+                                shared: true,
+                                intersect: false,
+                                theme: "dark",
+                            },
+                            xaxis: {
+                                categories: ["Posted Jobs", "Verified By HR Manager", "Shortlisted"],
+                                title: {
+                                    style: {
+                                        color: "#f5f7ff",
+                                    },
+                                },
+                                axisBorder: {
+                                    show: true,
+                                    color: "#55596e",
+                                },
+                                axisTicks: {
+                                    show: true,
+                                    color: "#55596e",
+                                },
+                                labels: {
+                                    style: {
+                                        colors: "#f5f7ff",
+                                    },
+                                },
+                            },
+                            yaxis: {
+                                title: {
+                                    text: "Count",
+                                    style: {
+                                        color: "#f5f7ff",
+                                    },
+                                },
+                                axisBorder: {
+                                    color: "#55596e",
+                                    show: true,
+                                },
+                                axisTicks: {
+                                    color: "#55596e",
+                                    show: true,
+                                },
+                                labels: {
+                                    style: {
+                                        colors: "#f5f7ff",
+                                    },
+                                },
+                            }
+                        };
+
+                        var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
+                        barChart.render();
+
+
+// AREA CHART
+                        var areaChartOptions = {
+                            series: [{
+                                    name: "Total application",
+                                    data: [31, 40, 28, 51, 42, 109, 100],
+                                }, {
+                                    name: "Approved Application",
+                                    data: [11, 32, 45, 32, 34, 52, 41],
+                                }],
+                            chart: {
+                                type: "area",
+                                background: "transparent",
+                                height: 350,
+                                stacked: false,
+                                toolbar: {
+                                    show: false,
+                                },
+                            },
+                            colors: ["#00ab57", "#d50000"],
+                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                            dataLabels: {
+                                enabled: false,
+                            },
+                            fill: {
+                                gradient: {
+                                    opacityFrom: 0.4,
+                                    opacityTo: 0.1,
+                                    shadeIntensity: 1,
+                                    stops: [0, 100],
+                                    type: "vertical",
+                                },
+                                type: "gradient",
+                            },
+                            grid: {
+                                borderColor: "#55596e",
+                                yaxis: {
+                                    lines: {
+                                        show: true,
+                                    },
+                                },
+                                xaxis: {
+                                    lines: {
+                                        show: true,
+                                    },
+                                },
+                            },
+                            legend: {
+                                labels: {
+                                    colors: "#f5f7ff",
+                                },
+                                show: true,
+                                position: "top",
+                            },
+                            markers: {
+                                size: 6,
+                                strokeColors: "#1b2635",
+                                strokeWidth: 3,
+                            },
+                            stroke: {
+                                curve: "smooth",
+                            },
+                            xaxis: {
+                                axisBorder: {
+                                    color: "#55596e",
+                                    show: true,
+                                },
+                                axisTicks: {
+                                    color: "#55596e",
+                                    show: true,
+                                },
+                                labels: {
+                                    offsetY: 5,
+                                    style: {
+                                        colors: "#f5f7ff",
+                                    },
+                                },
+                            },
+                            yaxis:
+                                    [
+                                        {
+                                            title: {
+                                                text: "Total Application",
+                                                style: {
+                                                    color: "#f5f7ff",
+                                                },
+                                            },
+                                            labels: {
+                                                style: {
+                                                    colors: ["#f5f7ff"],
+                                                },
+                                            },
+                                        },
+                                        {
+                                            opposite: true,
+                                            title: {
+                                                text: "Approved Application",
+                                                style: {
+                                                    color: "#f5f7ff",
+                                                },
+                                            },
+                                            labels: {
+                                                style: {
+                                                    colors: ["#f5f7ff"],
+                                                },
+                                            },
+                                        },
+                                    ],
+                            tooltip: {
+                                shared: true,
+                                intersect: false,
+                                theme: "dark",
+                            }
+                        };
+
+                        var areaChart = new ApexCharts(document.querySelector("#area-chart"), areaChartOptions);
+                        areaChart.render();
+    </script>
 </html>

@@ -47,7 +47,7 @@
                                         <div class="col-md-3">
                                             <div class="mo-mb-2" style="margin-right: 15px;">
                                                 <img
-                                                    src="./assets/Exavalu Logo.png"
+                                                    src="data:image/jpg/jpeg/png;base64,${jobDetails.imageData}"
                                                     alt=""
                                                     class="img-fluid mx-auto d-block"
                                                     />

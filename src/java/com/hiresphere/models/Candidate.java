@@ -229,6 +229,7 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
         String result = "FAILURE";
         // checking if any resume is there of candidate., if there then delete it
         String oldPath=CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
+        System.out.println("oldpath: "+oldPath);
         if(oldPath!=null){
             File file=new File("C:\\Users\\user\\Desktop\\HireSphere\\web\\Resume/"+oldPath);
             file.delete();
