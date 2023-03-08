@@ -125,6 +125,10 @@
             <result name="SUCCESS">hrmanagerhome.jsp</result>
             <result name="FAILURE">hrprofile.jsp</result>
         </action>
+         <action name="FaceBookLogin" class="com.hiresphere.models.User" method="fbLogin">
+            <result name="SUCCESS">candidatehome.jsp</result>
+            <result name="FAILURE">Sign_in_Controller.jsp</result>
+        </action>
         
     </package>
 </struts>
