@@ -130,12 +130,12 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                     result = "CANDIDATE";
                     break;
                 case 2:
-                    sessionMap.put("NumberOfPostedJobs",HrService.getInstance().countNumberOfPostedJobs(user.getUserId()));
-                    int hrId=HrService.getInstance().getHrId(user.userId);
-                    sessionMap.put("TotalApplication",HrService.getInstance().getTotalApplication(hrId));
-                    sessionMap.put("TotalShortlisted",HrService.getInstance().getTotalShortlisted(hrId));
-                    sessionMap.put("TotalPending",HrService.getInstance().getTotalPending(user.getUserId()));
-                    sessionMap.put("TotalVerified",HrService.getInstance().getTotalVerified(user.getUserId()));
+                    sessionMap.put("NumberOfPostedJobs", HrService.getInstance().countNumberOfPostedJobs(user.getUserId()));
+                    int hrId = HrService.getInstance().getHrId(user.userId);
+                    sessionMap.put("TotalApplication", HrService.getInstance().getTotalApplication(hrId));
+                    sessionMap.put("TotalShortlisted", HrService.getInstance().getTotalShortlisted(hrId));
+                    sessionMap.put("TotalPending", HrService.getInstance().getTotalPending(user.getUserId()));
+                    sessionMap.put("TotalVerified", HrService.getInstance().getTotalVerified(user.getUserId()));
                     result = "HR";
                     break;
                 case 3:
@@ -152,47 +152,45 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         return result;
     }
+
     public String fbLogin() {
         String result = "FAILURE";
         try {
-            if(UserService.userExist(this.email))
-            {
+            if (UserService.userExist(this.email)) {
                 User user = UserService.getUser(this.getEmail());
                 Candidate candidate = CandidateService.getCandidateByUserId(user.getUserId());
                 System.out.println("candifate id from log in" + candidate.getCandidateId());
                 sessionMap.put("Candidate", candidate);
-                 sessionMap.put("User", user);
-                result="SUCCESS";
-                
-                
-                
+                sessionMap.put("User", user);
+                result = "SUCCESS";
+
             } else {
-            
-            boolean success = UserService.doSignup(this);
-            User user = UserService.getUser(this.getEmail());
-            boolean succes1 = CandidateService.doRegisterCandidate(user.userId);
-              Candidate candidate = CandidateService.getCandidateByUserId(user.getUserId());
+
+                boolean success = UserService.doSignup(this);
+                User user = UserService.getUser(this.getEmail());
+                boolean succes1 = CandidateService.doRegisterCandidate(user.userId);
+                Candidate candidate = CandidateService.getCandidateByUserId(user.getUserId());
                 System.out.println("candifate id from log in" + candidate.getCandidateId());
                 sessionMap.put("Candidate", candidate);
-                 sessionMap.put("User", user);
-            if (success && succes1) {
-                //creating MailSender object and setting up all parameters
-                String toEmail = this.email;
-                String subject = "Thank you for registering with HireSphere";
-                String message = "You are succesfully registered with HireSphere with your email " + this.getEmail()
-                        + " and password " + this.getPassword() + ". You are just few step away to get hired. Best wishes from us for your future career.";
+                sessionMap.put("User", user);
+                if (success && succes1) {
+                    //creating MailSender object and setting up all parameters
+                    String toEmail = this.email;
+                    String subject = "Thank you for registering with HireSphere";
+                    String message = "You are succesfully registered with HireSphere with your email " + this.getEmail()
+                            + " and password " + this.getPassword() + ". You are just few step away to get hired. Best wishes from us for your future career.";
 
-                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
-                result = "SUCCESS";
-            } else {
-                System.out.println("returning Failure from doSignup method");
+                    MailSender.sendEmailToRegisterUser(toEmail, subject, message);
+                    result = "SUCCESS";
+                } else {
+                    System.out.println("returning Failure from doSignup method");
+                }
             }
-        } 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return result;
     }
-    
+
 }

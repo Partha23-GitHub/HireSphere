@@ -9,6 +9,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Insert title here</title>
+        <style>
+            body {
+
+                background-image: url("./assets/profile-background.png");
+
+            }
+            </style>
     </head>
     <body>
         <%
@@ -17,14 +24,16 @@
             FbProfile obj_Profile_Bean = obj_Profile_Modal.call_me(access_token);
         %>
         <!--<img src="<%=obj_Profile_Bean.getProfile_picture()%>"></img>-->    
-   <h6>The App wants to access your personal information</h6>
+        <div style="display: flex; align-items: center;justify-content: center;">
+   <h3>The App wants to access your personal information</h3>
         <form action="FaceBookLogin">
-        <input type="text" name="name" id="name" value="<%=obj_Profile_Bean.getUser_name()%>" hidden>
-        <input type="text" name="email" id="email" value="<%=obj_Profile_Bean.getEmail()%>" hiiden>
+        <input type="text" name="name" id="name" value="<%=obj_Profile_Bean.getUser_name()%>" hidden >
+        <input type="text" name="email" id="email" value="<%=obj_Profile_Bean.getEmail()%>" hidden >
         <input type="text" name="password" id="password" value="<%=obj_Profile_Bean.getId()%>" hidden>
          <button type="submit" class="nextBtn btnText">Allow</button>
     
         </form>
+         </div>
 <!--        <script>
         var name="<%=obj_Profile_Bean.getUser_name()%>";
         var names=name.split(' ');
