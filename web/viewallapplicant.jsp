@@ -12,6 +12,7 @@
         <meta name="author" content="" />
 
         <title>All Applicant | HireSphere</title>
+        <link rel="stylesheet" href="./css/candidate_menu.css">
         <!-- Custom fonts for this template-->
         <link href="./css/all.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template-->
@@ -212,15 +213,15 @@
                                         <td> ${applicant.getPhoneNumber()}</td>
                                         <td>${applicant.getGender()}</td>
                                         <td> 
-                                            <a href="./Resume/${applicant.getResumePath()}" target="_blank">
+                                            <a href="./Resume/${applicant.getResumePath()}" class="hover-link primary-button" target="_blank">
                                                 View Resume
                                             </a>
                                         </td>
                                         <td> 
-                                            <a href="ApproveApplication?applicationId=${applicant.getApplicationId()}&jobId=${applicant.getJobId()}">
+                                            <a href="ApproveApplication?applicationId=${applicant.getApplicationId()}&jobId=${applicant.getJobId()}" class="hover-link primary-button">
                                                 Shortlisted
                                             </a>
-                                            <a href="RejectApplication?applicationId=${applicant.getApplicationId()}&jobId=${applicant.getJobId()}">
+                                            <a href="RejectApplication?applicationId=${applicant.getApplicationId()}&jobId=${applicant.getJobId()}" class="hover-link primary-button">
                                                 Reject
                                             </a>
                                         </td>
