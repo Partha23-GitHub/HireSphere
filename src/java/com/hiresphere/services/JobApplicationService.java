@@ -127,7 +127,7 @@ public class JobApplicationService {
 
     public static ArrayList getApplicantByJobId(int jobId) {
         ArrayList applicantList = new ArrayList();
-        String sql = "SELECT ca.candidateId,u.name,ca.gender,ca.phoneNumber,ca.resume,ja.applicationId ,ja.applicationStatus,ja.jobId\n"
+        String sql = "SELECT ca.candidateId,u.name,u.email,ca.gender,ca.phoneNumber,ca.resume,ja.applicationId ,ja.applicationStatus,ja.jobId\n"
                 + "                 from candidates ca,jobapplication ja,users u where \n"
                 + "                   ja.candidateId = ca.candidateId and ca.userId=u.userId\n"
                 + "                 and jobId=?;";
@@ -141,6 +141,7 @@ public class JobApplicationService {
                 Candidate applicant = new Candidate();
                 applicant.setCandidateId(rs.getInt("candidateId"));
                 applicant.setName(rs.getString("name"));
+                applicant.setEmail(rs.getString("email"));
                 applicant.setGender(rs.getString("gender"));
                 applicant.setPhoneNumber(rs.getString("phoneNumber"));
                 applicant.setApplicationId(rs.getInt("applicationId"));

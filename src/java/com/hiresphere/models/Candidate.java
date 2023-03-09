@@ -60,6 +60,7 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     private int candidateId;
     private int userId;
     private String name;
+    private String email;
     private String gender;
     private String phoneNumber;
     private String city;
@@ -96,6 +97,14 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     public void setResumeContentType(String resumeContentType) {
         this.resumeContentType = resumeContentType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 
