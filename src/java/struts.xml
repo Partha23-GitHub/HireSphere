@@ -15,6 +15,11 @@
             <result name="SUCCESS">login.jsp</result>
             <result name="FAILURE">login.jsp</result>
         </action>
+        
+        <action name="SignupForCompany" class="com.hiresphere.models.User" method="doCompanySignUp">
+            <result name="SUCCESS">login.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
         <action name="Logout">
             <result>landingpage.jsp</result>
         </action>

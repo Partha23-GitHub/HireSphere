@@ -26,7 +26,7 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  * @author Jayita
  */
-public class Candidate extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
+public class Candidate extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
     public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
@@ -81,8 +81,7 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     public void setResumePath(String resumePath) {
         this.resumePath = resumePath;
     }
-    
-    
+
     public String getResumeFileName() {
         return resumeFileName;
     }
@@ -106,7 +105,6 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     public void setEmail(String email) {
         this.email = email;
     }
-    
 
     public File getResume() {
         return resume;
@@ -237,20 +235,20 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     public String updateProfile() throws FileNotFoundException, IOException, FileUploadException, Exception {
         String result = "FAILURE";
         // checking if any resume is there of candidate., if there then delete it
-        String oldPath=CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
-        System.out.println("oldpath: "+oldPath);
-        if(oldPath!=null){
-            File file=new File("D:\\001Manish\\HireSphere\\web\\Resume/"+oldPath);
+        String oldPath = CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
+        System.out.println("oldpath: " + oldPath);
+        if (oldPath != null) {
+            File file = new File("D:\\ExavaluProject\\HireSphere\\web\\Resume/" + oldPath);
             file.delete();
         }
         // store the new resume
-        String relativePath=System.currentTimeMillis()+ resumeFileName; // for creating unique file name
-        String filePath = "D:\\001Manish\\HireSphere\\web\\Resume/" +relativePath; 
+        String relativePath = System.currentTimeMillis() + resumeFileName; // for creating unique file name
+        String filePath = "D:\\ExavaluProject\\HireSphere\\web\\Resume/" + relativePath;
         File destFile = new File(filePath);
         FileUtils.copyFile(resume, destFile);
         System.out.println(relativePath);
         System.out.println(candidateId);
-         boolean success = CandidateService.updateCandidateProfile(this, candidateId, relativePath);
+        boolean success = CandidateService.updateCandidateProfile(this, candidateId, relativePath);
 
         if (success) {
             //  Candidate candidate= CandidateService.getAllEmployees();

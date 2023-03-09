@@ -46,6 +46,34 @@ public class HrService {
         return hr;
     }
 
+    public static boolean doRegisterHr(int userId) {
+
+        boolean result = false;
+        Connection con = JDBCConnectionManager.getConnection();
+
+        String sql = "INSERT INTO hr(userId) VALUES(?)";
+
+        try {
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, userId);
+
+            int rs = preparedStatement.executeUpdate();
+
+            if (rs != 0) {
+                result = true;
+            }
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return result;
+
+    }
+
     private HrService() {
     }
 
@@ -152,17 +180,17 @@ public class HrService {
             //preparedStatement.setString(1, hr.getName());
             preparedStatement.setInt(1, userId);
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 postedJobs = rs.getInt(1);
             }
 
         } catch (SQLException ex) {
-               //Logger log =  Logger.getLogger(HRService.class.getName());
-              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            //Logger log =  Logger.getLogger(HRService.class.getName());
+            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
             System.out.println("Failure From Service Class Update Method");
         }
-        System.out.println("Posted Jobs :"+postedJobs);
+        System.out.println("Posted Jobs :" + postedJobs);
         return postedJobs;
     }
 
@@ -178,19 +206,19 @@ public class HrService {
             //preparedStatement.setString(1, hr.getName());
             preparedStatement.setInt(1, hrId);
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 totalApplication = rs.getInt(1);
             }
 
         } catch (SQLException ex) {
-               //Logger log =  Logger.getLogger(HRService.class.getName());
-              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            //Logger log =  Logger.getLogger(HRService.class.getName());
+            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
             System.out.println("Failure From Service Class Update Method");
         }
         return totalApplication;
     }
-    
+
     public int getTotalShortlisted(int hrId) {
         int totalShortlisted = 0;
         try {
@@ -203,19 +231,19 @@ public class HrService {
             //preparedStatement.setString(1, hr.getName());
             preparedStatement.setInt(1, hrId);
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 totalShortlisted = rs.getInt(1);
             }
 
         } catch (SQLException ex) {
-               //Logger log =  Logger.getLogger(HRService.class.getName());
-              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            //Logger log =  Logger.getLogger(HRService.class.getName());
+            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
             System.out.println("Failure From Service Class Update Method");
         }
         return totalShortlisted;
     }
-    
+
     public int getTotalPending(int userId) {
         int totalPending = 0;
         try {
@@ -228,19 +256,19 @@ public class HrService {
             //preparedStatement.setString(1, hr.getName());
             preparedStatement.setInt(1, userId);
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 totalPending = rs.getInt(1);
             }
 
         } catch (SQLException ex) {
-               //Logger log =  Logger.getLogger(HRService.class.getName());
-              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            //Logger log =  Logger.getLogger(HRService.class.getName());
+            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
             System.out.println("Failure From Service Class Update Method");
         }
         return totalPending;
     }
-    
+
     public int getTotalVerified(int userId) {
         int totalPending = 0;
         try {
@@ -253,17 +281,17 @@ public class HrService {
             //preparedStatement.setString(1, hr.getName());
             preparedStatement.setInt(1, userId);
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 totalPending = rs.getInt(1);
             }
 
         } catch (SQLException ex) {
-               //Logger log =  Logger.getLogger(HRService.class.getName());
-              //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            //Logger log =  Logger.getLogger(HRService.class.getName());
+            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
             System.out.println("Failure From Service Class Update Method");
         }
         return totalPending;
     }
-    
+
 }

@@ -36,10 +36,20 @@
                     <div class="form login">
                         <div class="form-content">
                             <a href="hrmanagerhome.jsp"><img id="closing-logo-hr-profile" src="assets/close-icon.png" alt="alt"/></a>
-                            <img id="logo-hr-profile" src="./assets/logo-profile.png" alt="Logo"/>
-                            <hr>
+                            <!--<img id="logo-hr-profile" src="./assets/logo-profile.png" alt="Logo"/>-->
 
-                            <header class="profile-name">${User.getName()}</header>
+                        <c:if test="${hrManager.getGender()==null}"> 
+                            <img id="logo-profile" src="./assets/logo_male.png" alt="Logo"/>
+                        </c:if> 
+                        <c:if test='${hrManager.getGender()== "Male"}'> 
+                            <img id="logo-profile" src="./assets/logo_male.png" alt="Logo"/>
+                        </c:if> 
+                        <c:if test='${hrManager.getGender()== "Female"}'> 
+                            <img id="logo-profile" src="./assets/logo_female.png" alt="Logo"/>
+                        </c:if> 
+                        <hr>
+
+                        <header class="profile-name">${User.getName()}</header>
                         <form action="UpdateHRManagerProfile?hrManagerId=${hrManager.getHrManagerId()}" method="Post">
 
 
@@ -57,7 +67,7 @@
                                 <input type="text" placeholder="Company Name" class="input" name="companyNumber" value="${hrManager.getCompanyName()}" readonly>
                                 <i class='bx bx-hide eye-icon'></i>
                             </div>
-                          
+
                             <div style="display: flex;align-items: center;justify-content: center;"> 
                                 <div class="field button-field">
 
