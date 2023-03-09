@@ -61,6 +61,34 @@ public class UserService {
         return result;
     }
 
+    public static boolean userExist(String email) {
+        String sql="SELECT * from users where email=?";
+         try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+             ps.setString(1, email);
+
+            
+            System.out.println("LoginService :: "+ps);
+            
+            ResultSet rs = ps.executeQuery();
+              if (rs.next()) {
+               
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(UserService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getMessage());
+         
+        }
+
+        return false;
+        
+        
+        
+    }
+
     public boolean doLogin(User user)
     {
         boolean success = false;
