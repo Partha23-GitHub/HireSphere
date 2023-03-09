@@ -101,13 +101,14 @@
                         </div>
                         <div class="field input-field">
                             <div style="background-color: white !important; height: 50px !important; border-radius: 6px !important;">
-                                <label style="display: flex;justify-content: center;" class="input" for="cars">Choose a Role:</label>
-                                <div style="transform: translateX(8rem);"> 
-                            <select name="cars" id="cars">
-                                <option value="volvo">HR</option>
-                                <option value="saab">HR Manager</option>
+                                <div style="display: flex; transform: translate(20px,15px);">
+                                <label style="display: flex;justify-content: center;" class="input" for="role">Choose a Role:&nbsp;&nbsp;&nbsp;</label>
+                                 
+                            <select name="role" id="role">
+                                <option value="hr">HR</option>
+                                <option value="hrmanager">HR Manager</option>
                             </select>
-                                    </div>
+                                </div>
                             </div>
                         </div>
 

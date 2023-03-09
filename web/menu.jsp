@@ -35,7 +35,7 @@
                             <c:set value="${Candidate}" var="candidate"/>
                             <li><a href="ViewApplication?candidateId=${candidate.getCandidateId()}" class="hover-link">View Applications</a></li>
                             <li><a href="#footer-id" class="hover-link">Contact</a></li>
-                            <li><a href="VisitCandidateProfile?userId=${User.getUserId()}" class="hover-link">Profile: ${User.getName()}</a></li>
+                            <li><a href="VisitCandidateProfile?userId=${User.getUserId()}" class="hover-link">Profile</a></li>
                             <li><a href="Logout" class="hover-link secondary-button">Logout</a></li>
                              
                         </ul>

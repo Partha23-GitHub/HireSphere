@@ -44,13 +44,13 @@
                         <a href="candidatehome.jsp"><img id="closing-logo-profile" src="assets/close-icon.png" alt="alt"/></a>
 
                         <c:if test="${candidate.getGender()==null}"> 
-                            <img id="logo-profile" src="./assets/logo-profile.png" alt="Logo"/>
+                            <img id="logo-profile" src="./assets/logo_male.png" alt="Logo"/>
                         </c:if> 
                         <c:if test="${candidate.getGender()== male}"> 
-                            <img id="logo-profile" src="./assets/logo_profile-male.png" alt="Logo"/>
+                            <img id="logo-profile" src="./assets/logo_male.png" alt="Logo"/>
                         </c:if> 
                         <c:if test="${candidate.getGender()== female}"> 
-                            <img id="logo-profile" src="./assets/logo-profile.png" alt="Logo"/>
+                            <img id="logo-profile" src="./assets/logo_female.png" alt="Logo"/>
                         </c:if> 
 
                         <hr>

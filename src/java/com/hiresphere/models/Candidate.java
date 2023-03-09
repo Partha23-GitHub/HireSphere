@@ -231,12 +231,12 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
         String oldPath=CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
         System.out.println("oldpath: "+oldPath);
         if(oldPath!=null){
-            File file=new File("C:\\Users\\user\\Desktop\\HireSphere\\web\\Resume/"+oldPath);
+            File file=new File("D:\\001Manish\\HireSphere\\web\\Resume/"+oldPath);
             file.delete();
         }
         // store the new resume
         String relativePath=System.currentTimeMillis()+ resumeFileName; // for creating unique file name
-        String filePath = "C:\\Users\\user\\Desktop\\HireSphere\\web\\Resume/" +relativePath; 
+        String filePath = "D:\\001Manish\\HireSphere\\web\\Resume/" +relativePath; 
         File destFile = new File(filePath);
         FileUtils.copyFile(resume, destFile);
         System.out.println(relativePath);
