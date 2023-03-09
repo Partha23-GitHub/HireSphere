@@ -49,11 +49,11 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
-    private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
+    private ApplicationMap applicationMap = (ApplicationMap) ActionContext.getContext().getApplication();
 
     @Override
     public void setApplication(Map<String, Object> application) {
-        map = (ApplicationMap) application;
+        applicationMap = (ApplicationMap) application;
     }
 
     @Override
@@ -88,20 +88,26 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     public String doCandidateSignUp() {
         String result = "FAILURE";
         try {
-            boolean success = UserService.doSignup(this);
-            User user = UserService.getUser(this.getEmail());
-            boolean succes1 = CandidateService.doRegisterCandidate(user.userId);
-            if (success && succes1) {
-                //creating MailSender object and setting up all parameters
-                String toEmail = this.email;
-                String subject = "Thank you for registering with HireSphere";
-                String message = "You are succesfully registered with HireSphere with your email " + this.getEmail()
-                        + " and password " + this.getPassword() + ". You are just few step away to get hired. Best wishes from us for your future career.";
-
-                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
-                result = "SUCCESS";
+            boolean isUserExist = UserService.userExist(this.email);
+            if (isUserExist) {
+                System.out.println("isUserExist " + isUserExist);
+                applicationMap.put("isUserExist", "User Already Exist ! please Login");
             } else {
-                System.out.println("returning Failure from doSignup method");
+                boolean success = UserService.doSignup(this);
+                User user = UserService.getUser(this.getEmail());
+                boolean succes1 = CandidateService.doRegisterCandidate(user.userId);
+                if (success && succes1) {
+                    //creating MailSender object and setting up all parameters
+                    String toEmail = this.email;
+                    String subject = "Thank you for registering with HireSphere";
+                    String message = "You are succesfully registered with HireSphere with your email " + this.getEmail()
+                            + " and password " + this.getPassword() + ". You are just few step away to get hired. Best wishes from us for your future career.";
+
+                    MailSender.sendEmailToRegisterUser(toEmail, subject, message);
+                    result = "SUCCESS";
+                } else {
+                    System.out.println("returning Failure from doSignup method");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -192,5 +198,12 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         return result;
     }
+
+//    public void doCheckEmail() {
+//        boolean isUserExist = UserService.userExist(this.email);
+//        if (isUserExist) {
+//            System.out.println("isUserExist " + isUserExist);
+//        }
+//    }
 
 }

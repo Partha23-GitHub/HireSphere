@@ -67,22 +67,6 @@
                     </div>
                 </div>
 
-                <div class="line"></div>
-
-                <div class="media-options">
-                    <a href="#" class="field facebook">
-                        <i class='bx bxl-facebook facebook-icon'></i>
-                        <span>Login with Facebook</span>
-                    </a>
-                </div>
-
-                <div  class=" media-options" data-onsuccess="onSignIn">
-                    <a href="#" class="field facebook">
-                        <img src="assets/google.png" alt="" class="google-img">
-                        <span>Login with Google</span>
-                    </a>
-                </div>
-
             </div>
 
             <!-- Signup Form -->
@@ -102,12 +86,12 @@
                         <div class="field input-field">
                             <div style="background-color: white !important; height: 50px !important; border-radius: 6px !important;">
                                 <div style="display: flex; transform: translate(20px,15px);">
-                                <label style="display: flex;justify-content: center;" class="input" for="role">Choose a Role:&nbsp;&nbsp;&nbsp;</label>
-                                 
-                            <select name="role" id="role">
-                                <option value="hr">HR</option>
-                                <option value="hrmanager">HR Manager</option>
-                            </select>
+                                    <label style="display: flex;justify-content: center;" class="input" for="role">Choose a Role:&nbsp;&nbsp;&nbsp;</label>
+
+                                    <select name="role" id="role">
+                                        <option value="hr">HR</option>
+                                        <option value="hrmanager">HR Manager</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +105,7 @@
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
                         <p id="password-error" style="text-align: center; color: red;"></p>
- 
+
                         <div class="field button-field">
                             <button type="submit" onclick="passwordMatch()">Signup</button>
                         </div>
@@ -132,24 +116,6 @@
                     </div>
                 </div>
 
-                <div class="line"></div>
-
-                <div class="media-options">
-                    <a href="#" class="field facebook">
-                        <i class='bx bxl-facebook facebook-icon'></i>
-                        <span>Login with Facebook</span>
-                    </a>
-                </div>
-
-                <div class="media-options" >
-                    <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
-                    <a href="#" class="field facebook">
-                        <img src="assets/google.png" alt="" class="google-img">
-                        <span>Login with Google</span>
-                    </a>
-                </div>
-
-
             </div>
         </section>
 
@@ -157,29 +123,20 @@
 
 
         <script src="js/loginscript.js"></script>
-       
+
 
         <script >
-            const passwordInput = document.getElementById('password1');
-            const confirmPasswordInput = document.getElementById('password2');
-            const passwordError = document.getElementById('password-error');
+                                const passwordInput = document.getElementById('password1');
+                                const confirmPasswordInput = document.getElementById('password2');
+                                const passwordError = document.getElementById('password-error');
 
-            confirmPasswordInput.addEventListener('input', () => {
-                if (confirmPasswordInput.value !== passwordInput.value) {
-                    passwordError.innerText = "Passwords do not match";
-                } else {
-                    passwordError.innerText = "";
-                }
-            });
-
-            function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();
-                alert(profile.getName());
-                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            }
+                                confirmPasswordInput.addEventListener('input', () => {
+                                    if (confirmPasswordInput.value !== passwordInput.value) {
+                                        passwordError.innerText = "Passwords do not match";
+                                    } else {
+                                        passwordError.innerText = "";
+                                    }
+                                });
         </script>
     </body>
 </html>

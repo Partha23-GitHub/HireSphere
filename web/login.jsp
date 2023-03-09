@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <!-- Coding by CodingLab | www.codinglabweb.com-->
 <html lang="en">
@@ -144,9 +145,10 @@
                         </div>
                         <div class="field input-field">
 
-                            <input type="email"  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email" class="input" name="email" required>
+                            <input type="email" onchange="checkEmail('useremail')" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email" class="input" name="email" id="useremail" required>
                         </div>
-
+                         
+                        
                         <div class="field input-field">
                             <input type="password" placeholder="Create password" class="password" name="password" id="password1" required>
                         </div>
@@ -222,5 +224,17 @@
             });
 
         </script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+                        function checkEmail(selectedId) {
+                            //alert(selectedId);
+                            $.ajax({
+                                url: 'CheckEmail',
+                                data: {
+                                    [email]: $("#" + selectedId).val()
+                                }
+                            });
+                        }
+    </script>
     </body>
 </html>
