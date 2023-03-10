@@ -256,12 +256,7 @@ public class HrService {
             Logger log = Logger.getLogger(HrService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
        
-       } catch (SQLException ex) {
-            //Logger log =  Logger.getLogger(HRService.class.getName());
-            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            ex.printStackTrace();
-            System.out.println("Failure From Service Class Update Method");
-        }
+       }
         return totalApplication;
     }
 
@@ -290,12 +285,7 @@ public class HrService {
             Logger log = Logger.getLogger(HrService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
          
-        } catch (SQLException ex) {
-            //Logger log =  Logger.getLogger(HRService.class.getName());
-            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            ex.printStackTrace();
-            System.out.println("Failure From Service Class Update Method");
-        }
+        } 
         return totalShortlisted;
     }
 
@@ -357,11 +347,6 @@ public class HrService {
             Logger log = Logger.getLogger(HrService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
 
-        } catch (SQLException ex) {
-            //Logger log =  Logger.getLogger(HRService.class.getName());
-            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            ex.printStackTrace();
-            System.out.println("Failure From Service Class Update Method");
         }
         return totalPending;
     }
