@@ -18,6 +18,8 @@ import java.util.Calendar;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Base64;
 import org.apache.log4j.Logger;
@@ -61,9 +63,14 @@ public class JobDetailsService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;
@@ -85,7 +92,14 @@ public class JobDetailsService {
             result = true;
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;
@@ -107,7 +121,14 @@ public class JobDetailsService {
             result = true;
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;
@@ -148,7 +169,13 @@ public class JobDetailsService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return jobList;
@@ -199,9 +226,15 @@ public class JobDetailsService {
                 jobdetailsList.add(job);
             }
 
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return jobdetailsList;
@@ -244,7 +277,13 @@ public class JobDetailsService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return jobdetailsList;
@@ -282,8 +321,15 @@ public class JobDetailsService {
                     jobdetails.setImageData(imageString);
                 }
             }
-        } catch (SQLException ex) {
-            //  logger.error(ex.getMessage() + LocalDateTime.now());
+        }catch (SQLException ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return jobdetails;
     }
@@ -346,7 +392,14 @@ public class JobDetailsService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return result;
 

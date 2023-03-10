@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
+import org.apache.log4j.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -206,7 +207,7 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
             sessionMap.put("SuccessMsg", successMsg);
 
         } else {
-            //  Logger log =  Logger.getLogger(HtmlLayoutLog.class.getName());
+//              Logger log =  Logger.getLogger(HtmlLayoutLog.class.getName());
             System.out.println("Update is incomplete" + "@" + LocalDateTime.now());
 
         }

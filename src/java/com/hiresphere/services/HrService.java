@@ -13,7 +13,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -40,8 +44,15 @@ public class HrService {
                 hr.setCompanyName(rs.getString("companyName"));
 
             }
-        } catch (SQLException ex) {
-            //    logger.error(ex.getMessage() + LocalDateTime.now());
+        }catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return hr;
     }
@@ -106,7 +117,14 @@ public class HrService {
             }
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         System.out.println(jobList.size());
         return jobList;
@@ -126,7 +144,14 @@ public class HrService {
             }
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         int id = hr.getHrId();
         return id;
@@ -161,9 +186,14 @@ public class HrService {
             }
 
         } catch (SQLException ex) {
-//Logger log =  Logger.getLogger(HRService.class.getName());
-//            log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            System.out.println("Failure From Service Class Update Method");
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return result;
     }
@@ -185,6 +215,14 @@ public class HrService {
             }
 
         } catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+
             //Logger log =  Logger.getLogger(HRService.class.getName());
             //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
@@ -209,8 +247,16 @@ public class HrService {
             while (rs.next()) {
                 totalApplication = rs.getInt(1);
             }
-
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+       
+       } catch (SQLException ex) {
             //Logger log =  Logger.getLogger(HRService.class.getName());
             //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
@@ -235,6 +281,15 @@ public class HrService {
                 totalShortlisted = rs.getInt(1);
             }
 
+        }catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         } catch (SQLException ex) {
             //Logger log =  Logger.getLogger(HRService.class.getName());
             //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
@@ -261,6 +316,14 @@ public class HrService {
             }
 
         } catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
             //Logger log =  Logger.getLogger(HRService.class.getName());
             //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
@@ -284,6 +347,15 @@ public class HrService {
             while (rs.next()) {
                 totalPending = rs.getInt(1);
             }
+
+        }  catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
 
         } catch (SQLException ex) {
             //Logger log =  Logger.getLogger(HRService.class.getName());

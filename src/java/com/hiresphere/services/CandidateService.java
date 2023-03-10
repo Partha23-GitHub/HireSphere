@@ -12,6 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -38,7 +42,14 @@ public class CandidateService {
                 candidate.setResumePath(rs.getString("resume"));
             }
         } catch (SQLException ex) {
-            //    logger.error(ex.getMessage() + LocalDateTime.now());
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return candidate;
     }
@@ -55,7 +66,14 @@ public class CandidateService {
                 candidate.setResumePath(rs.getString("resume"));
             }
         } catch (SQLException ex) {
-            //    logger.error(ex.getMessage() + LocalDateTime.now());
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return candidate;
     }
@@ -90,9 +108,14 @@ public class CandidateService {
             }
 
         } catch (SQLException ex) {
-//Logger log =  Logger.getLogger(CandidateService.class.getName());
-//            log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            System.out.println("Failure From Service Class Update Method");
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return result;
     }
@@ -115,9 +138,14 @@ public class CandidateService {
             }
 
         } catch (SQLException ex) {
-
-            ex.printStackTrace();
-
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;
