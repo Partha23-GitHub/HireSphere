@@ -129,4 +129,30 @@ public class HrManagerService {
         return result;
     }
 
+    public static boolean doRegisterHrManager(int userId) {
+        boolean result = false;
+        Connection con = JDBCConnectionManager.getConnection();
+
+        String sql = "INSERT INTO hrmanager(userId) VALUES(?)";
+
+        try {
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, userId);
+
+            int rs = preparedStatement.executeUpdate();
+
+            if (rs != 0) {
+                result = true;
+            }
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return result;
+    }
+
 }

@@ -91,7 +91,7 @@
                 <div class="form-content">
                     <a href="landingpage.jsp"><img id="closing-logo" src="assets/close-icon.png" alt="alt"/></a>
                     <header>HireSphere</header>
-                    <form action="Signup" method="post">
+                    <form action="SignupForCompany" method="post">
                         <div class="field input-field">
                             <input type="text" placeholder="Name" class="input" name="name" required>
                         </div>
@@ -104,9 +104,9 @@
                                 <div style="display: flex; transform: translate(20px,15px);">
                                 <label style="display: flex;justify-content: center;" class="input" for="role">Choose a Role:&nbsp;&nbsp;&nbsp;</label>
                                  
-                            <select name="role" id="role">
-                                <option value="hr">HR</option>
-                                <option value="hrmanager">HR Manager</option>
+                            <select name="roleId" id="role">
+                                <option value="2">HR</option>
+                                <option value="3">HR Manager</option>
                             </select>
                                 </div>
                             </div>

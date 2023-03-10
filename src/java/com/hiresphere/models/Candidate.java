@@ -26,7 +26,7 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  * @author Jayita
  */
-public class Candidate extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
+public class Candidate extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
     public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
@@ -81,8 +81,7 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     public void setResumePath(String resumePath) {
         this.resumePath = resumePath;
     }
-    
-    
+
     public String getResumeFileName() {
         return resumeFileName;
     }
@@ -106,7 +105,6 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     public void setEmail(String email) {
         this.email = email;
     }
-    
 
     public File getResume() {
         return resume;
@@ -250,7 +248,7 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
         FileUtils.copyFile(resume, destFile);
         System.out.println(relativePath);
         System.out.println(candidateId);
-         boolean success = CandidateService.updateCandidateProfile(this, candidateId, relativePath);
+        boolean success = CandidateService.updateCandidateProfile(this, candidateId, relativePath);
 
         if (success) {
             //  Candidate candidate= CandidateService.getAllEmployees();

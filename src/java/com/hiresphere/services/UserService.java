@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
  * @author user
  */
 public class UserService {
+
     public static UserService userService = null;
 
     public static UserService getInstance() {
@@ -29,7 +30,6 @@ public class UserService {
             return userService;
         }
     }
-   
 
     public static boolean doSignup(User user) {
         boolean result = false;
@@ -37,7 +37,7 @@ public class UserService {
 
         String sql = "INSERT INTO users(email,password,roleId,name)"
                 + "VALUES(? ,? ,? ,?);";
-        
+
         try {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -65,19 +65,48 @@ public class UserService {
         return result;
     }
 
+    public static boolean doSignupForCompany(User user) {
+        boolean result = false;
+        Connection con = JDBCConnectionManager.getConnection();
+
+        String sql = "INSERT INTO users(email,password,roleId,name)"
+                + "VALUES(? ,? ,? ,?);";
+
+        try {
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setInt(3, user.getRoleId());
+            preparedStatement.setString(4, user.getName());
+
+            int rs = preparedStatement.executeUpdate();
+
+            if (rs != 0) {
+                result = true;
+            }
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return result;
+    }
+
     public static boolean userExist(String email) {
-        String sql="SELECT * from users where email=?";
-         try {
+        String sql = "SELECT * from users where email=?";
+        try {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-             ps.setString(1, email);
+            ps.setString(1, email);
 
-            
-            System.out.println("LoginService :: "+ps);
-            
+            System.out.println("LoginService :: " + ps);
+
             ResultSet rs = ps.executeQuery();
-              if (rs.next()) {
-               
+            if (rs.next()) {
+
                 return true;
             }
 
@@ -89,32 +118,31 @@ public class UserService {
          catch (Exception ex) {
             Logger log = Logger.getLogger(UserService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+
         }
 
         return false;
-        
-        
-        
+
     }
 
-    public boolean doLogin(User user)
-    {
+    public boolean doLogin(User user) {
         boolean success = false;
-        
+
         String sql = "Select * from users where email=? and password=?";
-        
+
         try {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
-            
-            System.out.println("LoginService :: "+ps);
-            
+
+            System.out.println("LoginService :: " + ps);
+
             ResultSet rs = ps.executeQuery();
-              if (rs.next()) {
-               
+            if (rs.next()) {
+
                 success = true;
             }
 
@@ -127,11 +155,13 @@ public class UserService {
             Logger log = Logger.getLogger(UserService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
          
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+
         }
 
         return success;
     }
-    
+
     public static User getUser(String email) {
         User user = new User();
         Connection con = JDBCConnectionManager.getConnection();
@@ -159,9 +189,9 @@ public class UserService {
          catch (Exception ex) {
             Logger log = Logger.getLogger(UserService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+        
         }
-        System.out.println("UserId: "+user.getUserId());
+        System.out.println("UserId: " + user.getUserId());
         return user;
     }
 }
