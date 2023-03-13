@@ -18,6 +18,8 @@ import java.util.Calendar;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Base64;
 import org.apache.log4j.Logger;
@@ -28,8 +30,17 @@ import org.apache.log4j.Logger;
  */
 public class JobDetailsService {
 
+    /**
+     *
+     */
     public static JobDetailsService jobDetailsService = null;
 
+    /**
+     *
+     * @param job
+     * @return
+     * @throws FileNotFoundException
+     */
     public static boolean updateJobDetails(JobDetails job) throws FileNotFoundException {
         System.out.println("jod id in update job details:" + job.getJobId());
         boolean result = false;
@@ -61,14 +72,24 @@ public class JobDetailsService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;
     }
 
+    /**
+     *
+     * @param jobId
+     * @return
+     */
     public static boolean doAcceptByHrManager(int jobId) {
         boolean result = false;
 
@@ -85,12 +106,24 @@ public class JobDetailsService {
             result = true;
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;
     }
 
+    /**
+     *
+     * @param jobId
+     * @return
+     */
     public static boolean doRejectByHrManager(int jobId) {
         boolean result = false;
 
@@ -107,12 +140,23 @@ public class JobDetailsService {
             result = true;
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList doGetRecentJobs() {
         ArrayList jobList = new ArrayList();
         String sql = "SELECT * FROM jobdetails \n"
@@ -148,7 +192,13 @@ public class JobDetailsService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return jobList;
@@ -158,6 +208,10 @@ public class JobDetailsService {
     private JobDetailsService() {
     }
 
+    /**
+     *
+     * @return
+     */
     public static JobDetailsService getInstance() {
         if (jobDetailsService == null) {
             return new JobDetailsService();
@@ -166,6 +220,11 @@ public class JobDetailsService {
         }
     }
 
+    /**
+     *
+     * @param jobdetails
+     * @return
+     */
     public static ArrayList doJobSearch(JobDetails jobdetails) {
         ArrayList jobdetailsList = new ArrayList();
 
@@ -199,14 +258,25 @@ public class JobDetailsService {
                 jobdetailsList.add(job);
             }
 
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return jobdetailsList;
     }
 
+    /**
+     *
+     * @param jobdetails
+     * @return
+     */
     public static ArrayList doJobSearchByKeyword(JobDetails jobdetails) {
         ArrayList jobdetailsList = new ArrayList();
 
@@ -244,12 +314,23 @@ public class JobDetailsService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error("ERROR:" + ex.getMessage() + "@" + LocalDateTime.now());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return jobdetailsList;
     }
 
+    /**
+     *
+     * @param jobId
+     * @return
+     */
     public static JobDetails viewJobDetailsById(int jobId) {
         JobDetails jobdetails = new JobDetails();
         System.out.println(jobId);
@@ -282,12 +363,25 @@ public class JobDetailsService {
                     jobdetails.setImageData(imageString);
                 }
             }
-        } catch (SQLException ex) {
-            //  logger.error(ex.getMessage() + LocalDateTime.now());
+        }catch (SQLException ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return jobdetails;
     }
 
+    /**
+     *
+     * @param job
+     * @return
+     * @throws FileNotFoundException
+     */
     public boolean postAjob(JobDetails job) throws FileNotFoundException {
         Date d = Calendar.getInstance().getTime();
         DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
@@ -346,7 +440,19 @@ public class JobDetailsService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (FileNotFoundException ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return result;
 

@@ -9,7 +9,6 @@ import com.hiresphere.services.JobApplicationService;
 import com.hiresphere.services.JobDetailsService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,37 +28,69 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
 
+    /**
+     *
+     * @param application
+     */
     @Override
     public void setApplication(Map<String, Object> application) {
         setMap((ApplicationMap) application);
     }
 
+    /**
+     *
+     * @param session
+     */
     @Override
     public void setSession(Map<String, Object> session) {
         setSessionMap((SessionMap<String, Object>) (SessionMap) session);
     }
 
+    /**
+     *
+     * @return
+     */
     public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
     }
 
+    /**
+     *
+     * @param sessionMap
+     */
     public void setSessionMap(SessionMap<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
     }
 
+    /**
+     *
+     * @return
+     */
     public ApplicationMap getMap() {
         return map;
     }
 
+    /**
+     *
+     * @param map
+     */
     public void setMap(ApplicationMap map) {
         this.map = map;
     }
     private String work;
 
+    /**
+     *
+     * @return
+     */
     public String getWork() {
         return work;
     }
 
+    /**
+     *
+     * @param work
+     */
     public void setWork(String work) {
         this.work = work;
     }
@@ -68,18 +99,34 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     private int hrId;
     private int jobId;
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
@@ -95,106 +142,210 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     private String password;
     private String resumePath;
 
+    /**
+     *
+     * @return
+     */
     public String getResumePath() {
         return resumePath;
     }
 
+    /**
+     *
+     * @param resumePath
+     */
     public void setResumePath(String resumePath) {
         this.resumePath = resumePath;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getCandidateName() {
         return candidateName;
     }
 
+    /**
+     *
+     * @param candidateName
+     */
     public void setCandidateName(String candidateName) {
         this.candidateName = candidateName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCandidatePhoneNumber() {
         return candidatePhoneNumber;
     }
 
+    /**
+     *
+     * @param candidatePhoneNumber
+     */
     public void setCandidatePhoneNumber(String candidatePhoneNumber) {
         this.candidatePhoneNumber = candidatePhoneNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCandidateGender() {
         return candidateGender;
     }
 
+    /**
+     *
+     * @param candidateGender
+     */
     public void setCandidateGender(String candidateGender) {
         this.candidateGender = candidateGender;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getApplicationMessage() {
         return applicationMessage;
     }
 
+    /**
+     *
+     * @param applicationMessage
+     */
     public void setApplicationMessage(String applicationMessage) {
         this.applicationMessage = applicationMessage;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompanyName() {
         return companyName;
     }
 
+    /**
+     *
+     * @param companyName
+     */
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getJobTitle() {
         return jobTitle;
     }
 
+    /**
+     *
+     * @param jobTitle
+     */
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getJobType() {
         return jobType;
     }
 
+    /**
+     *
+     * @param jobType
+     */
     public void setJobType(String jobType) {
         this.jobType = jobType;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getApplicationId() {
         return applicationId;
     }
 
+    /**
+     *
+     * @param applicationId
+     */
     public void setApplicationId(int applicationId) {
         this.applicationId = applicationId;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCandidateId() {
         return candidateId;
     }
 
+    /**
+     *
+     * @param candidateId
+     */
     public void setCandidateId(int candidateId) {
         this.candidateId = candidateId;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHrId() {
         return hrId;
     }
 
+    /**
+     *
+     * @param hrId
+     */
     public void setHrId(int hrId) {
         this.hrId = hrId;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getJobId() {
         return jobId;
     }
 
+    /**
+     *
+     * @param jobId
+     */
     public void setJobId(int jobId) {
         this.jobId = jobId;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getApplicationStatus() {
         return applicationStatus;
     }
 
+    /**
+     *
+     * @param applicationStatus
+     */
     public void setApplicationStatus(int applicationStatus) {
         this.applicationStatus = applicationStatus;
     }
@@ -205,6 +356,12 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
 //
 //        return result;
 //    }
+
+    /**
+     *@return
+     * This method is responsible for getting all the applicant for a particular job. it receive the job id from URL ans called the responsible 
+     * service method to find all the applicant from jobApplication table
+     */
     public String viewAllApplicantByJobId() {
         String result = "FAILURE";
 
@@ -220,6 +377,10 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         return result;
     }
 
+    /**
+     *@return 
+     * This is mainly responsible for Shortlisted the candidate. When Hr click on the Shortlist button this method is called and update the application status
+     */
     public String doApproveApplication() {
         String result = "FAILURE";
         boolean update = JobApplicationService.updateApplicationStatus(this.applicationId);
@@ -233,6 +394,10 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         return result;
     }
 
+    /**
+     *@return
+     * This is mainly responsible for Reject the candidate. When Hr click on the Reject button this method is called and update the application status
+     */
     public String doRejectApplication() {
         String result = "FAILURE";
         boolean update = JobApplicationService.rejectApplication(this.applicationId);
@@ -247,11 +412,18 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         return result;
     }
 
+    /**
+     *
+     * @return
+     * @throws IOException
+     * This applyJob is called when a candidate apply for a job . It takes necessary data from URL and insert candidate data into jobApplication table.
+     * after successfully applied it call the MailSender and send the mail to candidate this few job details
+     */
     public String applyJob() throws IOException {
         String result = "FAILURE";
 
         int Id = HrService.getInstance().getHrId(this.hrId);
-        JobDetails jobDetails = JobDetailsService.getInstance().viewJobDetailsById(this.jobId);
+        JobDetails jobDetails = JobDetailsService.viewJobDetailsById(this.jobId);
         JobApplication jobApplication = new JobApplication();
         jobApplication.setJobId(this.jobId);
         jobApplication.setCandidateId(this.candidateId);

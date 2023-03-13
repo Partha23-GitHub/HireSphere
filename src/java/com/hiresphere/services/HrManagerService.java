@@ -11,7 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -19,6 +23,11 @@ import java.util.ArrayList;
  */
 public class HrManagerService {
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public static ArrayList getAlljobsByHrManager(int value) {
 
         ArrayList jobList = new ArrayList();
@@ -39,14 +48,26 @@ public class HrManagerService {
                 jobList.add(jobdetails);
             }
 
-        } catch (SQLException ex) {
-
+        }  catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         System.out.println(jobList.size());
         return jobList;
 
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public static HrManager getHrManagerByUserId(int userId) {
         HrManager hrManager = new HrManager();
         String sql = "SELECT * from hrmanager h, companies c  where h.companyId=c.companyId having userId=?";
@@ -66,11 +87,24 @@ public class HrManagerService {
 
             }
         } catch (SQLException ex) {
-            //    logger.error(ex.getMessage() + LocalDateTime.now());
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return hrManager;
     }
 
+    /**
+     *
+     * @param hrManager
+     * @param hrManagerId
+     * @return
+     */
     public static boolean updateHRManagerProfile(HrManager hrManager, int hrManagerId) {
         boolean result = false;
         try {
@@ -98,11 +132,47 @@ public class HrManagerService {
                 result = true;
             }
 
-        } catch (SQLException ex) {
-//Logger log =  Logger.getLogger(HRService.class.getName());
-//            log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            System.out.println("Failure From Service Class Update Method");
+        }  catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
         }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    public static boolean doRegisterHrManager(int userId) {
+        boolean result = false;
+        Connection con = JDBCConnectionManager.getConnection();
+
+        String sql = "INSERT INTO hrmanager(userId) VALUES(?)";
+
+        try {
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, userId);
+
+            int rs = preparedStatement.executeUpdate();
+
+            if (rs != 0) {
+                result = true;
+            }
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+
+        }
+
         return result;
     }
 

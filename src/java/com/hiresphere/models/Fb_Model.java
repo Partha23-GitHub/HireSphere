@@ -20,6 +20,12 @@ import org.json.JSONObject;
  */
 public class Fb_Model {
     
+    /**
+     *
+     * @param access_token
+     * @return
+     * @throws Exception
+     */
     public FbProfile call_me(String access_token) throws Exception {
 	     String url = "https://graph.facebook.com/v2.12/me?fields=id,name,picture,email&access_token="+access_token;
 	     URL obj = new URL(url);

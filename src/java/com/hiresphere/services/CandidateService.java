@@ -12,6 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -19,6 +23,12 @@ import java.sql.SQLException;
  */
 public class CandidateService {
 
+    /**
+     *
+     * @param userId
+     * @return
+     * it take the request and by the userId it fetch the details of that particular candidate and return the candidate details to the calling method
+     */
     public static Candidate getCandidateByUserId(int userId) {
         Candidate candidate = new Candidate();
         String sql = "SELECT * FROM candidates where userId=?";
@@ -38,11 +48,24 @@ public class CandidateService {
                 candidate.setResumePath(rs.getString("resume"));
             }
         } catch (SQLException ex) {
-            //    logger.error(ex.getMessage() + LocalDateTime.now());
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return candidate;
     }
     
+    /**
+     *
+     * @param candidateId
+     * @return
+     * This method is also responsible for fetching a particular candidate details from database by the given candidatId and return the details to the calling method.
+     */
     public static Candidate getCandidateByCandidateId(int candidateId) {
         Candidate candidate = new Candidate();
         String sql = "SELECT resume FROM candidates where candidateId=?";
@@ -55,11 +78,26 @@ public class CandidateService {
                 candidate.setResumePath(rs.getString("resume"));
             }
         } catch (SQLException ex) {
-            //    logger.error(ex.getMessage() + LocalDateTime.now());
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return candidate;
     }
 
+    /**
+     *
+     * @param candidate
+     * @param candidateId
+     * @param uploadPath
+     * @return
+     * This method is mainly responsible for updating the profile of candidate. It takes parameters from the calling methods and store it on the database
+     */
     public static boolean updateCandidateProfile(Candidate candidate,int candidateId,String uploadPath) {
         boolean result = false;
         try {
@@ -90,13 +128,24 @@ public class CandidateService {
             }
 
         } catch (SQLException ex) {
-//Logger log =  Logger.getLogger(CandidateService.class.getName());
-//            log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            System.out.println("Failure From Service Class Update Method");
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return result;
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     * When a candidate SignUp this method will called. It just inserted the userId to the candidate table in db. Others details will be filled later by the candidate at the time of update profile
+     */
     public static boolean doRegisterCandidate(int userId) {
         boolean result = false;
         Connection con = JDBCConnectionManager.getConnection();
@@ -115,9 +164,14 @@ public class CandidateService {
             }
 
         } catch (SQLException ex) {
-
-            ex.printStackTrace();
-
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;

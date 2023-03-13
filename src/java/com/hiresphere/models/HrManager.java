@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
+import org.apache.log4j.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -25,10 +26,18 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
 
     private int hrManagerId, userId, companyId, value;
 
+    /**
+     *
+     * @return
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setValue(int value) {
         this.value = value;
     }
@@ -38,41 +47,80 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
 
+    /**
+     *
+     * @param application
+     */
     @Override
     public void setApplication(Map<String, Object> application) {
         setMap((ApplicationMap) application);
     }
 
+    /**
+     *
+     * @param session
+     */
     @Override
     public void setSession(Map<String, Object> session) {
         setSessionMap((SessionMap<String, Object>) (SessionMap) session);
     }
 
+    /**
+     *
+     * @return
+     */
     public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
     }
 
+    /**
+     *
+     * @param sessionMap
+     */
     public void setSessionMap(SessionMap<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
     }
 
+    /**
+     *
+     * @return
+     */
     public ApplicationMap getMap() {
         return map;
     }
 
+    /**
+     *
+     * @param map
+     */
     public void setMap(ApplicationMap map) {
         this.map = map;
     }
     private String work;
 
+    /**
+     *
+     * @return
+     */
     public String getWork() {
         return work;
     }
 
+    /**
+     *
+     * @param work
+     */
     public void setWork(String work) {
         this.work = work;
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     * This method will be called when HRManager clicks on their profile. it will take the user id from session the get all the necessary data
+     * from database and send to view through session
+     */
     public String loadMenuContent() throws Exception {
         String result = "FAILURE";
         switch (this.getWork()) {
@@ -88,12 +136,16 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHrManagerId() {
         return hrManagerId;
     }
 
     /**
-     * @return the hrId
+     * @param hrManagerId
      */
     public void setHrManagerId(int hrManagerId) {
         this.hrManagerId = hrManagerId;
@@ -162,18 +214,36 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
         return hrManagerName;
     }
 
+    /**
+     *
+     * @param hrManagerName
+     */
     public void setHrManagerName(String hrManagerName) {
         this.hrManagerName = hrManagerName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGender() {
         return gender;
     }
 
+    /**
+     *
+     * @param gender
+     */
     public void setGender(String gender) {
         this.gender = gender;
     }
 
+    /**
+     *
+     * @return
+     * This method will be called when HR clicks on their profile. it will take the user id from session the get all the necessary data
+     * from database and send to view through session
+     */
     public String visitHRManagerProfile() {
         String result = "FAILURE";
         System.out.println(this.userId);
@@ -193,6 +263,12 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
 
     }
 
+    /**
+     *
+     * @return
+     * this method is called when HR try to update their profile. It gathered all the data then called the updateHRProfile
+     * and insert fields into HR database.
+     */
     public String updateHRManagerProfile() {
         String result = "FAILURE";
         System.out.println("HR Manager Update Start");
@@ -206,7 +282,7 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
             sessionMap.put("SuccessMsg", successMsg);
 
         } else {
-            //  Logger log =  Logger.getLogger(HtmlLayoutLog.class.getName());
+//              Logger log =  Logger.getLogger(HtmlLayoutLog.class.getName());
             System.out.println("Update is incomplete" + "@" + LocalDateTime.now());
 
         }

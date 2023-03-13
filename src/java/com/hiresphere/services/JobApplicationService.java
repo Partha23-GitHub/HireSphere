@@ -15,7 +15,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -23,20 +27,19 @@ import java.util.ArrayList;
  */
 public class JobApplicationService {
 
+    /**
+     *
+     * @param candidateId
+     * @return
+     * @throws IOException
+     */
     public static ArrayList doGetJobApplicationByCandidate(int candidateId) throws IOException {
         ArrayList jobApplicationList = new ArrayList();
         Connection con = JDBCConnectionManager.getConnection();
         String sql = " SELECT applicationId, candidates.candidateId,candidates.resume, jobdetails.jobId,companyName, jobTitle, jobType,applicationMessage\n"
                 + "                 FROM jobapplication inner join candidates on jobapplication.candidateId=candidates.candidateId inner join jobdetails on \n"
                 + "                 jobapplication.jobId=jobdetails.jobId inner join jobapplicationstatuses on jobapplication.applicationStatus=jobapplicationstatuses.applicationStatus where candidates.candidateId=?;";
-//"SELECT ja.applicationId, ja.candidateId, ja.jobId,companyName, jobTitle, jobType,ja.applicationStatus,applicationMessage\n"
-//                + "                 FROM hiresphere.jobapplication ja, jobdetails jd, hr h, candidates c,jobapplicationstatuses js\n"
-//                + "                 WHERE ja.candidateId = c.candidateId\n"
-//                + "                 AND ja.hrId = h.hrId\n"
-//                + "                 AND ja.jobId = jd.jobId\n"
-//                + "                 AND ja.applicationStatus=js.applicationStatus\n"
-//                + "                 AND c.candidateId = ?";
-        try {
+          try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, candidateId);
             System.out.println(preparedStatement);
@@ -57,13 +60,25 @@ public class JobApplicationService {
                 jobApplicationList.add(jobApplication);
 
             }
-        } catch (SQLException ex) {
-
+        }catch (SQLException ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return jobApplicationList;
     }
 
+    /**
+     *
+     * @param hr
+     * @return
+     */
     public static ArrayList doGetApplicationByHrId(HR hr) {
         ArrayList applicantList = new ArrayList();
         String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber,ca.resume,ja.jobId\n"
@@ -88,13 +103,25 @@ public class JobApplicationService {
             }
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return applicantList;
 
     }
 
+    /**
+     *
+     * @param aThis
+     * @return
+     */
     public static ArrayList getAllApplicant(JobApplication aThis) {
         ArrayList applicantList = new ArrayList();
         String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber,ca.resume\n"
@@ -119,12 +146,24 @@ public class JobApplicationService {
             }
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return applicantList;
     }
 
+    /**
+     *
+     * @param jobId
+     * @return
+     */
     public static ArrayList getApplicantByJobId(int jobId) {
         ArrayList applicantList = new ArrayList();
         String sql = "SELECT ca.candidateId,u.name,u.email,ca.gender,ca.phoneNumber,ca.resume,ja.applicationId ,ja.applicationStatus,ja.jobId\n"
@@ -153,12 +192,24 @@ public class JobApplicationService {
             }
 
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return applicantList;
     }
 
+    /**
+     *
+     * @param applicationId
+     * @return
+     */
     public static boolean updateApplicationStatus(int applicationId) {
         boolean success = false;
         String sql = "UPDATE hiresphere.jobapplication\n"
@@ -177,12 +228,24 @@ public class JobApplicationService {
             if (execute != 0) {
                 success = true;
             }
-        } catch (SQLException ex) {
-
+        }catch (SQLException ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return success;
     }
 
+    /**
+     *
+     * @param jobApplication
+     * @return
+     */
     public static boolean doApplyJob(JobApplication jobApplication) {
         boolean result = false;
 
@@ -203,12 +266,24 @@ public class JobApplicationService {
 
             }
         } catch (SQLException ex) {
-
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
 
         return result;
     }
 
+    /**
+     *
+     * @param applicationId
+     * @return
+     */
     public static boolean rejectApplication(int applicationId) {
         boolean success = false;
         String sql = "UPDATE hiresphere.jobapplication\n"
@@ -227,8 +302,15 @@ public class JobApplicationService {
             if (execute != 0) {
                 success = true;
             }
-        } catch (SQLException ex) {
-
+        }catch (SQLException ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (Exception ex) {
+            Logger log = Logger.getLogger(JobApplicationService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
         }
         return success;
     }

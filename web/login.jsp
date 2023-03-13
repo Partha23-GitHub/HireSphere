@@ -177,11 +177,11 @@
                 </div>
 
                 <div class="media-options" >
-                    <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
-                    <a href="#" class="field facebook">
+                    <div class="g-signin2" data-onsuccess="onSignIn">Google</div>
+<!--                    <a href="#" class="field facebook">
                         <img src="assets/google.png" alt="" class="google-img">
                         <span>Login with Google</span>
-                    </a>
+                    </a>-->
                 </div>
 
 
@@ -194,6 +194,7 @@
         <script src="js/loginscript.js"></script>
         <script>
                                 function onSignIn(googleUser) {
+                                    alert("In onSignIn");
 //                                    var profile = googleUser.getBasicProfile();
 //                                    alert(profile.getName());
 //                                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.

@@ -5,6 +5,7 @@
 package com.hiresphere.models;
 
 import com.hiresphere.services.CandidateService;
+import com.hiresphere.services.HrManagerService;
 import com.hiresphere.services.HrService;
 import com.hiresphere.services.JobDetailsService;
 import com.hiresphere.services.UserService;
@@ -31,18 +32,34 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     private Integer roleId;
     private int userId;
 
+    /**
+     *
+     * @return
+     */
     public int getUserId() {
         return userId;
     }
 
+    /**
+     *
+     * @param userId
+     */
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getRoleId() {
         return roleId;
     }
 
+    /**
+     *
+     * @param roleId
+     */
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
@@ -51,40 +68,78 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
 
+    /**
+     *
+     * @param application
+     */
     @Override
     public void setApplication(Map<String, Object> application) {
         map = (ApplicationMap) application;
     }
 
+    /**
+     *
+     * @param session
+     */
     @Override
     public void setSession(Map<String, Object> session) {
         sessionMap = (SessionMap) session;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return This method is mainly taking care of candidate signUp. It take
+     * all the parameters from signUp form and register the user. After
+     * successfully register it called the MailSender Class to send the mail
+     * from few related details.
+     */
     public String doCandidateSignUp() {
         String result = "FAILURE";
         try {
@@ -110,7 +165,11 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         return result;
     }
 
-    public String doLogin() throws Exception {
+    /**
+     * @return This method is mainly taking care of user Login. It take
+     * all the parameters from login form and Login the user as per their role.
+     */
+    public String doLogin() {
         String result = "FAILURE";
 
         boolean success = UserService.getInstance().doLogin(this);
@@ -153,6 +212,10 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public String fbLogin() {
         String result = "FAILURE";
         try {
@@ -185,6 +248,43 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 } else {
                     System.out.println("returning Failure from doSignup method");
                 }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    /**
+     * @return This method is mainly taking care of Hr & HrManager signUp. It take
+     * all the parameters from signUp form and register the user. After
+     * successfully register it called the MailSender Class to send the mail
+     * from few related details.
+     */
+    public String doCompanySignUp() {
+        String result = "FAILURE";
+        try {
+            boolean success = UserService.doSignupForCompany(this);
+            boolean succes1;
+            User user = UserService.getUser(this.getEmail());
+            if (this.roleId == 2) {
+                succes1 = HrService.doRegisterHr(user.userId);
+            } else {
+                succes1 = HrManagerService.doRegisterHrManager(user.userId);
+            }
+
+            if (success && succes1) {
+                //creating MailSender object and setting up all parameters
+                String toEmail = this.email;
+                String subject = "Thank you for registering with HireSphere";
+                String message = "You are succesfully registered with HireSphere with your email " + this.getEmail()
+                        + " and password " + this.getPassword();
+
+                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
+                result = "SUCCESS";
+            } else {
+                System.out.println("returning Failure from doSignup method");
             }
         } catch (Exception e) {
             e.printStackTrace();

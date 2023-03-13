@@ -138,7 +138,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a
                                     class="nav-link dropdown-toggle"
-                                    href="#"
+                                    href="VisitHRManagerProfile?userId=${User.getUserId()}"
                                     id="userDropdown"
                                     role="button"
                                     data-toggle="dropdown"
@@ -158,7 +158,7 @@
                                     class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown"
                                     >
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="VisitHRManagerProfile?userId=${User.getUserId()}">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
                                     </a>
