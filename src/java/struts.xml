@@ -85,7 +85,7 @@
             <result name="FAILURE">alljobpost.jsp</result>
         </action>
         <action name="ApplyJobByCandidate" class="com.hiresphere.models.JobApplication" method="applyJob">
-            <result name="SUCCESS">allappliedjobs.jsp</result>
+            <result name="SUCCESS">joblist.jsp</result>
             <result name="FAILURE">jobdetails.jsp</result>
         </action>
          <action name="LoadHRManagerMenu" class="com.hiresphere.models.HrManager" method="loadMenuContent">

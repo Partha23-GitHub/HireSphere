@@ -14,6 +14,7 @@
         <!-- CSS here -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/jobdetail.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
 
     <body>
@@ -40,14 +41,14 @@
                                             <div class="mo-mb-2" style="margin-right: 15px;">
                                                 <img
                                                     src="data:image/jpg/jpeg/png;base64,${jobDetails.imageData}"
-                                                    alt=""
-                                                    class="img-fluid mx-auto d-block" style="width:25rem;height: 5rem;"
-                                                    />
-                                            </div>
+                                                alt=""
+                                                class="img-fluid mx-auto d-block" style="width:25rem;height: 5rem;"
+                                                />
                                         </div>
-                                        <div class="job-tittle">
-                                            <a>
-                                                <h4>${jobDetails.getJobTitle()}</h4>
+                                    </div>
+                                    <div class="job-tittle">
+                                        <a>
+                                            <h4>${jobDetails.getJobTitle()}</h4>
                                         </a>
                                         <ul>
                                             <li>${jobDetails.companyName}</li>
@@ -108,7 +109,10 @@
                                     <li>Closes on : <span>${jobDetails.closingDate}</span></li>
                                 </ul>
                                 <div class="apply-btn2">
-                                    <a href="ApplyJobByCandidate?candidateId=${Candidate.getCandidateId()}&jobId=${jobDetails.jobId}&hrId=${jobDetails.userId} & email=${User.email}" class="hover-link primary-button">Apply Now</a>
+
+                                    <button type="button" class=" btn-primary" style="width: 120px; border-radius: 6px;height: 40px; box-shadow:0;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Apply Job
+                                    </button>
                                 </div>
                             </div>
                             <div class="post-details4  mb-50">
@@ -130,5 +134,30 @@
         </main>
         <hr>
         <jsp:include page="footer.jsp"></jsp:include>
+        <!--this is code for modal popup for job apply-->
+            <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure, want to apply for this job ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-secondary" data-bs-dismiss="modal" style="width: 100px; border-radius: 6px;height: 40px; box-shadow:0;">Close</button>
+                            <a href="ApplyJobByCandidate?candidateId=${Candidate.getCandidateId()}&jobId=${jobDetails.jobId}&hrId=${jobDetails.userId} & email=${User.email}">
+                                 <button type="button" class="btn-primary" style="width: 100px; border-radius: 6px;height: 40px; box-shadow:0;">
+                                     Yes
+                                 </button>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--modal end here-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     </body>
 </html>
