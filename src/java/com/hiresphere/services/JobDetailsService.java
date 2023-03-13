@@ -30,8 +30,17 @@ import org.apache.log4j.Logger;
  */
 public class JobDetailsService {
 
+    /**
+     *
+     */
     public static JobDetailsService jobDetailsService = null;
 
+    /**
+     *
+     * @param job
+     * @return
+     * @throws FileNotFoundException
+     */
     public static boolean updateJobDetails(JobDetails job) throws FileNotFoundException {
         System.out.println("jod id in update job details:" + job.getJobId());
         boolean result = false;
@@ -76,6 +85,11 @@ public class JobDetailsService {
         return result;
     }
 
+    /**
+     *
+     * @param jobId
+     * @return
+     */
     public static boolean doAcceptByHrManager(int jobId) {
         boolean result = false;
 
@@ -105,6 +119,11 @@ public class JobDetailsService {
         return result;
     }
 
+    /**
+     *
+     * @param jobId
+     * @return
+     */
     public static boolean doRejectByHrManager(int jobId) {
         boolean result = false;
 
@@ -134,6 +153,10 @@ public class JobDetailsService {
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList doGetRecentJobs() {
         ArrayList jobList = new ArrayList();
         String sql = "SELECT * FROM jobdetails \n"
@@ -185,6 +208,10 @@ public class JobDetailsService {
     private JobDetailsService() {
     }
 
+    /**
+     *
+     * @return
+     */
     public static JobDetailsService getInstance() {
         if (jobDetailsService == null) {
             return new JobDetailsService();
@@ -193,6 +220,11 @@ public class JobDetailsService {
         }
     }
 
+    /**
+     *
+     * @param jobdetails
+     * @return
+     */
     public static ArrayList doJobSearch(JobDetails jobdetails) {
         ArrayList jobdetailsList = new ArrayList();
 
@@ -240,6 +272,11 @@ public class JobDetailsService {
         return jobdetailsList;
     }
 
+    /**
+     *
+     * @param jobdetails
+     * @return
+     */
     public static ArrayList doJobSearchByKeyword(JobDetails jobdetails) {
         ArrayList jobdetailsList = new ArrayList();
 
@@ -289,6 +326,11 @@ public class JobDetailsService {
         return jobdetailsList;
     }
 
+    /**
+     *
+     * @param jobId
+     * @return
+     */
     public static JobDetails viewJobDetailsById(int jobId) {
         JobDetails jobdetails = new JobDetails();
         System.out.println(jobId);
@@ -334,6 +376,12 @@ public class JobDetailsService {
         return jobdetails;
     }
 
+    /**
+     *
+     * @param job
+     * @return
+     * @throws FileNotFoundException
+     */
     public boolean postAjob(JobDetails job) throws FileNotFoundException {
         Date d = Calendar.getInstance().getTime();
         DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
@@ -394,6 +442,11 @@ public class JobDetailsService {
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
+         
+        }
+         catch (FileNotFoundException ex) {
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
          
         }
          catch (Exception ex) {

@@ -10,12 +10,24 @@ import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+/**
+ * @author user
+ * This class is responsible for sending mail to the users.
+ */
 public class MailSender {
 
     static String fromEmail = "manna75partha@gmail.com";
     static String password = "sjhnmentjcxfepuv";
     static String userName = "manna75partha";
 
+    /**
+     *
+     * @param toEmail
+     * @param subject
+     * @param message
+     * This method is basically configure all the SMTP protocols then create the mail session takes input from the view for getting the recipient
+     * address and send the email with the predefined Subject,Message Body etc.
+     */
     public static void sendEmailToRegisterUser(String toEmail, String subject, String message) {
         try {
             Properties props = new Properties();

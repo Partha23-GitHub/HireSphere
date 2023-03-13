@@ -25,8 +25,16 @@ import org.apache.log4j.Logger;
  */
 public class HrService {
 
+    /**
+     *
+     */
     public static HrService hrService = null;
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public static HR getHrByUserId(int userId) {
         HR hr = new HR();
         String sql = "SELECT * from hr h, companies c  where h.companyId=c.companyId having userId=?";
@@ -57,6 +65,11 @@ public class HrService {
         return hr;
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public static boolean doRegisterHr(int userId) {
 
         boolean result = false;
@@ -88,6 +101,10 @@ public class HrService {
     private HrService() {
     }
 
+    /**
+     *
+     * @return
+     */
     public static HrService getInstance() {
         if (hrService == null) {
             return new HrService();
@@ -96,6 +113,11 @@ public class HrService {
         }
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public ArrayList getAllJobPostedByHr(int userId) {
         ArrayList jobList = new ArrayList();
         String sql = "Select * from jobdetails where userId=?";
@@ -130,6 +152,11 @@ public class HrService {
         return jobList;
     }
 
+    /**
+     *
+     * @param Id
+     * @return
+     */
     public int getHrId(int Id) {
         HR hr = new HR();
         String sql = "Select hrId from hr where userId=?";
@@ -157,6 +184,12 @@ public class HrService {
         return id;
     }
 
+    /**
+     *
+     * @param hr
+     * @param hrId
+     * @return
+     */
     public static boolean updateHRProfile(HR hr, int hrId) {
 
         boolean result = false;
@@ -198,6 +231,11 @@ public class HrService {
         return result;
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public int countNumberOfPostedJobs(int userId) {
         int postedJobs = 0;
         try {
@@ -232,6 +270,11 @@ public class HrService {
         return postedJobs;
     }
 
+    /**
+     *
+     * @param hrId
+     * @return
+     */
     public int getTotalApplication(int hrId) {
         int totalApplication = 0;
         try {
@@ -256,15 +299,15 @@ public class HrService {
             Logger log = Logger.getLogger(HrService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
        
-       } catch (SQLException ex) {
-            //Logger log =  Logger.getLogger(HRService.class.getName());
-            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            ex.printStackTrace();
-            System.out.println("Failure From Service Class Update Method");
-        }
+       } 
         return totalApplication;
     }
 
+    /**
+     *
+     * @param hrId
+     * @return
+     */
     public int getTotalShortlisted(int hrId) {
         int totalShortlisted = 0;
         try {
@@ -290,15 +333,15 @@ public class HrService {
             Logger log = Logger.getLogger(HrService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
          
-        } catch (SQLException ex) {
-            //Logger log =  Logger.getLogger(HRService.class.getName());
-            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            ex.printStackTrace();
-            System.out.println("Failure From Service Class Update Method");
         }
         return totalShortlisted;
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public int getTotalPending(int userId) {
         int totalPending = 0;
         try {
@@ -332,6 +375,11 @@ public class HrService {
         return totalPending;
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public int getTotalVerified(int userId) {
         int totalPending = 0;
         try {
@@ -357,11 +405,6 @@ public class HrService {
             Logger log = Logger.getLogger(HrService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
 
-        } catch (SQLException ex) {
-            //Logger log =  Logger.getLogger(HRService.class.getName());
-            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
-            ex.printStackTrace();
-            System.out.println("Failure From Service Class Update Method");
         }
         return totalPending;
     }
