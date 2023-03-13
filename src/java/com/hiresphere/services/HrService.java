@@ -298,8 +298,7 @@ public class HrService {
          catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-       
-       } 
+       }
         return totalApplication;
     }
 
