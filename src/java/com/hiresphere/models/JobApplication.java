@@ -268,7 +268,7 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
             String message = "You are succesfully applied in  " + jobDetails.getJobTitle()
                     + " in company " + jobDetails.getCompanyName()+ ". You are just few step away to get hired. Best wishes from us for your future career.";
 
-                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
+//                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
             result = "SUCCESS";
         } else {
 
