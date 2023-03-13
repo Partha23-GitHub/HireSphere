@@ -10,9 +10,20 @@ import java.sql.SQLException;
  */
 public class JDBCConnectionManager {
 
+    /**
+     *
+     */
     public static JDBCConnectionManager connectionManager = null;
+
+    /**
+     *
+     */
     public static Connection connection = null;
 
+    /**
+     *
+     * @return
+     */
     public static Connection getConnection() {
 
         JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();

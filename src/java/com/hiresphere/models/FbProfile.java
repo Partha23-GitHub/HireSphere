@@ -19,18 +19,34 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class FbProfile extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
+    /**
+     *
+     * @return
+     */
     public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
     }
 
+    /**
+     *
+     * @param sessionMap
+     */
     public void setSessionMap(SessionMap<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
     }
 
+    /**
+     *
+     * @return
+     */
     public ApplicationMap getMap() {
         return map;
     }
 
+    /**
+     *
+     * @param map
+     */
     public void setMap(ApplicationMap map) {
         this.map = map;
     }
@@ -38,11 +54,19 @@ public class FbProfile extends ActionSupport implements ApplicationAware, Sessio
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
 
+    /**
+     *
+     * @param application
+     */
     @Override
     public void setApplication(Map<String, Object> application) {
         setMap((ApplicationMap) application);
     }
 
+    /**
+     *
+     * @param session
+     */
     @Override
     public void setSession(Map<String, Object> session) {
         setSessionMap((SessionMap<String, Object>) (SessionMap) session);
@@ -54,34 +78,66 @@ public class FbProfile extends ActionSupport implements ApplicationAware, Sessio
     private String profile_picture;
     private String id;
 
+    /**
+     *
+     * @return
+     */
     public String getUser_name() {
         return user_name;
     }
 
+    /**
+     *
+     * @param user_name
+     */
     public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getProfile_picture() {
         return profile_picture;
     }
 
+    /**
+     *
+     * @param profile_picture
+     */
     public void setProfile_picture(String profile_picture) {
         this.profile_picture = profile_picture;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }

@@ -23,6 +23,11 @@ import org.apache.log4j.Logger;
  */
 public class HrManagerService {
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public static ArrayList getAlljobsByHrManager(int value) {
 
         ArrayList jobList = new ArrayList();
@@ -58,6 +63,11 @@ public class HrManagerService {
 
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public static HrManager getHrManagerByUserId(int userId) {
         HrManager hrManager = new HrManager();
         String sql = "SELECT * from hrmanager h, companies c  where h.companyId=c.companyId having userId=?";
@@ -89,6 +99,12 @@ public class HrManagerService {
         return hrManager;
     }
 
+    /**
+     *
+     * @param hrManager
+     * @param hrManagerId
+     * @return
+     */
     public static boolean updateHRManagerProfile(HrManager hrManager, int hrManagerId) {
         boolean result = false;
         try {
@@ -129,6 +145,11 @@ public class HrManagerService {
         return result;
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public static boolean doRegisterHrManager(int userId) {
         boolean result = false;
         Connection con = JDBCConnectionManager.getConnection();

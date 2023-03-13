@@ -21,8 +21,15 @@ import org.apache.log4j.Logger;
  */
 public class UserService {
 
+    /**
+     *
+     */
     public static UserService userService = null;
 
+    /**
+     *
+     * @return
+     */
     public static UserService getInstance() {
         if (userService == null) {
             return new UserService();
@@ -31,6 +38,11 @@ public class UserService {
         }
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public static boolean doSignup(User user) {
         boolean result = false;
         Connection con = JDBCConnectionManager.getConnection();
@@ -65,6 +77,11 @@ public class UserService {
         return result;
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public static boolean doSignupForCompany(User user) {
         boolean result = false;
         Connection con = JDBCConnectionManager.getConnection();
@@ -95,6 +112,11 @@ public class UserService {
         return result;
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public static boolean userExist(String email) {
         String sql = "SELECT * from users where email=?";
         try {
@@ -127,6 +149,11 @@ public class UserService {
 
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean doLogin(User user) {
         boolean success = false;
 
@@ -162,6 +189,11 @@ public class UserService {
         return success;
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public static User getUser(String email) {
         User user = new User();
         Connection con = JDBCConnectionManager.getConnection();
