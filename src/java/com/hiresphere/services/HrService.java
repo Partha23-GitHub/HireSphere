@@ -34,6 +34,7 @@ public class HrService {
      *
      * @param userId
      * @return
+     *  This method will make query on the database and get the details of the particular hr  by taking the userId from session
      */
     public static HR getHrByUserId(int userId) {
         HR hr = new HR();
@@ -69,6 +70,7 @@ public class HrService {
      *
      * @param userId
      * @return
+     * This method is responsible for inserting the registered data into database while Hr is Signing Up.
      */
     public static boolean doRegisterHr(int userId) {
 
@@ -117,6 +119,7 @@ public class HrService {
      *
      * @param userId
      * @return
+     * This method is mainly search in the database about all the job that are posted by the particular Hr and return the all the job result.
      */
     public ArrayList getAllJobPostedByHr(int userId) {
         ArrayList jobList = new ArrayList();
@@ -154,16 +157,17 @@ public class HrService {
 
     /**
      *
-     * @param Id
+     * @param userId
      * @return
+     * This method takes userId as parameter and search in the hr table then return the hrId corresponding to the userId.
      */
-    public int getHrId(int Id) {
+    public int getHrId(int userId) {
         HR hr = new HR();
         String sql = "Select hrId from hr where userId=?";
         Connection con = JDBCConnectionManager.getConnection();
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, Id);
+            preparedStatement.setInt(1, userId);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
@@ -189,6 +193,7 @@ public class HrService {
      * @param hr
      * @param hrId
      * @return
+     * This method is taking t parameter Hr and hrId and putting all the hr data data are need to update and update all data corresponding to the HrIds
      */
     public static boolean updateHRProfile(HR hr, int hrId) {
 
@@ -235,6 +240,7 @@ public class HrService {
      *
      * @param userId
      * @return
+     * this method is only count the number of job that are posted by the particular Hr.
      */
     public int countNumberOfPostedJobs(int userId) {
         int postedJobs = 0;
@@ -274,6 +280,7 @@ public class HrService {
      *
      * @param hrId
      * @return
+     * This method is counting the number of application are has been done for all the jobs that has been posted by the particular Hr
      */
     public int getTotalApplication(int hrId) {
         int totalApplication = 0;
@@ -303,9 +310,9 @@ public class HrService {
     }
 
     /**
-     *
      * @param hrId
      * @return
+     * This method counts total candidate that has been shortlisted by the Hr
      */
     public int getTotalShortlisted(int hrId) {
         int totalShortlisted = 0;
@@ -340,6 +347,7 @@ public class HrService {
      *
      * @param userId
      * @return
+     * This method count the total number od jobs that are not approved by HrManager to be published in candidate side
      */
     public int getTotalPending(int userId) {
         int totalPending = 0;
@@ -378,6 +386,7 @@ public class HrService {
      *
      * @param userId
      * @return
+     * This method counts total number of job that are verified by the HrManager till date
      */
     public int getTotalVerified(int userId) {
         int totalPending = 0;

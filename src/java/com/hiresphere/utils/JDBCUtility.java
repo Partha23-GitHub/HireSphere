@@ -4,10 +4,15 @@
  */
 package com.hiresphere.utils;
 
+import com.hiresphere.services.JobDetailsService;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Properties;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -23,9 +28,10 @@ public class JDBCUtility {
     // in this class we will have static methods to get the connection params
 
     /**
-     *
      * @param param
      * @return
+     * This method is mainly responsible for analyzing the key values of setting.properties file and return the corresponding value of that key
+     * that is asking the by program
      */
     public String getPropertyValue(String param) {
 
@@ -44,9 +50,15 @@ public class JDBCUtility {
 
             value = prop.getProperty(param);
 
-        } catch (IOException e) {
+        } catch (IOException ex) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+        }
+        catch(Exception ex){
+            Logger log = Logger.getLogger(JobDetailsService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+
         }
 
         return value;

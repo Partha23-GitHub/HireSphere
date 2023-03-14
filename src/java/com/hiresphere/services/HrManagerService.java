@@ -27,6 +27,7 @@ public class HrManagerService {
      *
      * @param value
      * @return
+     * This method will run the below query on the database and fetch all the posted job with all the details and show on the Hr Manager view.
      */
     public static ArrayList getAlljobsByHrManager(int value) {
 
@@ -66,6 +67,7 @@ public class HrManagerService {
      *
      * @param userId
      * @return
+     * This method will make query on the database and get the details of the particular hr manager by taking the userId from session 
      */
     public static HrManager getHrManagerByUserId(int userId) {
         HrManager hrManager = new HrManager();
@@ -102,6 +104,7 @@ public class HrManagerService {
      * @param hrManager
      * @param hrManagerId
      * @return
+     * This Method is mainly updating the profile of HrManager.
      */
     public static boolean updateHRManagerProfile(HrManager hrManager, int hrManagerId) {
         boolean result = false;
@@ -146,6 +149,7 @@ public class HrManagerService {
      *
      * @param userId
      * @return
+     * This method is responsible for inserting the registered data into database while HrManager is Signing Up.
      */
     public static boolean doRegisterHrManager(int userId) {
         boolean result = false;

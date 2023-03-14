@@ -224,7 +224,8 @@
                                                             <div
                                                                 class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
                                                                 >
-                                                                HIRED<hr><h3>${TotalShortlisted}</h3>
+
+                                                                Shortlisted<hr><h3>${TotalShortlisted}</h3
 
                                                             </div>
                                                         </div>
@@ -313,6 +314,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
     <!-- Custom JS -->
     <script>
+
                                //// SIDEBAR TOGGLE
 //
 //var sidebarOpen = false;
@@ -343,12 +345,15 @@
                         var barChartOptions = {
                             series: [{
                                     data: [postedJobs, totalApplication, shortlisted],
+
                                     name: "Value",
                                 }],
                             chart: {
                                 type: "bar",
                                 background: "transparent",
+
                                 height: 300,
+
                                 toolbar: {
                                     show: false,
                                 },
@@ -365,7 +370,9 @@
                                     distributed: true,
                                     borderRadius: 4,
                                     horizontal: false,
+
                                     columnWidth: "40%"
+
                                 }
                             },
                             dataLabels: {
@@ -405,7 +412,9 @@
                                 theme: "dark",
                             },
                             xaxis: {
+
                                 categories: ["Posted Jobs", "Total Application", "Shortlisted"],
+
                                 title: {
                                     style: {
                                         color: "#f5f7ff",
@@ -456,7 +465,9 @@
                         var areaChartOptions = {
                             series: [{
                                     name: "Total application",
+
                                     data: [${TotalApplication}, 40, 28, 51, 42, 109, 100],
+
                                 }, {
                                     name: "Approved Application",
                                     data: [11, 32, 45, 32, 34, 52, 41],
@@ -568,6 +579,8 @@
 
                         var areaChart = new ApexCharts(document.querySelector("#area-chart"), areaChartOptions);
                         areaChart.render();
+
  
+
     </script>
 </html>

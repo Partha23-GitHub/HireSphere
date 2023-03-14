@@ -21,7 +21,7 @@ public class JDBCConnectionManager {
     public static Connection connection = null;
 
     /**
-     *
+     *This method established the connection between application and MySql database through JDBC driver
      * @return
      */
     public static Connection getConnection() {
