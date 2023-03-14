@@ -8,9 +8,6 @@ import com.hiresphere.models.Candidate;
 import com.hiresphere.models.HR;
 import com.hiresphere.models.JobApplication;
 import com.hiresphere.utils.JDBCConnectionManager;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,9 +28,9 @@ public class JobApplicationService {
      *
      * @param candidateId
      * @return
-     * @throws IOException
+     * This method take candateId as parameter and search all the application that has been applied by the candidate.
      */
-    public static ArrayList doGetJobApplicationByCandidate(int candidateId) throws IOException {
+    public static ArrayList doGetJobApplicationByCandidate(int candidateId){
         ArrayList jobApplicationList = new ArrayList();
         Connection con = JDBCConnectionManager.getConnection();
         String sql = " SELECT applicationId, candidates.candidateId,candidates.resume, jobdetails.jobId,companyName, jobTitle, jobType,applicationMessage\n"
@@ -75,9 +72,9 @@ public class JobApplicationService {
     }
 
     /**
-     *
      * @param hr
      * @return
+     * This method is mainly responsible for getting all the applied candidate's details that are posted by the Hr.
      */
     public static ArrayList doGetApplicationByHrId(HR hr) {
         ArrayList applicantList = new ArrayList();
@@ -117,52 +114,11 @@ public class JobApplicationService {
 
     }
 
+    
     /**
-     *
-     * @param aThis
-     * @return
-     */
-    public static ArrayList getAllApplicant(JobApplication aThis) {
-        ArrayList applicantList = new ArrayList();
-        String sql = "SELECT ca.candidateId,ca.name,ca.gender,ca.phoneNumber,ca.resume\n"
-                + "from candidates ca,jobapplication ja\n"
-                + "where ja.candidateId=ca.candidateId\n"
-                + "and jobId=?";
-        Connection con = JDBCConnectionManager.getConnection();
-        try {
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, 1);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                JobApplication applicant = new JobApplication();
-                applicant.setCandidateId(rs.getInt("candidateId"));
-                applicant.setCandidateName(rs.getString("name"));
-                applicant.setCandidateGender(rs.getString("gender"));
-                applicant.setCandidatePhoneNumber(rs.getString("phoneNumber"));
-                applicant.setJobId(rs.getInt("jobId"));
-                applicant.setResumePath(rs.getString("resume"));
-                applicantList.add(applicant);
-                System.out.println("this is comment:" + applicant.getCandidateName());
-            }
-
-        } catch (SQLException ex) {
-            Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
-            Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
-        }
-
-        return applicantList;
-    }
-
-    /**
-     *
      * @param jobId
      * @return
+     * This method find all the candidate that are applied by the candidate. It search of the database corresponding tho the database and return all the applied candidate.
      */
     public static ArrayList getApplicantByJobId(int jobId) {
         ArrayList applicantList = new ArrayList();
@@ -206,9 +162,10 @@ public class JobApplicationService {
     }
 
     /**
-     *
      * @param applicationId
      * @return
+     * When a Hr try to change the status of the candidate like reject,Shortlisted then this method take the applicationId and change the
+     * status in jobApplication table
      */
     public static boolean updateApplicationStatus(int applicationId) {
         boolean success = false;
@@ -242,9 +199,10 @@ public class JobApplicationService {
     }
 
     /**
-     *
      * @param jobApplication
      * @return
+     * This method is inserting data to the jobApplication table whenever candidate apply for a job.
+     * 
      */
     public static boolean doApplyJob(JobApplication jobApplication) {
         boolean result = false;
@@ -283,6 +241,8 @@ public class JobApplicationService {
      *
      * @param applicationId
      * @return
+     * When a Hr try to change the status of the candidate like reject,Shortlisted then this method take the applicationId and change the
+     * status in jobApplication table
      */
     public static boolean rejectApplication(int applicationId) {
         boolean success = false;

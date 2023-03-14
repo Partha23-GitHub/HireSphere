@@ -67,23 +67,7 @@
                     </div>
                 </div>
 
-                <div class="line"></div>
-
-                <div class="media-options">
-                    <a href="#" class="field facebook">
-                        <i class='bx bxl-facebook facebook-icon'></i>
-                        <span>Login with Facebook</span>
-                    </a>
-                </div>
-
-                <div  class=" media-options" data-onsuccess="onSignIn">
-                    <a href="#" class="field facebook">
-                        <img src="assets/google.png" alt="" class="google-img">
-                        <span>Login with Google</span>
-                    </a>
-                </div>
-
-            </div>
+              </div>
 
             <!-- Signup Form -->
 
@@ -131,25 +115,7 @@
                         <span>Already have an account? <a href="#" class="link login-link">Login</a></span>
                     </div>
                 </div>
-
-                <div class="line"></div>
-
-                <div class="media-options">
-                    <a href="#" class="field facebook">
-                        <i class='bx bxl-facebook facebook-icon'></i>
-                        <span>Login with Facebook</span>
-                    </a>
-                </div>
-
-                <div class="media-options" >
-                    <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
-                    <a href="#" class="field facebook">
-                        <img src="assets/google.png" alt="" class="google-img">
-                        <span>Login with Google</span>
-                    </a>
-                </div>
-
-
+               
             </div>
         </section>
 
