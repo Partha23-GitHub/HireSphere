@@ -225,7 +225,7 @@
                                                                 class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
                                                                 >
 
-                                                                Shortlisted<hr><h3>${TotalShortlisted}</h3
+                                                                Shortlisted<hr><h3>${TotalShortlisted}</h3>
 
                                                             </div>
                                                         </div>
