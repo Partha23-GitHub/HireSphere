@@ -4,6 +4,7 @@
  */
 package com.hiresphere.models;
 
+import com.hiresphere.services.CandidateService;
 import com.hiresphere.services.HrService;
 import com.hiresphere.services.JobDetailsService;
 import com.opensymphony.xwork2.ActionContext;
@@ -12,6 +13,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
@@ -532,8 +537,12 @@ public class JobDetails extends ActionSupport implements ApplicationAware, Sessi
                 System.out.println("returning Failure from viewJobDetailsErrorMsg method");
                 //  logger.error("No Claim Found" + LocalDateTime.now());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+           
+            org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
+        
         }
         return result;
     }

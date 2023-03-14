@@ -12,6 +12,10 @@ import com.hiresphere.services.UserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Map;
 import org.apache.log4j.Logger;
@@ -158,8 +162,13 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             } else {
                 System.out.println("returning Failure from doSignup method");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            
+           
+            Logger log = Logger.getLogger(CandidateService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+         
+        
         }
 
         return result;
