@@ -166,8 +166,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     }
 
     /**
-     * @return This method is mainly taking care of user Login. It take
-     * all the parameters from login form and Login the user as per their role.
+     * @return This method is mainly taking care of user Login. It take all the
+     * parameters from login form and Login the user as per their role.
      */
     public String doLogin() {
         String result = "FAILURE";
@@ -198,6 +198,14 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                     result = "HR";
                     break;
                 case 3:
+
+                    int hrManagerId = HrManagerService.getHrManagerId(user.userId);
+                    int companyId = HrManagerService.getComapnyId(hrManagerId);
+                    sessionMap.put("NumberOfPostedJobs", HrManagerService.countNumberOfPostedJobs(companyId));
+                    sessionMap.put("TotalApplication", HrManagerService.getTotalApplication(companyId));
+                    sessionMap.put("TotalShortlisted", HrManagerService.getTotalShortlisted(companyId));
+                    sessionMap.put("TotalPending", HrManagerService.getTotalPending(companyId));
+//                    sessionMap.put("TotalVerified", HrService.getInstance().getTotalVerified(user.getUserId()));
                     result = "HR MANAGER";
                     break;
                 default:
@@ -257,8 +265,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     }
 
     /**
-     * @return This method is mainly taking care of Hr & HrManager signUp. It take
-     * all the parameters from signUp form and register the user. After
+     * @return This method is mainly taking care of Hr & HrManager signUp. It
+     * take all the parameters from signUp form and register the user. After
      * successfully register it called the MailSender Class to send the mail
      * from few related details.
      */
