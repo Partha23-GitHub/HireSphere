@@ -26,8 +26,8 @@ public class HrManagerService {
     /**
      *
      * @param value
-     * @return
-     * This method will run the below query on the database and fetch all the posted job with all the details and show on the Hr Manager view.
+     * @return This method will run the below query on the database and fetch
+     * all the posted job with all the details and show on the Hr Manager view.
      */
     public static ArrayList getAlljobsByHrManager(int value) {
 
@@ -66,8 +66,8 @@ public class HrManagerService {
     /**
      *
      * @param userId
-     * @return
-     * This method will make query on the database and get the details of the particular hr manager by taking the userId from session 
+     * @return This method will make query on the database and get the details
+     * of the particular hr manager by taking the userId from session
      */
     public static HrManager getHrManagerByUserId(int userId) {
         HrManager hrManager = new HrManager();
@@ -103,8 +103,7 @@ public class HrManagerService {
      *
      * @param hrManager
      * @param hrManagerId
-     * @return
-     * This Method is mainly updating the profile of HrManager.
+     * @return This Method is mainly updating the profile of HrManager.
      */
     public static boolean updateHRManagerProfile(HrManager hrManager, int hrManagerId) {
         boolean result = false;
@@ -148,8 +147,8 @@ public class HrManagerService {
     /**
      *
      * @param userId
-     * @return
-     * This method is responsible for inserting the registered data into database while HrManager is Signing Up.
+     * @return This method is responsible for inserting the registered data into
+     * database while HrManager is Signing Up.
      */
     public static boolean doRegisterHrManager(int userId) {
         boolean result = false;
@@ -177,6 +176,11 @@ public class HrManagerService {
         return result;
     }
 
+    /**
+     *
+     * @param userId
+     * @return This method is taking userId and is returning hrManagerId
+     */
     public static int getHrManagerId(int userId) {
         HrManager hrManager = new HrManager();
         String sql = "Select hrManagerId from hrmanager where userId=?";
@@ -203,6 +207,12 @@ public class HrManagerService {
         return id;
     }
 
+    /**
+     *
+     * @param hrManagerId
+     * @return This Method is taking hrManagerId and returning companyId
+     *
+     */
     public static int getComapnyId(int hrManagerId) {
         HrManager hrManager = new HrManager();
         String sql = "Select companyId from hrmanager where hrManagerId=?";
@@ -229,6 +239,12 @@ public class HrManagerService {
         return id;
     }
 
+    /**
+     *
+     * @param companyId
+     * @return This method is taking companyId and is returning the total
+     * application in that company
+     */
     public static int getTotalApplication(int companyId) {
 
         int totalApplication = 0;
@@ -257,6 +273,12 @@ public class HrManagerService {
 
     }
 
+    /**
+     *
+     * @param companyId
+     * @return This method is taking companyId and is returning the total posted
+     * jobs by the company which are verified by hrManager
+     */
     public static int countNumberOfPostedJobs(int companyId) {
         int postedJobs = 0;
         try {
@@ -291,6 +313,12 @@ public class HrManagerService {
         return postedJobs;
     }
 
+    /**
+     *
+     * @param companyId
+     * @return This method is taking the companyId and returning the
+     * totalShortListed job application
+     */
     public static Object getTotalShortlisted(int companyId) {
         int totalShortlisted = 0;
         try {
@@ -320,6 +348,12 @@ public class HrManagerService {
         return totalShortlisted;
     }
 
+    /**
+     *
+     * @param companyId
+     * @return This method is taking companyId and is returning the total number
+     * of posted jobs to be verified by HrManager
+     */
     public static Object getTotalPending(int companyId) {
         int pendingJobs = 0;
         try {
