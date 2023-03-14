@@ -356,9 +356,10 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     /**
      *
-     * @return
-     * This method will called when a candidate click on my profile. It take the userId from session and called the getCandidateByUserId method of UserService
-     * and take all the candidate data then put in the session map.
+     * @return This method will called when a candidate click on my profile. It
+     * take the userId from session and called the getCandidateByUserId method
+     * of UserService and take all the candidate data then put in the session
+     * map.
      */
     public String visitCandidateProfile() {
         String result = "FAILURE";
@@ -379,10 +380,10 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     /**
      *
-     * @return
-     * @throws IOException
-     * This method is basically taking candidateId from view and called the doGetJobApplicationByCandidate method of JobApplicationService to process all the jobs that
-     * are applied by the candidate.
+     * @return @throws IOException This method is basically taking candidateId
+     * from view and called the doGetJobApplicationByCandidate method of
+     * JobApplicationService to process all the jobs that are applied by the
+     * candidate.
      */
     public String viewJobApplication() throws IOException {
         String result = "FAILURE";
@@ -399,27 +400,29 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     /**
      *
-     * @return
-     * @throws FileNotFoundException
+     * @return @throws FileNotFoundException
      * @throws IOException
      * @throws FileUploadException
-     * @throws Exception
-     * When User update their profile this method will called with the resume file and all the necessary data for profile update.
-     * First it will check if any od resume is present or not. if present then find out the resume then delete it, after that new resume will store on the
-     * resume folder(Append the system current currentTimeMillis for generating unique file name) and store the path into candidate table's resume column.
+     * @throws Exception When User update their profile this method will called
+     * with the resume file and all the necessary data for profile update. First
+     * it will check if any od resume is present or not. if present then find
+     * out the resume then delete it, after that new resume will store on the
+     * resume folder(Append the system current currentTimeMillis for generating
+     * unique file name) and store the path into candidate table's resume
+     * column.
      */
     public String updateProfile() throws FileNotFoundException, IOException, FileUploadException, Exception {
         String result = "FAILURE";
         // checking if any resume is there of candidate., if there then delete it
-        String oldPath=CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
-        System.out.println("oldpath: "+oldPath);
-        if(oldPath!=null){
-            File file=new File("C:\\Users\\itssh\\Downloads\\HireSphere\\HireSphere\\web\\Resume/"+oldPath);
+        String oldPath = CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
+        System.out.println("oldpath: " + oldPath);
+        if (oldPath != null) {
+            File file = new File("D:\\ExavaluProject\\HireSphere\\web\\Resume/" + oldPath);
             file.delete();
         }
         // store the new resume
-        String relativePath=System.currentTimeMillis()+ resumeFileName; // for creating unique file name
-        String filePath = "C:\\Users\\itssh\\Downloads\\HireSphere\\HireSphere\\web\\Resume/" +relativePath; 
+        String relativePath = System.currentTimeMillis() + resumeFileName; // for creating unique file name
+        String filePath = "D:\\ExavaluProject\\HireSphere\\web\\Resume/" + relativePath;
         File destFile = new File(filePath);
         FileUtils.copyFile(resume, destFile);
         System.out.println(relativePath);

@@ -49,15 +49,14 @@ public class HrManagerService {
                 jobList.add(jobdetails);
             }
 
-        }  catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrManagerService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrManagerService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         System.out.println(jobList.size());
         return jobList;
@@ -90,13 +89,12 @@ public class HrManagerService {
             }
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrManagerService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrManagerService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return hrManager;
     }
@@ -135,15 +133,14 @@ public class HrManagerService {
                 result = true;
             }
 
-        }  catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrManagerService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrManagerService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return result;
     }
@@ -178,6 +175,183 @@ public class HrManagerService {
         }
 
         return result;
+    }
+
+    public static int getHrManagerId(int userId) {
+        HrManager hrManager = new HrManager();
+        String sql = "Select hrManagerId from hrmanager where userId=?";
+        Connection con = JDBCConnectionManager.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, userId);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                hrManager.setHrManagerId(rs.getInt("hrManagerId"));
+            }
+
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
+        }
+        int id = hrManager.getHrManagerId();
+        return id;
+    }
+
+    public static int getComapnyId(int hrManagerId) {
+        HrManager hrManager = new HrManager();
+        String sql = "Select companyId from hrmanager where hrManagerId=?";
+        Connection con = JDBCConnectionManager.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, hrManagerId);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                hrManager.setCompanyId(rs.getInt("companyId"));
+            }
+
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
+        }
+        int id = hrManager.getCompanyId();
+        return id;
+    }
+
+    public static int getTotalApplication(int companyId) {
+
+        int totalApplication = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "SELECT count(applicationId) FROM hiresphere.jobapplication ja,hr h where ja.hrId=h.hrId and h.companyId=?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, companyId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                totalApplication = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+        }
+        return totalApplication;
+
+    }
+
+    public static int countNumberOfPostedJobs(int companyId) {
+        int postedJobs = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "select count(jobId)from jobdetails jd,users u,hr h where jd.userId=u.userId and u.userId=h.userId and h.companyId=? and hrManagerVerificationStatus=?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, companyId);
+            preparedStatement.setInt(2, 1);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                postedJobs = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
+            //Logger log =  Logger.getLogger(HRService.class.getName());
+            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            ex.printStackTrace();
+            System.out.println("Failure From Service Class Update Method");
+        }
+        System.out.println("Posted Jobs :" + postedJobs);
+        return postedJobs;
+    }
+
+    public static Object getTotalShortlisted(int companyId) {
+        int totalShortlisted = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "select count(applicationId) from jobapplication ja, hr h where applicationStatus=? and ja.hrId=h.hrId and h.companyId=?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(2, companyId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                totalShortlisted = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
+        }
+        return totalShortlisted;
+    }
+
+    public static Object getTotalPending(int companyId) {
+        int pendingJobs = 0;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "select count(jobId)from jobdetails jd,users u,hr h where jd.userId=u.userId and u.userId=h.userId and h.companyId=? and hrManagerVerificationStatus=?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //preparedStatement.setString(1, hr.getName());
+            preparedStatement.setInt(1, companyId);
+            preparedStatement.setInt(2, 0);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                pendingJobs = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
+            Logger log = Logger.getLogger(HrManagerService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
+            //Logger log =  Logger.getLogger(HRService.class.getName());
+            //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
+            ex.printStackTrace();
+            System.out.println("Failure From Service Class Update Method");
+        }
+        System.out.println("Pending Jobs :" + pendingJobs);
+        return pendingJobs;
     }
 
 }
