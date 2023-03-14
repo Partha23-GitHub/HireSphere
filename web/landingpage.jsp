@@ -33,7 +33,7 @@
     <header>
         <div class="container header-section flex">
             <div class="header-left">
-                <h1>Top companies hiring now</h1>
+                <h1>Hiresphere is hiring now</h1>
                 <p>"Your talent determines what you can do. Your motivation determines how much you are willing to do. Your attitude determines how well you do it." - Lou Holtz</p>
                 <a href="login.jsp" class="primary-button get-started-btn">Get Started</a>
             </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </header>
-    <section class="conpanies-section">
+<!--    <section class="conpanies-section">
         <div class="container">
             <div class="small-bold-text companies-header">The world's best companies rely on Hire Sphere to Hire Candidates</div>
             <div class="logos flex">
@@ -53,7 +53,7 @@
                 <img src="assets/Exavalu Logo.png" class="logo" alt="">
             </div>
         </div>
-    </section>
+    </section>-->
     <!-- features section -->
     <section class="features-section">
         <div class="container">

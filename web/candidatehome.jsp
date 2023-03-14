@@ -15,11 +15,15 @@
     </head>
     <body>
         <jsp:include page="menu.jsp"></jsp:include>
-        
+        <div class="top-banner">
+        <div class="container">
+            <div class="small-bold-text banner-text">Find your dream job now</div>
+        </div>
+    </div>
             <header>
                 <div class="container header-section flex">
                     <div class="header-left">
-                        <h1>Top companies hiring now</h1>
+                        <h1>Hiresphere is hiring now</h1>
                         <p>"Your talent determines what you can do. Your motivation determines how much you are willing to do. Your attitude determines how well you do it." - Lou Holtz</p>
                         <a href="JobSearch" class="primary-button get-started-btn">Get Started</a>
                     </div>
@@ -28,7 +32,7 @@
                     </div>
                 </div>
             </header>
-            <section class="conpanies-section">
+<!--            <section class="conpanies-section">
                 <div class="container">
                     <div class="small-bold-text companies-header">The world's best companies rely on Hire Sphere to Hire Candidates</div>
                     <div class="logos flex">
@@ -39,8 +43,9 @@
                         <img src="assets/Exavalu Logo.png" class="logo" alt="">
                     </div>
                 </div>
-            </section>
+            </section>-->
             <br>
+            <hr class="container">
             <br>
             <div class="container"> 
                 <h1 class="flex" style="justify-content: center; align-items: center;">Recent Job to Apply</h1>
@@ -150,7 +155,9 @@
                     
                 </section>
             </div>
+            <br>
             <hr>
+            <br>
         <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>
