@@ -155,7 +155,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 String toEmail = this.email;
                 String subject = "Thank you for registering with HireSphere";
                 String message = "You are succesfully registered with HireSphere with your email " + this.getEmail()
-                        + " and password " + this.getPassword() + ". You are just few step away to get hired. Best wishes from us for your future career.";
+                + ". You are just few step away to get hired. Best wishes from us for your future career.";
 
 //                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
                 result = "SUCCESS";

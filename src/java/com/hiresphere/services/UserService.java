@@ -4,8 +4,10 @@
  */
 package com.hiresphere.services;
 
+import com.hiresphere.models.MD5Encryption;
 import com.hiresphere.utils.JDBCConnectionManager;
 import com.hiresphere.models.User;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,10 +53,11 @@ public class UserService {
                 + "VALUES(? ,? ,? ,?);";
 
         try {
+            String hashPassword = MD5Encryption.encryptPassword(user.getPassword());
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(2, hashPassword);
             preparedStatement.setInt(3, 1);
             preparedStatement.setString(4, user.getName());
 
@@ -89,10 +92,10 @@ public class UserService {
                 + "VALUES(? ,? ,? ,?);";
 
         try {
-
+            String hashPassword = MD5Encryption.encryptPassword(user.getPassword());
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(2, hashPassword);
             preparedStatement.setInt(3, user.getRoleId());
             preparedStatement.setString(4, user.getName());
 
@@ -102,11 +105,18 @@ public class UserService {
                 result = true;
             }
 
-        } catch (SQLException ex) {
+            
+        }
+        catch (NoSuchAlgorithmException e) {
+
+            e.printStackTrace();
+
+        }catch (SQLException ex) {
 
             ex.printStackTrace();
 
         }
+        
 
         return result;
     }
@@ -158,10 +168,11 @@ public class UserService {
         String sql = "Select * from users where email=? and password=?";
 
         try {
+            String hashPassword = MD5Encryption.encryptPassword(user.getPassword());
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
+            ps.setString(2, hashPassword);
 
             System.out.println("LoginService :: " + ps);
 
