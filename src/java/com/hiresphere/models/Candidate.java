@@ -420,20 +420,21 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
     public String updateProfile() throws FileNotFoundException, IOException, FileUploadException, Exception {
         String result = "FAILURE";
         JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
+        String relativePath=null;
         // checking if any resume is there of candidate., if there then delete it
+         if(resumeFileName !=null){
         String oldPath = CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
         
         if (oldPath != null) {
             File file = new File(jdbcUtility.getPropertyValue("resumeStoringPath") + oldPath);
             file.delete();
         }
-        // store the new resume
-        String relativePath = System.currentTimeMillis() + resumeFileName; // for creating unique file name
+        // store the new resume if user want to update
+        relativePath = System.currentTimeMillis() + resumeFileName; // for creating unique file name
         String filePath = jdbcUtility.getPropertyValue("resumeStoringPath") + relativePath;
         File destFile = new File(filePath);
         FileUtils.copyFile(resume, destFile);
-        System.out.println(relativePath);
-        System.out.println(candidateId);
+        }
         boolean success = CandidateService.updateCandidateProfile(this, candidateId, relativePath);
 
         if (success) {

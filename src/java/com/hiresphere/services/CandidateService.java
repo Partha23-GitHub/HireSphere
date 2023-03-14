@@ -118,7 +118,12 @@ public class CandidateService {
             preparedStatement.setString(3, candidate.getCity());
             preparedStatement.setString(4, candidate.getState());
             preparedStatement.setString(5, candidate.getCountry());
-            preparedStatement.setString(6, uploadPath);
+            if(uploadPath !=null)
+                preparedStatement.setString(6, uploadPath);
+            else{
+                String oldPath = CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
+                preparedStatement.setString(6, oldPath);
+            }
             preparedStatement.setInt(7, candidateId);
             System.out.println("sql=" + preparedStatement);
             System.out.println("Success From Update");
