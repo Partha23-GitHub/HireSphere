@@ -116,10 +116,11 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
 
     /**
      *
-     * @return
+     * @return 
      * @throws Exception
-     * This method will be called when HRManager clicks on their profile. it will take the user id from session the get all the necessary data
-     * from database and send to view through session
+     * This method will be called when HRManager
+     * clicks on their profile. it will take the user id from session the get
+     * all the necessary data from database and send to view through session
      */
     public String loadMenuContent() throws Exception {
         String result = "FAILURE";
@@ -241,8 +242,9 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
     /**
      *
      * @return
-     * This method will be called when HR clicks on their profile. it will take the user id from session the get all the necessary data
-     * from database and send to view through session
+     * This method will be called when HR clicks on their profile. it
+     * will take the user id from session the get all the necessary data from
+     * database and send to view through session
      */
     public String visitHRManagerProfile() {
         String result = "FAILURE";
@@ -265,9 +267,10 @@ public class HrManager extends ActionSupport implements ApplicationAware, Sessio
 
     /**
      *
-     * @return
-     * this method is called when HR try to update their profile. It gathered all the data then called the updateHRProfile
-     * and insert fields into HR database.
+     * @return 
+     * This method is called when HR try to update their profile. It
+     * gathered all the data then called the updateHRProfile and insert fields
+     * into HR database.
      */
     public String updateHRManagerProfile() {
         String result = "FAILURE";

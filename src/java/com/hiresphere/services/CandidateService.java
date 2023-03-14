@@ -6,8 +6,6 @@ package com.hiresphere.services;
 
 import com.hiresphere.models.Candidate;
 import com.hiresphere.utils.JDBCConnectionManager;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,8 +24,10 @@ public class CandidateService {
     /**
      *
      * @param userId
-     * @return
-     * it take the request and by the userId it fetch the details of that particular candidate and return the candidate details to the calling method
+     * @return 
+     * it take the request and by the userId it fetch the details of
+     * that particular candidate and return the candidate details to the calling
+     * method
      */
     public static Candidate getCandidateByUserId(int userId) {
         Candidate candidate = new Candidate();
@@ -49,22 +49,23 @@ public class CandidateService {
             }
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(CandidateService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(CandidateService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return candidate;
     }
-    
+
     /**
      *
      * @param candidateId
-     * @return
-     * This method is also responsible for fetching a particular candidate details from database by the given candidatId and return the details to the calling method.
+     * @return 
+     * This method is also responsible for fetching a particular
+     * candidate details from database by the given candidatId and return the
+     * details to the calling method.
      */
     public static Candidate getCandidateByCandidateId(int candidateId) {
         Candidate candidate = new Candidate();
@@ -79,13 +80,12 @@ public class CandidateService {
             }
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(CandidateService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(CandidateService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return candidate;
     }
@@ -95,10 +95,12 @@ public class CandidateService {
      * @param candidate
      * @param candidateId
      * @param uploadPath
-     * @return
-     * This method is mainly responsible for updating the profile of candidate. It takes parameters from the calling methods and store it on the database
+     * @return 
+     * This method is mainly responsible for updating the profile of
+     * candidate. It takes parameters from the calling methods and store it on
+     * the database
      */
-    public static boolean updateCandidateProfile(Candidate candidate,int candidateId,String uploadPath) {
+    public static boolean updateCandidateProfile(Candidate candidate, int candidateId, String uploadPath) {
         boolean result = false;
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -129,13 +131,12 @@ public class CandidateService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(CandidateService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(CandidateService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return result;
     }
@@ -144,7 +145,9 @@ public class CandidateService {
      *
      * @param userId
      * @return
-     * When a candidate SignUp this method will called. It just inserted the userId to the candidate table in db. Others details will be filled later by the candidate at the time of update profile
+     * When a candidate SignUp this method will called. It just inserted
+     * the userId to the candidate table in db. Others details will be filled
+     * later by the candidate at the time of update profile
      */
     public static boolean doRegisterCandidate(int userId) {
         boolean result = false;
@@ -165,13 +168,12 @@ public class CandidateService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(CandidateService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(CandidateService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
 
         return result;

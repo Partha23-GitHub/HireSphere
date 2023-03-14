@@ -157,7 +157,7 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     public void setResumePath(String resumePath) {
         this.resumePath = resumePath;
     }
-    
+
     /**
      *
      * @return
@@ -356,10 +356,10 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
 //
 //        return result;
 //    }
-
     /**
-     *@return
-     * This method is responsible for getting all the applicant for a particular job. it receive the job id from URL ans called the responsible 
+     * @return 
+     * This method is responsible for getting all the applicant for a
+     * particular job. it receive the job id from URL ans called the responsible
      * service method to find all the applicant from jobApplication table
      */
     public String viewAllApplicantByJobId() {
@@ -378,8 +378,10 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     }
 
     /**
-     *@return 
-     * This is mainly responsible for Shortlisted the candidate. When Hr click on the Shortlist button this method is called and update the application status
+     * @return 
+     * This is mainly responsible for Shortlisted the candidate. When Hr
+     * click on the Shortlist button this method is called and update the
+     * application status
      */
     public String doApproveApplication() {
         String result = "FAILURE";
@@ -395,8 +397,10 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
     }
 
     /**
-     *@return
-     * This is mainly responsible for Reject the candidate. When Hr click on the Reject button this method is called and update the application status
+     * @return 
+     * This is mainly responsible for Reject the candidate. When Hr
+     * click on the Reject button this method is called and update the
+     * application status
      */
     public String doRejectApplication() {
         String result = "FAILURE";
@@ -414,10 +418,12 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
 
     /**
      *
-     * @return
-     * @throws IOException
-     * This applyJob is called when a candidate apply for a job . It takes necessary data from URL and insert candidate data into jobApplication table.
-     * after successfully applied it call the MailSender and send the mail to candidate this few job details
+     * @return 
+     * @throws IOException 
+     * This applyJob is called when a candidate
+     * apply for a job . It takes necessary data from URL and insert candidate
+     * data into jobApplication table. after successfully applied it call the
+     * MailSender and send the mail to candidate this few job details
      */
     public String applyJob() throws IOException {
         String result = "FAILURE";
@@ -429,7 +435,7 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
         jobApplication.setCandidateId(this.candidateId);
         jobApplication.setHrId(Id);
 
-      boolean success = JobApplicationService.doApplyJob(jobApplication);
+        boolean success = JobApplicationService.doApplyJob(jobApplication);
 
         if (success) {
             ArrayList jobList = JobApplicationService.doGetJobApplicationByCandidate(this.candidateId);
@@ -438,7 +444,7 @@ public class JobApplication extends ActionSupport implements ApplicationAware, S
             String toEmail = this.email;
             String subject = "Successfully Applied";
             String message = "You are succesfully applied in  " + jobDetails.getJobTitle()
-                    + " in company " + jobDetails.getCompanyName()+ ". You are just few step away to get hired. Best wishes from us for your future career.";
+                    + " in company " + jobDetails.getCompanyName() + ". You are just few step away to get hired. Best wishes from us for your future career.";
 
 //                MailSender.sendEmailToRegisterUser(toEmail, subject, message);
             result = "SUCCESS";

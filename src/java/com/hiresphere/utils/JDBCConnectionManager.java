@@ -21,7 +21,9 @@ public class JDBCConnectionManager {
     public static Connection connection = null;
 
     /**
-     *This method established the connection between application and MySql database through JDBC driver
+     * This method established the connection between application and MySql
+     * database through JDBC driver
+     *
      * @return
      */
     public static Connection getConnection() {
@@ -32,8 +34,8 @@ public class JDBCConnectionManager {
         String password = jdbcUtility.getPropertyValue("pass");
         String dbNname = jdbcUtility.getPropertyValue("dbNname");
         String url = jdbcUtility.getPropertyValue("url");
-        
-        System.out.println("URL ="+url);
+
+        System.out.println("URL =" + url);
 
         try {
 

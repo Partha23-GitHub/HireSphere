@@ -11,7 +11,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 /**
- * @author user
+ * @author user 
  * This class is responsible for sending mail to the users.
  */
 public class MailSender {
@@ -25,8 +25,10 @@ public class MailSender {
      * @param toEmail
      * @param subject
      * @param message
-     * This method is basically configure all the SMTP protocols then create the mail session takes input from the view for getting the recipient
-     * address and send the email with the predefined Subject,Message Body etc.
+     * This method is basically configure all the SMTP protocols
+     * then create the mail session takes input from the view for getting the
+     * recipient address and send the email with the predefined Subject,Message
+     * Body etc.
      */
     public static void sendEmailToRegisterUser(String toEmail, String subject, String message) {
         try {
@@ -54,7 +56,7 @@ public class MailSender {
             mailMessage.setText(message);
 
             Transport.send(mailMessage);
-            
+
         } catch (AddressException ex) {
             Logger.getLogger(MailSender.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
@@ -62,4 +64,3 @@ public class MailSender {
         }
     }
 }
-

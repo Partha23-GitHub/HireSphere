@@ -26,11 +26,10 @@ public class JDBCUtility {
     public static JDBCUtility jdbcUtility = null;
 
     // in this class we will have static methods to get the connection params
-
     /**
      * @param param
-     * @return
-     * This method is mainly responsible for analyzing the key values of setting.properties file and return the corresponding value of that key
+     * @return This method is mainly responsible for analyzing the key values of
+     * setting.properties file and return the corresponding value of that key
      * that is asking the by program
      */
     public String getPropertyValue(String param) {
@@ -53,11 +52,10 @@ public class JDBCUtility {
         } catch (IOException ex) {
             // TODO Auto-generated catch block
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-        }
-        catch(Exception ex){
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(JobDetailsService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
 
         }
 
@@ -78,6 +76,5 @@ public class JDBCUtility {
         }
         return jdbcUtility;
     }
-
 
 }

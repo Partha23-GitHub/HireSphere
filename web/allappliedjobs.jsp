@@ -47,23 +47,23 @@
                 </thead>
 
                 <tbody>
-                    
-               
+
+
                 <c:forEach var = "jobApplication" items = "${JobApplicationList}">
-                  
+
                     <tr>
-                        
-                        <!--<td>${jobApplication.getApplicationId()}</td>-->
+
+<!--<td>${jobApplication.getApplicationId()}</td>-->
                         <td>${jobApplication.getCompanyName()}</td>
                         <td>${jobApplication.getJobTitle()}</td>
                         <td>${jobApplication.getJobType()}</td>
-                        
+
                         <td>
                             <a href="./Resume/${jobApplication.getResumePath()}" target="_blank">
                                 View Resume
                             </a>
                         </td>
-                         <td>${jobApplication.getApplicationMessage()}</td>
+                        <td>${jobApplication.getApplicationMessage()}</td>
                     </tr>
                 </c:forEach>
             </tbody>

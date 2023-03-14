@@ -27,16 +27,16 @@ public class JobApplicationService {
     /**
      *
      * @param candidateId
-     * @return
-     * This method take candateId as parameter and search all the application that has been applied by the candidate.
+     * @return This method take candateId as parameter and search all the
+     * application that has been applied by the candidate.
      */
-    public static ArrayList doGetJobApplicationByCandidate(int candidateId){
+    public static ArrayList doGetJobApplicationByCandidate(int candidateId) {
         ArrayList jobApplicationList = new ArrayList();
         Connection con = JDBCConnectionManager.getConnection();
         String sql = " SELECT applicationId, candidates.candidateId,candidates.resume, jobdetails.jobId,companyName, jobTitle, jobType,applicationMessage\n"
                 + "                 FROM jobapplication inner join candidates on jobapplication.candidateId=candidates.candidateId inner join jobdetails on \n"
                 + "                 jobapplication.jobId=jobdetails.jobId inner join jobapplicationstatuses on jobapplication.applicationStatus=jobapplicationstatuses.applicationStatus where candidates.candidateId=?;";
-          try {
+        try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, candidateId);
             System.out.println(preparedStatement);
@@ -52,20 +52,19 @@ public class JobApplicationService {
 //              jobApplication.setAppicationStatus(rs.getInt("applicationStatus"));
                 jobApplication.setResumePath(rs.getString("resume"));
                 jobApplication.setApplicationMessage(rs.getString("applicationMessage"));
-                        
+
 //              
                 jobApplicationList.add(jobApplication);
 
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
 
         return jobApplicationList;
@@ -73,8 +72,8 @@ public class JobApplicationService {
 
     /**
      * @param hr
-     * @return
-     * This method is mainly responsible for getting all the applied candidate's details that are posted by the Hr.
+     * @return This method is mainly responsible for getting all the applied
+     * candidate's details that are posted by the Hr.
      */
     public static ArrayList doGetApplicationByHrId(HR hr) {
         ArrayList applicantList = new ArrayList();
@@ -101,24 +100,23 @@ public class JobApplicationService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
 
         return applicantList;
 
     }
 
-    
     /**
      * @param jobId
-     * @return
-     * This method find all the candidate that are applied by the candidate. It search of the database corresponding tho the database and return all the applied candidate.
+     * @return This method find all the candidate that are applied by the
+     * candidate. It search of the database corresponding tho the database and
+     * return all the applied candidate.
      */
     public static ArrayList getApplicantByJobId(int jobId) {
         ArrayList applicantList = new ArrayList();
@@ -149,13 +147,12 @@ public class JobApplicationService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
 
         return applicantList;
@@ -163,8 +160,8 @@ public class JobApplicationService {
 
     /**
      * @param applicationId
-     * @return
-     * When a Hr try to change the status of the candidate like reject,Shortlisted then this method take the applicationId and change the
+     * @return When a Hr try to change the status of the candidate like
+     * reject,Shortlisted then this method take the applicationId and change the
      * status in jobApplication table
      */
     public static boolean updateApplicationStatus(int applicationId) {
@@ -185,24 +182,23 @@ public class JobApplicationService {
             if (execute != 0) {
                 success = true;
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return success;
     }
 
     /**
      * @param jobApplication
-     * @return
-     * This method is inserting data to the jobApplication table whenever candidate apply for a job.
-     * 
+     * @return This method is inserting data to the jobApplication table
+     * whenever candidate apply for a job.
+     *
      */
     public static boolean doApplyJob(JobApplication jobApplication) {
         boolean result = false;
@@ -225,13 +221,12 @@ public class JobApplicationService {
             }
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
 
         return result;
@@ -240,8 +235,8 @@ public class JobApplicationService {
     /**
      *
      * @param applicationId
-     * @return
-     * When a Hr try to change the status of the candidate like reject,Shortlisted then this method take the applicationId and change the
+     * @return When a Hr try to change the status of the candidate like
+     * reject,Shortlisted then this method take the applicationId and change the
      * status in jobApplication table
      */
     public static boolean rejectApplication(int applicationId) {
@@ -262,15 +257,14 @@ public class JobApplicationService {
             if (execute != 0) {
                 success = true;
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(JobApplicationService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return success;
     }

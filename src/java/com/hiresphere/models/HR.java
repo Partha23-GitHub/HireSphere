@@ -23,7 +23,7 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class HR extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
-    private int hrId, userId, companyId,value;
+    private int hrId, userId, companyId, value;
 
     /**
      *
@@ -40,7 +40,7 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
     public void setValue(int value) {
         this.value = value;
     }
-    private String contactNumber, companyName, hrName,gender;
+    private String contactNumber, companyName, hrName, gender;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -116,8 +116,9 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
     /**
      *
      * @return
-     * @throws Exception
-     * This Method is mainly responsible for load the HR menu and the corresponding pages dynamically through Ajax.
+     * @throws Exception 
+     * This Method is mainly responsible for load the
+     * HR menu and the corresponding pages dynamically through Ajax.
      */
     public String loadMenuContent() throws Exception {
         String result = "FAILURE";
@@ -240,12 +241,13 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
     /**
      *
      * @return
-     * This method will be called when HR clicks on their profile. it will take the user id from session the get all the necessary data
-     * from database and send to view through session
+     * This method will be called when HR clicks on their profile. it
+     * will take the user id from session the get all the necessary data from
+     * database and send to view through session
      */
     public String visitHRProfile() {
         String result = "FAILURE";
-        
+
         HR hr = HrService.getHrByUserId(this.userId);
 
         if (hr != null) {
@@ -262,9 +264,10 @@ public class HR extends ActionSupport implements ApplicationAware, SessionAware,
 
     /**
      *
-     * @return
-     * this method is called when HR try to update their profile. It gathered all the data then called the updateHRProfile
-     * and insert fields into HR database.
+     * @return 
+     * This method is called when HR try to update their profile. It
+     * gathered all the data then called the updateHRProfile and insert fields
+     * into HR database.
      */
     public String updateHRProfile() {
         String result = "FAILURE";

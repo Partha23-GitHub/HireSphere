@@ -33,8 +33,8 @@ public class HrService {
     /**
      *
      * @param userId
-     * @return
-     *  This method will make query on the database and get the details of the particular hr  by taking the userId from session
+     * @return This method will make query on the database and get the details
+     * of the particular hr by taking the userId from session
      */
     public static HR getHrByUserId(int userId) {
         HR hr = new HR();
@@ -53,15 +53,14 @@ public class HrService {
                 hr.setCompanyName(rs.getString("companyName"));
 
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return hr;
     }
@@ -69,8 +68,8 @@ public class HrService {
     /**
      *
      * @param userId
-     * @return
-     * This method is responsible for inserting the registered data into database while Hr is Signing Up.
+     * @return This method is responsible for inserting the registered data into
+     * database while Hr is Signing Up.
      */
     public static boolean doRegisterHr(int userId) {
 
@@ -118,8 +117,8 @@ public class HrService {
     /**
      *
      * @param userId
-     * @return
-     * This method is mainly search in the database about all the job that are posted by the particular Hr and return the all the job result.
+     * @return This method is mainly search in the database about all the job
+     * that are posted by the particular Hr and return the all the job result.
      */
     public ArrayList getAllJobPostedByHr(int userId) {
         ArrayList jobList = new ArrayList();
@@ -143,13 +142,12 @@ public class HrService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         System.out.println(jobList.size());
         return jobList;
@@ -158,8 +156,8 @@ public class HrService {
     /**
      *
      * @param userId
-     * @return
-     * This method takes userId as parameter and search in the hr table then return the hrId corresponding to the userId.
+     * @return This method takes userId as parameter and search in the hr table
+     * then return the hrId corresponding to the userId.
      */
     public int getHrId(int userId) {
         HR hr = new HR();
@@ -176,13 +174,12 @@ public class HrService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         int id = hr.getHrId();
         return id;
@@ -192,8 +189,9 @@ public class HrService {
      *
      * @param hr
      * @param hrId
-     * @return
-     * This method is taking t parameter Hr and hrId and putting all the hr data data are need to update and update all data corresponding to the HrIds
+     * @return This method is taking t parameter Hr and hrId and putting all the
+     * hr data data are need to update and update all data corresponding to the
+     * HrIds
      */
     public static boolean updateHRProfile(HR hr, int hrId) {
 
@@ -225,13 +223,12 @@ public class HrService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return result;
     }
@@ -239,8 +236,8 @@ public class HrService {
     /**
      *
      * @param userId
-     * @return
-     * this method is only count the number of job that are posted by the particular Hr.
+     * @return this method is only count the number of job that are posted by
+     * the particular Hr.
      */
     public int countNumberOfPostedJobs(int userId) {
         int postedJobs = 0;
@@ -260,12 +257,11 @@ public class HrService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
 
             //Logger log =  Logger.getLogger(HRService.class.getName());
             //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
@@ -279,8 +275,8 @@ public class HrService {
     /**
      *
      * @param hrId
-     * @return
-     * This method is counting the number of application are has been done for all the jobs that has been posted by the particular Hr
+     * @return This method is counting the number of application are has been
+     * done for all the jobs that has been posted by the particular Hr
      */
     public int getTotalApplication(int hrId) {
         int totalApplication = 0;
@@ -297,22 +293,21 @@ public class HrService {
             while (rs.next()) {
                 totalApplication = rs.getInt(1);
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
+            Logger log = Logger.getLogger(HrService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
         }
-         catch (Exception ex) {
-            Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-       }
         return totalApplication;
     }
 
     /**
      * @param hrId
-     * @return
-     * This method counts total candidate that has been shortlisted by the Hr
+     * @return This method counts total candidate that has been shortlisted by
+     * the Hr
      */
     public int getTotalShortlisted(int hrId) {
         int totalShortlisted = 0;
@@ -330,15 +325,14 @@ public class HrService {
                 totalShortlisted = rs.getInt(1);
             }
 
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
         }
         return totalShortlisted;
     }
@@ -346,8 +340,8 @@ public class HrService {
     /**
      *
      * @param userId
-     * @return
-     * This method count the total number od jobs that are not approved by HrManager to be published in candidate side
+     * @return This method count the total number od jobs that are not approved
+     * by HrManager to be published in candidate side
      */
     public int getTotalPending(int userId) {
         int totalPending = 0;
@@ -367,13 +361,12 @@ public class HrService {
 
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
-         
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
+
             //Logger log =  Logger.getLogger(HRService.class.getName());
             //log.error("ERROR:" +ex.getMessage()+"@"+LocalDateTime.now());
             ex.printStackTrace();
@@ -385,8 +378,8 @@ public class HrService {
     /**
      *
      * @param userId
-     * @return
-     * This method counts total number of job that are verified by the HrManager till date
+     * @return This method counts total number of job that are verified by the
+     * HrManager till date
      */
     public int getTotalVerified(int userId) {
         int totalPending = 0;
@@ -404,14 +397,13 @@ public class HrService {
                 totalPending = rs.getInt(1);
             }
 
-        }  catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+ex.getErrorCode()+" "+ex.getMessage());
-         
-        }
-         catch (Exception ex) {
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getErrorCode() + " " + ex.getMessage());
+
+        } catch (Exception ex) {
             Logger log = Logger.getLogger(HrService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM))+" "+" "+ex.getMessage());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + " " + ex.getMessage());
 
         }
         return totalPending;

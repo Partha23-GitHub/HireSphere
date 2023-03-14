@@ -274,7 +274,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     }
 
     /**
-     * @return This method is mainly taking care of Hr & HrManager signUp. It
+     * @return 
+     * This method is mainly taking care of Hr and HrManager signUp. It
      * take all the parameters from signUp form and register the user. After
      * successfully register it called the MailSender Class to send the mail
      * from few related details.

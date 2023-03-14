@@ -6,6 +6,7 @@ package com.hiresphere.models;
 
 import com.hiresphere.services.CandidateService;
 import com.hiresphere.services.JobApplicationService;
+import com.hiresphere.utils.JDBCUtility;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
@@ -356,7 +357,8 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     /**
      *
-     * @return This method will called when a candidate click on my profile. It
+     * @return 
+     * This method will called when a candidate click on my profile. It
      * take the userId from session and called the getCandidateByUserId method
      * of UserService and take all the candidate data then put in the session
      * map.
@@ -380,7 +382,9 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     /**
      *
-     * @return @throws IOException This method is basically taking candidateId
+     * @return 
+     * @throws IOException 
+     * This method is basically taking candidateId
      * from view and called the doGetJobApplicationByCandidate method of
      * JobApplicationService to process all the jobs that are applied by the
      * candidate.
@@ -400,10 +404,12 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
 
     /**
      *
-     * @return @throws FileNotFoundException
+     * @return 
+     * @throws FileNotFoundException
      * @throws IOException
      * @throws FileUploadException
-     * @throws Exception When User update their profile this method will called
+     * @throws Exception
+     * When User update their profile this method will called
      * with the resume file and all the necessary data for profile update. First
      * it will check if any od resume is present or not. if present then find
      * out the resume then delete it, after that new resume will store on the
@@ -413,16 +419,17 @@ public class Candidate extends ActionSupport implements ApplicationAware, Sessio
      */
     public String updateProfile() throws FileNotFoundException, IOException, FileUploadException, Exception {
         String result = "FAILURE";
+        JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
         // checking if any resume is there of candidate., if there then delete it
         String oldPath = CandidateService.getCandidateByCandidateId(candidateId).getResumePath();
-        System.out.println("oldpath: " + oldPath);
+        
         if (oldPath != null) {
-            File file = new File("D:\\ExavaluProject\\HireSphere\\web\\Resume/" + oldPath);
+            File file = new File(jdbcUtility.getPropertyValue("resumeStoringPath") + oldPath);
             file.delete();
         }
         // store the new resume
         String relativePath = System.currentTimeMillis() + resumeFileName; // for creating unique file name
-        String filePath = "D:\\ExavaluProject\\HireSphere\\web\\Resume/" + relativePath;
+        String filePath = jdbcUtility.getPropertyValue("resumeStoringPath") + relativePath;
         File destFile = new File(filePath);
         FileUtils.copyFile(resume, destFile);
         System.out.println(relativePath);
